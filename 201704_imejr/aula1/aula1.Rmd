@@ -17,7 +17,7 @@ Depois
 - vetores, matrizes e listas
 - data.frame
 - subsetting
-
+- pipe
 
 
 

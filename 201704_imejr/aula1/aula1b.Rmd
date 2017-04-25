@@ -3,15 +3,18 @@ title: "aula1b"
 output: html_document
 ---
 
+```{r}
+# esse pacote será utilizado la embaixo
+library(tibble)
+```
+
 ## Listas
 
 ### como criar (parecido com criar um vetor)
 
 ```{r}
-library(tibble)
-
-list(1,2,3)
-c(1,2,3)
+list(1, 2, 3)
+c(1, 2, 3)
 ```
 
 ### consegue juntar tipos diferentes
@@ -333,12 +336,13 @@ v1[-c(1,2,3,4)]
 v1[-(1:4)]
 v1[-seq(1,4)]
 
-#d
+#d)
 
 v1[c("g", "f", "e", "d", "c", "b", "a")]
 ```
 
 - como vimos, matrizes são vetores numéricos com a adição do atributo "dim"
+
 ```{r}
 matriz <- matrix(1:10, 5, 2)
 
@@ -349,11 +353,13 @@ attributes(matriz)
 
 - aceitam subsets de duas maneiras
 - apenas [
+
 ```{r}
 matriz[7]
 ```
 
 - [ com vírgula
+
 ```{r}
 matriz[2,2]
 ```
@@ -361,6 +367,7 @@ matriz[2,2]
 # listas
 
 - com listas passa a ser útil usar o operador [[
+
 ```{r}
 
 lista <- list(a = 1, b = 2, c = 3)
