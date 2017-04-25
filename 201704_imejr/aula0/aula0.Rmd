@@ -1,0 +1,511 @@
+---
+title: "Curso-R"
+subtitle: "IMEJr 2017"
+author: "Julio Trecenti"
+date: "25/04/2017"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+pnud_min <- abjData::pnud_min
+library(tidyverse)
+library(stringr)
+library(lubridate)
+library(forcats)
+```
+
+class: inverse, middle, center
+
+---
+background-image: url(https://scontent-gru2-2.xx.fbcdn.net/v/t31.0-8/17632251_752861178225051_8862467254747397399_o.jpg?oh=a26ce824ad2d2e70d4570de5de621771&oe=598BCEF8)
+background-position: 50% 50%
+background-size: 50%
+
+# IMEJr
+
+---
+background-image: url(https://scontent-gru2-2.xx.fbcdn.net/v/t1.0-9/16640820_182440982252132_6319760191194692999_n.jpg?oh=9add3f0c4b0a017d6501248a4b81c075&oe=5995C960)
+background-position: 50% 50%
+background-size: 50%
+
+# Curso-R
+
+[blog](http://curso-r.com)
+
+---
+background-image: url(https://cdn.datafloq.com/cms/os_big_data_open_source_tools-v2.png)
+background-position: 50% 50%
+background-size: 80%
+
+# Ciência de dados
+
+---
+
+# Papel do R
+
+---
+background-image: url(https://www.rstudio.com/wp-content/uploads/2014/06/RStudio-Ball.png)
+background-position: 50% 50%
+background-size: 50%
+
+# Papel do R
+
+- R é a grande cola.
+
+---
+background-image: url(https://raw.githubusercontent.com/hadley/r4ds/master/diagrams/data-science.png)
+background-position: 50% 50%
+background-size: 80%
+
+# Fazendo ciência de dados
+
+---
+background-image: url(http://revolution-computing.typepad.com/.a/6a010534b1db25970b01a511dd3ba4970c-pi)
+background-position: 80% 50%
+background-size: 80%
+
+# R e seus pacotes
+
+---
+background-image: url(https://pbs.twimg.com/media/CvzEQcfWIAAIs-N.jpg)
+background-position: 90% 50%
+background-size: 60%
+
+# Tidyverse
+
+O universo arrumadinho
+
+---
+class: inverse, center, middle
+
+# Princípios
+
+---
+
+# O tidyverse
+
+Revolução do R. Quem mexia em R antes de 2012 nota uma diferença gigante.
+
+--
+
+Os princípios do `tidyverse` seguem abaixo.
+
+1. **Eficiência algorítmica vs eficiência de trabalho**. O tempo gasto pensando em como realizar uma operação é mais importante do que o tempo que o computador gasta para realizar um cálculo.
+
+--
+
+1. **Tidy data**. Princípio para arrumação de base de dados que resolve 90% dos problemas reais. Base *tidy*:
+    - Cada observação é uma linha do bd.
+    - Cada variável é uma coluna do bd.
+    - Cada dado está numa célula do bd.
+
+--
+
+1. **Utilização do operador `%>%` (pipe)**.
+
+    > "No matter how complex and polished the individual operations are, it is often the quality of the glue that most directly determines the power of the system."  
+    > -- Hal Abelson
+    > 
+
+---
+
+# O tidyverse
+
+1. **Aparato mnemônico**. Pacotes baseados em teoria e API consistentes.
+
+--
+
+1. **Minimalidade e funções puras**. Funções sem *side-effects*. Interagem com o mundo através de inputs e outputs. Encaixa perfeitamente com o princípio do pipe.
+
+--
+
+1. *workflow* para ciência de dados
+
+---
+
+# RMarkdown
+
+- Tipo de documento especial que contém tanto textos (em markdown) quanto códigos em R (em chunks). 
+    - Markdown: documento de texto com padrões básicos de formatação, como **negrito**, *itálico*, títulos, subtítulos, itemização e referências cruzadas.
+    - Chunks: pedaços de códigos em R.
+
+--
+
+**Vantagens**:
+
+1. **Simplicidade e foco**. 
+1. **Versátil**.
+1. **Reprodutível**. 
+1. **Eficiente**.  
+
+Para detalhes sobre como utilizar o RMarkdown, [leia aqui](http://r4ds.had.co.nz/r-markdown.html) [e aqui](http://rmarkdown.rstudio.com/lesson-1.html).
+
+---
+
+# GitHub
+
+- Maior plataforma online para compartilhar códigos. 
+- Utiliza o `git`, a melhor ferramenta de versionamento de software.
+
+--
+
+**Vantagens**:
+
+1. Boa prática de organizar projetos pois mantém os códigos organizados e atualizados na web
+1. Projetos colaborativos: aumenta a produtividade e permite que pessoas de todo lugar ajudem nos projetos. 
+1. O `tidyverse` só é o que é hoje por conta do *social coding*.
+
+Para detalhes, faça o [data science toolbox](https://www.coursera.org/learn/data-scientists-tools).
+
+---
+
+# Nosso curso
+
+- Nosso curso utiliza o `tidyverse`.
+
+--
+
+- O melhor lugar para aprender sobre o `tidyverse` é no livro [R for data science](http://r4ds.had.co.nz).
+
+--
+
+- Aqui abordamos partes do livro e adicionamos outros, como práticas de modelgem preditiva e estudos de caso.
+
+--
+
+- Material do curso: [Curso-R Verão 2017](http://material.curso-r.com).
+
+---
+
+# Público-alvo
+
+- Estudantes de graduação em estatística que desejam ganhar tempo nos trabalhos da faculdade e entrar no mercado de trabalho com bons diferenciais.
+
+--
+
+- Profissionais do mercado de trabalho que desejam inserir o R mo fluxo de atividades do setor/empresa.
+
+--
+
+- Acadêmicos com interesse em tornar suas análises e códigos mais legíveis, reprodutíveis, eficientes e organizados.
+
+
+---
+background-image: url(https://curso-r.github.io/verao2017/questionario/figures/unnamed-chunk-1-1.png)
+background-position: 80% 50%
+background-size: 100%
+
+# Questionário
+
+Respostas dos questionários no tempo
+
+```{r, fig.width=9, fig.height=4, echo=F}
+d_alunos <- read_rds('d_alunos.rds')
+d_alunos %>% 
+  arrange(timestamp) %>% 
+  mutate(um = 1, respostas = cumsum(um)) %>% 
+  ggplot(aes(x = timestamp, y = respostas)) +
+  geom_step() +
+  geom_hline(yintercept = 54, colour = 'red') +
+  scale_y_continuous(breaks = c(0:11) * 5) +
+  theme_bw(16)
+```
+
+---
+
+# Utilização do R
+
+```{r fig.width=9, fig.height=7, echo=F}
+d_alunos %>% 
+  gather(questao, resposta, matches('situaria|mercado')) %>% 
+  replace_na(list(resposta = 'Não.')) %>% 
+  count(questao, resposta) %>% 
+  mutate(prop = n / sum(n)) %>% 
+  ungroup() %>% 
+  mutate(resposta = str_wrap(resposta, 20) %>% 
+           as_factor() %>% 
+           fct_reorder(fun = min, prop, .desc = TRUE)) %>% 
+  ggplot(aes(x = resposta, y = prop)) +
+  geom_col(position = 'dodge', fill = 'red', alpha = .5) +
+  coord_flip() +
+  facet_wrap(~questao, scales = 'free_y', ncol = 1) +
+  scale_y_continuous(labels = scales::percent, 
+                     limits = c(0, .9), breaks = 0:10/10) +
+  geom_text(aes(label = scales::percent(prop)), 
+            position = position_dodge(.9), hjust = -.1) +
+  theme_bw(16) +
+  theme(strip.background = element_blank()) +
+  xlab('') +
+  ylab('Proporção de inscritos')
+```
+
+---
+
+# Background
+
+Conhecimento em outras linguagens. Não soma 100%!
+
+```{r fig.width=9, fig.height=5, echo=F}
+d_alunos %>% 
+  gather(questao, resposta, matches('software')) %>% 
+  replace_na(list(resposta = 'Nenhuma')) %>% 
+  mutate(ling = str_split(resposta, '\\., ')) %>% 
+  unnest(ling) %>% 
+  mutate(ling = str_replace(ling, '\\.$', '')) %>%
+  mutate(ntot = n_distinct(id_pessoa)) %>% 
+  mutate(ling = str_wrap(ling, 16) %>% 
+           as_factor() %>% 
+           fct_lump(n = 5, other_level = 'Outros')) %>%
+  group_by(ling) %>% 
+  summarise(n = n_distinct(id_pessoa), ntot = first(ntot)) %>% 
+  mutate(prop = n / ntot) %>% 
+  ungroup() %>% 
+  mutate(ling = ling %>% fct_reorder(prop, .desc = TRUE)) %>% 
+  ggplot(aes(x = ling, y = prop)) +
+  geom_col(position = 'dodge', fill = 'red', alpha = .5) +
+  scale_y_continuous(labels = scales::percent, limits = c(0, .4)) +
+  geom_text(aes(label = scales::percent(prop)), 
+            position = position_dodge(.9), hjust = -.2) +
+  theme_bw(14) +
+  coord_flip() +
+  xlab('Linguagem de programação') +
+  ylab('Proporção de alunos')
+```
+
+---
+
+# Interesse
+
+```{r, fig.width=9, echo=FALSE}
+d_alunos %>% 
+  gather(questao, resposta, matches('Considerando')) %>% 
+  replace_na(list(resposta = 'Nenhuma')) %>% 
+  mutate(ling = str_split(resposta, '\\., ')) %>% 
+  unnest(ling) %>% 
+  mutate(ling = str_replace(ling, '\\.$', '')) %>%
+  mutate(ntot = n_distinct(id_pessoa)) %>% 
+  mutate(ling = str_wrap(ling, 30) %>% 
+           as_factor() %>% 
+           fct_lump(n = 5, other_level = 'Outros')) %>%
+  group_by(ling) %>% 
+  summarise(n = n_distinct(id_pessoa), ntot = first(ntot)) %>% 
+  mutate(prop = n / ntot) %>% 
+  ungroup() %>% 
+  mutate(ling = ling %>% fct_reorder(prop, .desc = TRUE)) %>% 
+  ggplot(aes(x = ling, y = prop)) +
+  geom_col(position = 'dodge', fill = 'red', alpha = .5) +
+  scale_y_continuous(labels = scales::percent, limits = c(0, 1)) +
+  geom_text(aes(label = scales::percent(prop)), 
+            position = position_dodge(.9), hjust = -.2) +
+  theme_bw(14) +
+  coord_flip() +
+  xlab('Interesse') +
+  ylab('Proporção de alunos')
+```
+
+---
+
+# Questionário
+
+```{r echo=FALSE}
+d_alunos %>% 
+  select(ime = matches('aluno IME'), usp = matches('aluno USP')) %>%
+  mutate_at(vars(ime, usp), funs(!. == 'Não')) %>%
+  mutate(tipo = if_else(ime&usp, 'IME', 
+                        if_else(usp&!ime, 'USP', 'Fora'))) %>% 
+  count(tipo, sort = TRUE) %>%
+  mutate(prop = n / sum(n)) %>% 
+  janitor::add_totals_row() %>% 
+  mutate(prop = scales::percent(prop)) %>% 
+  pander::pander()
+```
+
+---
+background-image: url(https://curso-r.github.io/verao2017/questionario/figures/unnamed-chunk-3-1.png)
+background-position: 80% 50%
+background-size: 100%
+
+# Questionário
+
+---
+
+# Workflow das aulas
+
+- Aulas no laboratório de computação (CEC).
+- Exercícios e laboratórios durante as aulas.
+    - entrega por e-mail com prazos a combinar.
+- Leituras complementares e opcionais fora da sala de aula.
+
+---
+
+# Requisitos básicos
+
+- [Material do Curso-R](material.curso-r.com).
+- Lógica de programação.
+- Veja [essa apresentação (aprox. 10 min)](http://curso-r.github.io/slides/aula_00_01_apresentacao.html) (slides: 13 ao 43).
+- Leia esse [post de blog (aprox. 5 min)](https://blog.rstudio.org/2016/09/15/tidyverse-1-0-0/).
+- Se quiser ganhar tempo, [crie uma conta no Github](http://github.com).
+
+---
+
+### **Aula 01** - 25/05: Introdução ao R, Rstudio e `tidyverse`
+
+```{r}
+matrix(1:10, ncol = 2)
+```
+
+---
+
+### **Aula 02** - 27/05: Manipulação de vetores com `lubridate`, `stringr` e `forcats`, e funcionais com `purrr` e `plyr`
+
+```{r, warning=F,message=F}
+library(lubridate)
+dmy('10/12/2015')
+```
+
+--
+
+```{r, warning=F,message=F}
+library(stringr)
+str_match('um texto muito loUco', '^um.+(texto).+(lo[uU]co).*$')
+```
+
+--
+
+```{r, warning=F,message=F}
+library(forcats)
+fct_lump(c(letters[1:10], letters), n = 1)
+```
+
+---
+
+```{r}
+library(purrr)
+a <- list(c(1, 2), c(3, 4))
+b <- list(c(5, 6), c(7, 8))
+map2(a, b, ~.x + .y)
+```
+
+```{r}
+plyr::llply(a, sum, .progress = 'text')
+```
+
+---
+
+### **Aula 02** - 27/05: Manipulação de dados com `dplyr` e `tidyr`
+
+```{r warning=F, message=F}
+library(dplyr)
+library(abjData)
+pnud_min %>% 
+  select(ano, regiao, idhm) %>% 
+  filter(ano == 2010) %>% 
+  group_by(regiao) %>% 
+  summarise(media = mean(idhm)) %>% 
+  arrange(desc(media)) %>% 
+  mutate(media = scales::percent(media))
+```
+
+---
+
+### **Aula 04** - 02/05: Visualização com `ggplot2`
+
+```{r, fig.width=9, fig.height=4}
+library(ggplot2)
+ggplot(mtcars, aes(mpg, disp, colour = factor(am))) + 
+  geom_point() +
+  theme_bw()
+```
+
+---
+
+### **Aulas 05 e 06** - 09/05 e 11/05: Modelagem usando o R
+
+```{r message=FALSE, warning=F, fig.height=2.5, fig.width=9}
+library(captchaTJRS)
+a <- captchaTJRS::download('captcha.jpg')
+'captcha.jpg' %>% 
+  captchaTJRS::ler() %>% 
+  captchaTJRS::desenhar()
+```
+
+```{r message=FALSE, warning=F}
+captchaTJRS::predizer('captcha.jpg')
+```
+
+---
+
+### **Aula 07** - 16/05: Importação e tópicos extras
+
+- SQL, pacotes `haven`, `DBI`, `openxlsx`, `googlesheets`, `readr`.
+- Web scraping com `httr`, `xml2` e `rvest`.
+
+--
+
+- Modelos bayesianos
+- Análise de Sobrevivência
+- Big data
+- Text mining
+- Deep learning
+- Pacotes
+- Rcpp
+- Mapas
+
+---
+
+### **Aula 08** - 18/05: Shiny e tópicos sobre comunicação com o R.
+
+```{r, fig.width=9, fig.height=4}
+library(ggplot2)
+p <- ggplot(mtcars, aes(mpg, disp, colour = factor(am))) + geom_point()
+plotly::ggplotly(p)
+```
+
+---
+
+# Não vamos falar de
+
+- Programação eficiente com R. Para isso, veja [esse livro](https://bookdown.org/csgillespie/efficientR/), que aborda temas importantíssimos como *profiling*, paralelização, `Rcpp`.
+
+--
+
+- Não vamos nos aprofundar em "big data". Para isso estude sobre [sparklyr](http://spark.rstudio.com/), [tensorflow](https://rstudio.github.io/tensorflow/) e [mongodb](https://gist.github.com/Btibert3/7751989).
+
+---
+
+# Diferenças entre C/C++ e R
+
+- `C`: eficiência e transparência, 
+- `R`: é análise de dados e interatividade. 
+
+Isso faz com que as duas linguagens sejam bem diferentes!
+
+--
+
+Na prática, temos que
+
+- C é compilável, R é uma linguagem script.
+- R é uma linguagem funcional. Por exemplo, `(`, `&` e `+` são funções do R.
+- R é vetorizado. Observe esse sacrilégio
+
+```{r}
+a <- c(1, 2, 3)
+b <- c(1, 2, 3, 4, 5, 6)
+a + b 
+```
+
+--
+
+- Você raramente usará loops (`for`, `while`) no R.
+
+---
+background-image: url(https://www.rstudio.com/wp-content/uploads/2014/06/RStudio-Ball.png)
+background-position: 50% 50%
+background-size: 50%
