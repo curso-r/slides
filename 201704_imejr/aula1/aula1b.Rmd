@@ -176,8 +176,8 @@ lista <- list(nomes = c("fernando", "julio", "athos"),
 
 lista
 
-attr(lista, "row.names") = 1:3
-attr(lista, "class") = "data.frame"
+attr(lista, "row.names") <- 1:3
+attr(lista, "class") <- "data.frame"
 
 lista
 
@@ -409,7 +409,7 @@ lista['a']
 
 ```
 
-#data.frames
+# data.frames
 
 - são listas, mas se parecem com matrizes com colunas heterogeneas
 - como é uma lista, pode fazer subset com [[, $ e [
@@ -454,7 +454,7 @@ df_exemplo[2, c("nomes")]
 df_exemplo[df_exemplo$id == 2, "nomes"] = "João" 
 
 lista <- list(a = 1,b = 2, c = 3)
-lista$b = "bê"
+lista$b <- "bê"
 
 ```
 
@@ -464,304 +464,63 @@ lista$b = "bê"
 
 v <- c(1,2,4,5)
 
-v[3] = "a"
-
+v[3] <- "a"
 
 ```
 
-# Importação de dados
+-------------------------------------------------------------------------------
+
+## Pipe `%>%`
+
+As duas linhas abaixo são equivalentes:
+
+```{r, eval=FALSE}
+f(x, y)
+x %>% f(y)
+```
+
+
+```{r eval=FALSE}
+install.packages("magrittr")
+```
+
+- calcular raiz quadrada da soma dos valores de 1 a 4.
 
 ```{r}
+library(magrittr)
 
-library(readxl)
-
-# Abre planilhas em csv que usem como separado decimal o caractér "."
-legendas_pt_1 <- read.csv(file = "inputs/legendas_pt_1.csv", stringsAsFactors = F)
-
-# Abre planilhas em csv que usem como separado decimal o caractér ","
-legendas_pt_2 <- read.csv2(file = "inputs/legendas_pt_2.csv", stringsAsFactors = F)
-
-# Abre planilhas em xlsx
-comentarios_pt_1 <- read_excel(path = "inputs/comentarios_pt_1.xlsx")
-comentarios_pt_2 <- read_excel(path = "inputs/comentarios_pt_2.xlsx")
-
-#empilha as linhas de um data.frame que tem as mesmas colunas na mesma ordem
-legendas <- rbind(legendas_pt_1, legendas_pt_2)
-
-comentarios <- rbind(comentarios_pt_1, comentarios_pt_2)
+x <- c(1, 2, 3, 4)
+x %>% sum %>% sqrt
 ```
 
-
-## Stringr: Trabalhando com textos
+Escrever esse cálculo na forma usual ficaria da seguinte forma:
 
 ```{r}
-library(stringr)
+sqrt(sum(x))
 ```
 
 
-### Funções básicas
+## Receita de bolo
 
-- comprimento de texto
+```{r, eval=FALSE}
 
-```{r}
-
-str_length(c("a", "bb", "ccc"))
-
-str_length(comentarios$autor[1:10])
-
-str_length(comentarios$texto[1:10])
+esfrie(asse(coloque(bata(acrescente(recipiente(rep("farinha", 2), "água", "fermento", "leite", "óleo"), "farinha", até = "macio"), duração = "3min"), lugar = "forma", tipo = "grande", untada = TRUE), duração = "50min"), "geladeira", "20min")
 
 ```
 
-- é diferente de length
+Tente entender o que é preciso fazer. Depois de desistir, veja como fica escrevendo com o operador `%>%`:
 
-```{r}
+```{r, eval=FALSE}
 
-length("oi, blz?")
-
-str_length("oi, blz?")
-
-```
-
-- str_trim tira espaços extras entre as palavras
-
-```{r}
-
-#exemplo de texto com um espaço a mais entre o ponto e "cs"
-s <- comentarios$texto[79]
-
-str_trim(s)
-
-#podem existir exemplos mais dramáticos
-
-str_trim("\n\f   que absurdo essa string       \n\t")
-  
-#\f é o delimitador de final de página em arquivos de texto
-#\n é o delimitador de linha
-#\t é o delimitador de tab
-```
-
-- str_sub extrai uma subsequência de caractéres a partir de delimitadores de começo e fim
-
-```{r}
-
-comentarios$texto[1:3]
-
-str_sub(comentarios$texto[1:3], start = 2, end = 5)
+recipiente(rep("farinha", 2), "água", "fermento", "leite", "óleo") %>%
+  acrescente("farinha", até = "macio") %>%
+  bata(duraço = "3min") %>%
+  coloque(lugar = "forma", tipo = "grande", untada = TRUE) %>%
+  asse(duração = "50min") %>%
+  esfrie("geladeira", "20min")
 
 ```
 
-- omissões de start são interpretadas como 1 e omissões de end são interpretadas como str_length do vetor.
+Agora o código realmente parece uma receita de bolo.
 
-```{r}
-
-s <- comentarios$texto[1:4]
-
-#mesmo resultado
-str_sub(comentarios$texto[1:4], end = 5)
-str_sub(s, start = 1, end = 5)
-
-#mesmo resultado
-str_sub(s, start = 2)
-str_sub(comentarios$texto[1:4], start = 2, end = str_length(comentarios$texto[1:4]))
-
-# também aceita vetores nos params start e end vetores.
-# se length(start), length(end) forem menores do length(s)
-# o r dá seu jeito
-
-str_sub(s, start = c(1,2))
-str_sub(s, start = c(1,2,3,4), end = c(2,5))
-
-# se end < start a função retorna ""
-
-str_sub(s, start = 2, end = 1)
-
-# faz extrações negativas
-
-str_sub(s, start = -2)
-```
-
-- caixa alta e caixa baixa
-
-```{r}
-
-str_to_upper(s)
-
-str_to_lower(s)
-
-```
-
-### Regex simples
-
-- trabalhar com textos exige um conhecimento de expressões regulares (*reg*ular *ex*pressions)
-- regex e uma sequencia de caracteres concisa que representa outras
-- se não houverem caractéres especiais (mencionados abaixo), uma determinada expressão representa todas as strings que contém a regex
-
-- str_view mostra os elementos de um vetor que são representados por uma determinada regex
-```{r}
-#highlights da letra "a" nos comentários do vídeo do Porta.
-stringr::str_view(c("banana", "bolota", "beloto"), "a")
-```
-
-- admite o parâmetro match = `TRUE`
-```{r}
-#comentários que contém  a palavra "amor" no vídeo do Porta.
-stringr::str_view(comentarios$texto, "careca", match = TRUE)
-```
-
-- os caractéres especiais de regex do R estão listadas abaixo, e o seu significado será detalhado no que segue
-
-. \ | ( ) [ { ^ $ * + ?
-
-### Operador "OU"
-
-- o caractér "|" indica que a regex deve procurar a ocorrêcia de algum dentre dois padrões
-
-```{r}
-str_view(comentarios$texto, "careca|clarice", match = TRUE)
-```
-
-### Delimitadores
-
-- os caractéres "^" e "$" representam o começo da string e o final da string, respectivamente
-
-```{r}
-str_view(comentarios$texto, "^a", match = T)
-```
-
-```{r}
-str_view(comentarios$texto, "!$", match = T)
-```
-
-### Quantificadores
-
-- os caractéres `?`, `+`, `*` e `{x,y}` indicam quantas vezes um padrão se repete
-
-- o caractér `+` indica que o ítem precedente deve se repetir uma vez ou mais
-- a regex `k+` significa "ocorrência da letra **k** uma vez ou mais"
-
-```{r}
-#pegamos risadas do tipo kkkk
-str_view(comentarios$texto, "k+", match = TRUE)
-```
-
-- a regex `Kk+` significa "ocorrência da sequência K seguido de **k** uma vez ou mais"
-```{r}
-#Pegamos quem riu com K maiúsculo na primeira letra
-str_view(comentarios$texto, "Kk+", match = TRUE)
-```
-
-- a sequência "{x,y}" indica que o item precedente deve se repetir entre x e y vezes
-- omissões significam que x = y
-- a regex `k{3}` significa "ocorrêcia da sequência **kkk** (k três vezes)
-
-```{r}
-#Pegamos quem riu com mais de 13 k's apenas
-str_view(comentarios$texto, "k{14}", match = TRUE)
-```
-
-- o caractér "*" indica que o item precedente deve se repetir zero vezes ou mais
-- a regex `Kk*` significa "ocorrência de um 'K' seguido de um 'k' zero vezes ou mais"
-```{r}
-#Começamos a pegar os caras que só riem com maiúsculas
-str_view(comentarios$texto, "Kk*", match = TRUE)
-```
-
-- o caractér "?" indica que o item precedente é opcional e deve se repetir no máximo uma vez
-
-- para aplicar quantificadores em mais do que um caracter usa-se "("
-- a regex `a(es)+` significa "ocorrência de um 'a' seguida de "es" uma vez ou mais"
-
-EXERCICIO
-
-Produza um str_view com sequências de "K"'s com PELO MENOS DOIS "K"'s 
-
-
-
-SOLUÇÃO
-
-
-
-```{r}
-str_view(comentarios$texto, "KK+", match = TRUE)
-```
-
-### Conjuntos
-
-- caractéres dentro de [] represetentam a ocorrência de "qualquer um dentre estes"
-
-```{r}
-# Risadas que começam com K maiúsculo ou minúsculo
-str_view(comentarios$texo, "[Kk]k+", match = TRUE)
-```
-
-- existem alguns conjuntos úteis pré definidos
-- o caracter '.' FORA dos colchetes representa "qualquer caracter"
-- o caracter '.' DENTRO dos colchetes é só um ponto
-- '[0-9]' repesenta qualquer número entre 0 e 9
-- '[a-z]','[A-Z]','[a-zA-z]' representem, respectivamente, o alfabeto minúculo, o alfabeto maiúsculo e ambos
-- o símbolo '^' dentro de um colchete indica a negação da classe definida. [^0-9] indica "não é número"
-
-EXERCÍCIO
-
-Escreva uma regex que represente todos os comentários com risadas que riem com um número par de "k"'s (ignorando a caixa alta e baixa).
-
-
-
-```{r}
-str_view(comentarios$texto, "([^Kk]|^)([Kk]k)+([^k]|$)", match = NA)
-```
-
-## Funções que usam regex
-
-- str_detect(s, regex) recebe um vetor e uma regex. retorna um vetor de `TRUE` e `FALSE` representando o pareamento da regex com as entradas de s
-
-```{r}
-
-str_detect(comentarios$texto[1:10], "careca")
-str_detect(legendas$textos[1:10], "\\?")
-str_detect(legendas$textos[1:10], "[?]")
-
-```
-
-- str_replace e str_replace_all recebem um vetor, uma regex e uma sequência de caractéres e substituem os pareamentos da regex pela sequência de caractéres
-
-```{r}
-
-str_replace(comentarios$texto[1], "k", "ha")
-str_replace_all(comentarios$texto[1], "k", "ha")
-str_replace_all(comentarios$texto[1], "Kk+", "haha")
-
-#substituir repetições de espaço
-comentarios$texto[65]
-str_replace_all(comentarios$texto[65], " +", " ")
-```
-
-- str_extract e str_extract_all recebem um vetor e uma regex e extraem exatamente o conteúdo do match da regex
-
-```{r}
-
-#extrai os "sobrenomes" dos autores dos comentários
-str_extract(comentarios$autor, "[A-Za-z]+$")
-
-```
-
-- str_match e str_match_all recebem um vetor e uma regex e extraem mais ou menos como o str_extract,  mas permitem que você quebre em subconjuntos
-
-```{r}
-str_match(comentarios$texto[1:20], "([Cc]a)(re)(ca)")
-```
-
-- str_split recebe um vetor de texto e uma string e "quebra" o texto em subconjuntos menores
-
-```{r}
-str_split(comentarios$texto[1:10], pattern = " ")
-```
-
-- str_subset() guarda apenas as strings compativeis com uma determinada regex
-
-```{r}
-
-str_subset(comentarios$texto, "careca")
-
-```
+Para mais informações sobre o `pipe` e exemplos de utilização, visite a página [Ceci n'est pas un pipe](http://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html).

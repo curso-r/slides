@@ -1,6 +1,6 @@
 ---
 title: "Aula Zero"
-output: html_notebook
+output: html_document
 ---
 
 # Roteiro
@@ -12,7 +12,11 @@ output: html_notebook
 - Controles de Fluxo
 - Objetos
 
+Depois
 
+- vetores, matrizes e listas
+- data.frame
+- subsetting
 
 
 
