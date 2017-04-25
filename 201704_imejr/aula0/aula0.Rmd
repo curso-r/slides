@@ -1,7 +1,7 @@
 ---
 title: "Curso-R"
 subtitle: "IMEJr 2017"
-author: "Julio Trecenti"
+author: "Julio Trecenti<br/>Andrés Florez"
 date: "25/04/2017"
 output:
   xaringan::moon_reader:
@@ -222,7 +222,7 @@ d_alunos %>%
 
 # Utilização do R
 
-```{r fig.width=9, fig.height=7, echo=F}
+```{r fig.width=9, fig.height=8, echo=F}
 d_alunos %>% 
   gather(questao, resposta, matches('situaria|mercado')) %>% 
   replace_na(list(resposta = 'Não.')) %>% 
@@ -323,8 +323,7 @@ d_alunos %>%
   count(tipo, sort = TRUE) %>%
   mutate(prop = n / sum(n)) %>% 
   janitor::add_totals_row() %>% 
-  mutate(prop = scales::percent(prop)) %>% 
-  pander::pander()
+  mutate(prop = scales::percent(prop))
 ```
 
 ---
@@ -355,7 +354,7 @@ background-size: 100%
 
 ---
 
-### **Aula 01** - 25/05: Introdução ao R, Rstudio e `tidyverse`
+### **Aula 01** - 25/04: Introdução ao R, Rstudio e `tidyverse`
 
 ```{r}
 matrix(1:10, ncol = 2)
@@ -363,7 +362,7 @@ matrix(1:10, ncol = 2)
 
 ---
 
-### **Aula 02** - 27/05: Manipulação de vetores com `lubridate`, `stringr` e `forcats`, e funcionais com `purrr` e `plyr`
+### **Aula 02** - 27/04: Manipulação de vetores com `lubridate`, `stringr` e `forcats`, e funcionais com `purrr` e `plyr`
 
 ```{r, warning=F,message=F}
 library(lubridate)
@@ -399,7 +398,7 @@ plyr::llply(a, sum, .progress = 'text')
 
 ---
 
-### **Aula 02** - 27/05: Manipulação de dados com `dplyr` e `tidyr`
+### **Aula 03** - 02/05: Manipulação de dados com `dplyr` e `tidyr`
 
 ```{r warning=F, message=F}
 library(dplyr)

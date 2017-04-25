@@ -543,7 +543,7 @@ str(iris)
 
 ### Valores especiais
 
-Existem valores reservados para representar dados faltantes, infinitos, e indefiniçőes matemáticas.
+Existem valores reservados para representar dados faltantes, infinitos, e indefinições matemáticas.
 
 - **NA** (Not Available) significa dado faltante/indisponível. 
 - **NaN** (Not a Number) representa indefinições matemáticas, como `0/0` e `log(-1)`. Um `NaN` é um `NA`, mas a recíproca não é verdadeira.
