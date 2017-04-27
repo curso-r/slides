@@ -222,7 +222,7 @@ d_alunos %>%
 
 # Utilização do R
 
-```{r fig.width=9, fig.height=8, echo=F}
+```{r fig.width=9, fig.height=7.5, echo=F}
 d_alunos %>% 
   gather(questao, resposta, matches('situaria|mercado')) %>% 
   replace_na(list(resposta = 'Não.')) %>% 
