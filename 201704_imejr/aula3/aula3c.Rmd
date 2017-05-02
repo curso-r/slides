@@ -86,7 +86,7 @@ v <- c('a.txt', 'b.txt', 'c.txt')
 v %>% walk(~cat(.x, file = .x))
 ```
 
-### cross_d
+### cross_df
 
 ```{r}
 v <- list(a = c(1, 2, 3), b = c(4, 5, 6))

@@ -42,8 +42,8 @@ library(stringr)
 
 ## Wrangle
 
-```{r transform, echo=FALSE, fig.cap='Transformação no ciclo da ciência de dados.'}
-knitr::include_graphics('http://r4ds.had.co.nz/diagrams/data-science-wrangle.png')
+```{r transform, echo=FALSE, fig.cap='Transformação no ciclo da ciência de dados.', fig.width=9}
+knitr::include_graphics('data-science-wrangle.png')
 ```
 
 
