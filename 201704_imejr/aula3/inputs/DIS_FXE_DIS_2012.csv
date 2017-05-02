@@ -1,0 +1,865 @@
+"Código Localidade";"Nome Localidade";"Ano";"Faixa Etária - Escolar";"Total"
+80001;"Água Rasa";2012;"00 a 03 anos";3.516
+80001;"Água Rasa";2012;"04 a 05 anos";1.603
+80001;"Água Rasa";2012;"06 anos";794
+80001;"Água Rasa";2012;"07 a 10 anos";3.264
+80001;"Água Rasa";2012;"11 a 14 anos";3.573
+80001;"Água Rasa";2012;"15 a 17 anos";2.848
+80001;"Água Rasa";2012;"18 a 19 anos";2.051
+80001;"Água Rasa";2012;"Total da Seleção";17.649
+80001;"Água Rasa";2012;"Total Geral da População";84.576
+80002;"Alto de Pinheiros";2012;"00 a 03 anos";1.419
+80002;"Alto de Pinheiros";2012;"04 a 05 anos";698
+80002;"Alto de Pinheiros";2012;"06 anos";349
+80002;"Alto de Pinheiros";2012;"07 a 10 anos";1.432
+80002;"Alto de Pinheiros";2012;"11 a 14 anos";1.547
+80002;"Alto de Pinheiros";2012;"15 a 17 anos";1.270
+80002;"Alto de Pinheiros";2012;"18 a 19 anos";935
+80002;"Alto de Pinheiros";2012;"Total da Seleção";7.650
+80002;"Alto de Pinheiros";2012;"Total Geral da População";42.724
+80003;"Anhanguera";2012;"00 a 03 anos";4.277
+80003;"Anhanguera";2012;"04 a 05 anos";2.057
+80003;"Anhanguera";2012;"06 anos";1.054
+80003;"Anhanguera";2012;"07 a 10 anos";4.546
+80003;"Anhanguera";2012;"11 a 14 anos";5.110
+80003;"Anhanguera";2012;"15 a 17 anos";3.895
+80003;"Anhanguera";2012;"18 a 19 anos";2.627
+80003;"Anhanguera";2012;"Total da Seleção";23.566
+80003;"Anhanguera";2012;"Total Geral da População";69.686
+80004;"Aricanduva";2012;"00 a 03 anos";4.198
+80004;"Aricanduva";2012;"04 a 05 anos";2.004
+80004;"Aricanduva";2012;"06 anos";1.018
+80004;"Aricanduva";2012;"07 a 10 anos";4.340
+80004;"Aricanduva";2012;"11 a 14 anos";4.831
+80004;"Aricanduva";2012;"15 a 17 anos";3.708
+80004;"Aricanduva";2012;"18 a 19 anos";2.560
+80004;"Aricanduva";2012;"Total da Seleção";22.659
+80004;"Aricanduva";2012;"Total Geral da População";88.779
+80005;"Artur Alvim";2012;"00 a 03 anos";5.060
+80005;"Artur Alvim";2012;"04 a 05 anos";2.403
+80005;"Artur Alvim";2012;"06 anos";1.212
+80005;"Artur Alvim";2012;"07 a 10 anos";5.109
+80005;"Artur Alvim";2012;"11 a 14 anos";5.634
+80005;"Artur Alvim";2012;"15 a 17 anos";4.382
+80005;"Artur Alvim";2012;"18 a 19 anos";3.048
+80005;"Artur Alvim";2012;"Total da Seleção";26.848
+80005;"Artur Alvim";2012;"Total Geral da População";104.225
+80006;"Barra Funda";2012;"00 a 03 anos";684
+80006;"Barra Funda";2012;"04 a 05 anos";303
+80006;"Barra Funda";2012;"06 anos";145
+80006;"Barra Funda";2012;"07 a 10 anos";552
+80006;"Barra Funda";2012;"11 a 14 anos";546
+80006;"Barra Funda";2012;"15 a 17 anos";418
+80006;"Barra Funda";2012;"18 a 19 anos";317
+80006;"Barra Funda";2012;"Total da Seleção";2.965
+80006;"Barra Funda";2012;"Total Geral da População";14.699
+80007;"Bela Vista";2012;"00 a 03 anos";2.678
+80007;"Bela Vista";2012;"04 a 05 anos";1.107
+80007;"Bela Vista";2012;"06 anos";519
+80007;"Bela Vista";2012;"07 a 10 anos";1.983
+80007;"Bela Vista";2012;"11 a 14 anos";2.078
+80007;"Bela Vista";2012;"15 a 17 anos";1.710
+80007;"Bela Vista";2012;"18 a 19 anos";1.444
+80007;"Bela Vista";2012;"Total da Seleção";11.519
+80007;"Bela Vista";2012;"Total Geral da População";70.315
+80008;"Belém";2012;"00 a 03 anos";2.615
+80008;"Belém";2012;"04 a 05 anos";1.051
+80008;"Belém";2012;"06 anos";495
+80008;"Belém";2012;"07 a 10 anos";1.930
+80008;"Belém";2012;"11 a 14 anos";2.014
+80008;"Belém";2012;"15 a 17 anos";1.526
+80008;"Belém";2012;"18 a 19 anos";1.125
+80008;"Belém";2012;"Total da Seleção";10.756
+80008;"Belém";2012;"Total Geral da População";45.964
+80009;"Bom Retiro";2012;"00 a 03 anos";2.030
+80009;"Bom Retiro";2012;"04 a 05 anos";880
+80009;"Bom Retiro";2012;"06 anos";426
+80009;"Bom Retiro";2012;"07 a 10 anos";1.691
+80009;"Bom Retiro";2012;"11 a 14 anos";1.772
+80009;"Bom Retiro";2012;"15 a 17 anos";1.340
+80009;"Bom Retiro";2012;"18 a 19 anos";992
+80009;"Bom Retiro";2012;"Total da Seleção";9.131
+80009;"Bom Retiro";2012;"Total Geral da População";34.978
+80010;"Brás";2012;"00 a 03 anos";1.769
+80010;"Brás";2012;"04 a 05 anos";724
+80010;"Brás";2012;"06 anos";347
+80010;"Brás";2012;"07 a 10 anos";1.388
+80010;"Brás";2012;"11 a 14 anos";1.499
+80010;"Brás";2012;"15 a 17 anos";1.148
+80010;"Brás";2012;"18 a 19 anos";854
+80010;"Brás";2012;"Total da Seleção";7.729
+80010;"Brás";2012;"Total Geral da População";30.082
+80011;"Brasilândia";2012;"00 a 03 anos";17.459
+80011;"Brasilândia";2012;"04 a 05 anos";8.020
+80011;"Brasilândia";2012;"06 anos";4.053
+80011;"Brasilândia";2012;"07 a 10 anos";17.334
+80011;"Brasilândia";2012;"11 a 14 anos";19.346
+80011;"Brasilândia";2012;"15 a 17 anos";14.440
+80011;"Brasilândia";2012;"18 a 19 anos";9.624
+80011;"Brasilândia";2012;"Total da Seleção";90.276
+80011;"Brasilândia";2012;"Total Geral da População";268.263
+80012;"Butantã";2012;"00 a 03 anos";2.068
+80012;"Butantã";2012;"04 a 05 anos";947
+80012;"Butantã";2012;"06 anos";465
+80012;"Butantã";2012;"07 a 10 anos";1.863
+80012;"Butantã";2012;"11 a 14 anos";1.973
+80012;"Butantã";2012;"15 a 17 anos";1.563
+80012;"Butantã";2012;"18 a 19 anos";1.203
+80012;"Butantã";2012;"Total da Seleção";10.082
+80012;"Butantã";2012;"Total Geral da População";54.183
+80013;"Cachoeirinha";2012;"00 a 03 anos";8.782
+80013;"Cachoeirinha";2012;"04 a 05 anos";4.061
+80013;"Cachoeirinha";2012;"06 anos";2.035
+80013;"Cachoeirinha";2012;"07 a 10 anos";8.526
+80013;"Cachoeirinha";2012;"11 a 14 anos";9.330
+80013;"Cachoeirinha";2012;"15 a 17 anos";7.123
+80013;"Cachoeirinha";2012;"18 a 19 anos";4.853
+80013;"Cachoeirinha";2012;"Total da Seleção";44.710
+80013;"Cachoeirinha";2012;"Total Geral da População";143.998
+80014;"Cambuci";2012;"00 a 03 anos";1.865
+80014;"Cambuci";2012;"04 a 05 anos";844
+80014;"Cambuci";2012;"06 anos";412
+80014;"Cambuci";2012;"07 a 10 anos";1.629
+80014;"Cambuci";2012;"11 a 14 anos";1.662
+80014;"Cambuci";2012;"15 a 17 anos";1.239
+80014;"Cambuci";2012;"18 a 19 anos";883
+80014;"Cambuci";2012;"Total da Seleção";8.534
+80014;"Cambuci";2012;"Total Geral da População";37.765
+80015;"Campo Belo";2012;"00 a 03 anos";2.706
+80015;"Campo Belo";2012;"04 a 05 anos";1.254
+80015;"Campo Belo";2012;"06 anos";614
+80015;"Campo Belo";2012;"07 a 10 anos";2.433
+80015;"Campo Belo";2012;"11 a 14 anos";2.460
+80015;"Campo Belo";2012;"15 a 17 anos";1.835
+80015;"Campo Belo";2012;"18 a 19 anos";1.323
+80015;"Campo Belo";2012;"Total da Seleção";12.625
+80015;"Campo Belo";2012;"Total Geral da População";65.395
+80016;"Campo Grande";2012;"00 a 03 anos";4.732
+80016;"Campo Grande";2012;"04 a 05 anos";2.252
+80016;"Campo Grande";2012;"06 anos";1.129
+80016;"Campo Grande";2012;"07 a 10 anos";4.677
+80016;"Campo Grande";2012;"11 a 14 anos";5.036
+80016;"Campo Grande";2012;"15 a 17 anos";3.917
+80016;"Campo Grande";2012;"18 a 19 anos";2.706
+80016;"Campo Grande";2012;"Total da Seleção";24.449
+80016;"Campo Grande";2012;"Total Geral da População";102.075
+80017;"Campo Limpo";2012;"00 a 03 anos";12.957
+80017;"Campo Limpo";2012;"04 a 05 anos";6.065
+80017;"Campo Limpo";2012;"06 anos";3.054
+80017;"Campo Limpo";2012;"07 a 10 anos";12.822
+80017;"Campo Limpo";2012;"11 a 14 anos";13.936
+80017;"Campo Limpo";2012;"15 a 17 anos";10.378
+80017;"Campo Limpo";2012;"18 a 19 anos";7.035
+80017;"Campo Limpo";2012;"Total da Seleção";66.247
+80017;"Campo Limpo";2012;"Total Geral da População";214.956
+80018;"Cangaiba";2012;"00 a 03 anos";7.314
+80018;"Cangaiba";2012;"04 a 05 anos";3.346
+80018;"Cangaiba";2012;"06 anos";1.684
+80018;"Cangaiba";2012;"07 a 10 anos";7.175
+80018;"Cangaiba";2012;"11 a 14 anos";8.092
+80018;"Cangaiba";2012;"15 a 17 anos";6.268
+80018;"Cangaiba";2012;"18 a 19 anos";4.356
+80018;"Cangaiba";2012;"Total da Seleção";38.235
+80018;"Cangaiba";2012;"Total Geral da População";136.856
+80019;"Capão Redondo";2012;"00 a 03 anos";17.067
+80019;"Capão Redondo";2012;"04 a 05 anos";7.992
+80019;"Capão Redondo";2012;"06 anos";4.036
+80019;"Capão Redondo";2012;"07 a 10 anos";17.070
+80019;"Capão Redondo";2012;"11 a 14 anos";18.725
+80019;"Capão Redondo";2012;"15 a 17 anos";13.960
+80019;"Capão Redondo";2012;"18 a 19 anos";9.447
+80019;"Capão Redondo";2012;"Total da Seleção";88.297
+80019;"Capão Redondo";2012;"Total Geral da População";274.201
+80020;"Carrão";2012;"00 a 03 anos";3.391
+80020;"Carrão";2012;"04 a 05 anos";1.617
+80020;"Carrão";2012;"06 anos";818
+80020;"Carrão";2012;"07 a 10 anos";3.466
+80020;"Carrão";2012;"11 a 14 anos";3.878
+80020;"Carrão";2012;"15 a 17 anos";3.077
+80020;"Carrão";2012;"18 a 19 anos";2.183
+80020;"Carrão";2012;"Total da Seleção";18.430
+80020;"Carrão";2012;"Total Geral da População";83.725
+80021;"Casa Verde";2012;"00 a 03 anos";4.203
+80021;"Casa Verde";2012;"04 a 05 anos";1.906
+80021;"Casa Verde";2012;"06 anos";946
+80021;"Casa Verde";2012;"07 a 10 anos";3.917
+80021;"Casa Verde";2012;"11 a 14 anos";4.266
+80021;"Casa Verde";2012;"15 a 17 anos";3.265
+80021;"Casa Verde";2012;"18 a 19 anos";2.314
+80021;"Casa Verde";2012;"Total da Seleção";20.817
+80021;"Casa Verde";2012;"Total Geral da População";85.776
+80022;"Cidade Ademar";2012;"00 a 03 anos";16.166
+80022;"Cidade Ademar";2012;"04 a 05 anos";7.443
+80022;"Cidade Ademar";2012;"06 anos";3.722
+80022;"Cidade Ademar";2012;"07 a 10 anos";15.541
+80022;"Cidade Ademar";2012;"11 a 14 anos";16.985
+80022;"Cidade Ademar";2012;"15 a 17 anos";12.938
+80022;"Cidade Ademar";2012;"18 a 19 anos";8.949
+80022;"Cidade Ademar";2012;"Total da Seleção";81.744
+80022;"Cidade Ademar";2012;"Total Geral da População";270.700
+80023;"Cidade Dutra";2012;"00 a 03 anos";10.965
+80023;"Cidade Dutra";2012;"04 a 05 anos";5.157
+80023;"Cidade Dutra";2012;"06 anos";2.615
+80023;"Cidade Dutra";2012;"07 a 10 anos";11.149
+80023;"Cidade Dutra";2012;"11 a 14 anos";12.424
+80023;"Cidade Dutra";2012;"15 a 17 anos";9.470
+80023;"Cidade Dutra";2012;"18 a 19 anos";6.482
+80023;"Cidade Dutra";2012;"Total da Seleção";58.262
+80023;"Cidade Dutra";2012;"Total Geral da População";197.388
+80024;"Cidade Lider";2012;"00 a 03 anos";7.078
+80024;"Cidade Lider";2012;"04 a 05 anos";3.381
+80024;"Cidade Lider";2012;"06 anos";1.711
+80024;"Cidade Lider";2012;"07 a 10 anos";7.223
+80024;"Cidade Lider";2012;"11 a 14 anos";7.935
+80024;"Cidade Lider";2012;"15 a 17 anos";6.092
+80024;"Cidade Lider";2012;"18 a 19 anos";4.183
+80024;"Cidade Lider";2012;"Total da Seleção";37.603
+80024;"Cidade Lider";2012;"Total Geral da População";128.366
+80025;"Cidade Tiradentes";2012;"00 a 03 anos";14.005
+80025;"Cidade Tiradentes";2012;"04 a 05 anos";6.927
+80025;"Cidade Tiradentes";2012;"06 anos";3.566
+80025;"Cidade Tiradentes";2012;"07 a 10 anos";15.328
+80025;"Cidade Tiradentes";2012;"11 a 14 anos";16.866
+80025;"Cidade Tiradentes";2012;"15 a 17 anos";12.511
+80025;"Cidade Tiradentes";2012;"18 a 19 anos";8.201
+80025;"Cidade Tiradentes";2012;"Total da Seleção";77.404
+80025;"Cidade Tiradentes";2012;"Total Geral da População";216.029
+80026;"Consolação";2012;"00 a 03 anos";1.514
+80026;"Consolação";2012;"04 a 05 anos";686
+80026;"Consolação";2012;"06 anos";330
+80026;"Consolação";2012;"07 a 10 anos";1.301
+80026;"Consolação";2012;"11 a 14 anos";1.450
+80026;"Consolação";2012;"15 a 17 anos";1.309
+80026;"Consolação";2012;"18 a 19 anos";1.248
+80026;"Consolação";2012;"Total da Seleção";7.838
+80026;"Consolação";2012;"Total Geral da População";57.401
+80027;"Cursino";2012;"00 a 03 anos";5.057
+80027;"Cursino";2012;"04 a 05 anos";2.345
+80027;"Cursino";2012;"06 anos";1.160
+80027;"Cursino";2012;"07 a 10 anos";4.705
+80027;"Cursino";2012;"11 a 14 anos";5.002
+80027;"Cursino";2012;"15 a 17 anos";3.949
+80027;"Cursino";2012;"18 a 19 anos";2.837
+80027;"Cursino";2012;"Total da Seleção";25.055
+80027;"Cursino";2012;"Total Geral da População";110.144
+80028;"Ermelino Matarazzo";2012;"00 a 03 anos";6.583
+80028;"Ermelino Matarazzo";2012;"04 a 05 anos";3.100
+80028;"Ermelino Matarazzo";2012;"06 anos";1.561
+80028;"Ermelino Matarazzo";2012;"07 a 10 anos";6.551
+80028;"Ermelino Matarazzo";2012;"11 a 14 anos";7.157
+80028;"Ermelino Matarazzo";2012;"15 a 17 anos";5.465
+80028;"Ermelino Matarazzo";2012;"18 a 19 anos";3.764
+80028;"Ermelino Matarazzo";2012;"Total da Seleção";34.181
+80028;"Ermelino Matarazzo";2012;"Total Geral da População";114.728
+80029;"Freguesia do Ó";2012;"00 a 03 anos";6.782
+80029;"Freguesia do Ó";2012;"04 a 05 anos";3.080
+80029;"Freguesia do Ó";2012;"06 anos";1.548
+80029;"Freguesia do Ó";2012;"07 a 10 anos";6.597
+80029;"Freguesia do Ó";2012;"11 a 14 anos";7.468
+80029;"Freguesia do Ó";2012;"15 a 17 anos";5.812
+80029;"Freguesia do Ó";2012;"18 a 19 anos";4.061
+80029;"Freguesia do Ó";2012;"Total da Seleção";35.348
+80029;"Freguesia do Ó";2012;"Total Geral da População";141.928
+80030;"Grajaú";2012;"00 a 03 anos";23.869
+80030;"Grajaú";2012;"04 a 05 anos";11.172
+80030;"Grajaú";2012;"06 anos";5.683
+80030;"Grajaú";2012;"07 a 10 anos";24.313
+80030;"Grajaú";2012;"11 a 14 anos";27.115
+80030;"Grajaú";2012;"15 a 17 anos";20.490
+80030;"Grajaú";2012;"18 a 19 anos";13.634
+80030;"Grajaú";2012;"Total da Seleção";126.276
+80030;"Grajaú";2012;"Total Geral da População";366.480
+80031;"Guaianases";2012;"00 a 03 anos";6.600
+80031;"Guaianases";2012;"04 a 05 anos";3.124
+80031;"Guaianases";2012;"06 anos";1.584
+80031;"Guaianases";2012;"07 a 10 anos";6.740
+80031;"Guaianases";2012;"11 a 14 anos";7.494
+80031;"Guaianases";2012;"15 a 17 anos";5.763
+80031;"Guaianases";2012;"18 a 19 anos";3.871
+80031;"Guaianases";2012;"Total da Seleção";35.176
+80031;"Guaianases";2012;"Total Geral da População";104.987
+80033;"Iguatemi";2012;"00 a 03 anos";8.578
+80033;"Iguatemi";2012;"04 a 05 anos";4.059
+80033;"Iguatemi";2012;"06 anos";2.063
+80033;"Iguatemi";2012;"07 a 10 anos";8.824
+80033;"Iguatemi";2012;"11 a 14 anos";9.834
+80033;"Iguatemi";2012;"15 a 17 anos";7.486
+80033;"Iguatemi";2012;"18 a 19 anos";5.002
+80033;"Iguatemi";2012;"Total da Seleção";45.846
+80033;"Iguatemi";2012;"Total Geral da População";131.910
+80034;"Ipiranga";2012;"00 a 03 anos";4.910
+80034;"Ipiranga";2012;"04 a 05 anos";2.274
+80034;"Ipiranga";2012;"06 anos";1.129
+80034;"Ipiranga";2012;"07 a 10 anos";4.627
+80034;"Ipiranga";2012;"11 a 14 anos";4.994
+80034;"Ipiranga";2012;"15 a 17 anos";3.940
+80034;"Ipiranga";2012;"18 a 19 anos";2.819
+80034;"Ipiranga";2012;"Total da Seleção";24.693
+80034;"Ipiranga";2012;"Total Geral da População";108.010
+80035;"Itaim Bibi";2012;"00 a 03 anos";3.778
+80035;"Itaim Bibi";2012;"04 a 05 anos";1.610
+80035;"Itaim Bibi";2012;"06 anos";749
+80035;"Itaim Bibi";2012;"07 a 10 anos";2.745
+80035;"Itaim Bibi";2012;"11 a 14 anos";2.613
+80035;"Itaim Bibi";2012;"15 a 17 anos";2.110
+80035;"Itaim Bibi";2012;"18 a 19 anos";1.630
+80035;"Itaim Bibi";2012;"Total da Seleção";15.235
+80035;"Itaim Bibi";2012;"Total Geral da População";93.704
+80036;"Itaim Paulista";2012;"00 a 03 anos";13.970
+80036;"Itaim Paulista";2012;"04 a 05 anos";6.623
+80036;"Itaim Paulista";2012;"06 anos";3.375
+80036;"Itaim Paulista";2012;"07 a 10 anos";14.503
+80036;"Itaim Paulista";2012;"11 a 14 anos";16.310
+80036;"Itaim Paulista";2012;"15 a 17 anos";12.575
+80036;"Itaim Paulista";2012;"18 a 19 anos";8.435
+80036;"Itaim Paulista";2012;"Total da Seleção";75.791
+80036;"Itaim Paulista";2012;"Total Geral da População";226.070
+80037;"Itaquera";2012;"00 a 03 anos";11.909
+80037;"Itaquera";2012;"04 a 05 anos";5.571
+80037;"Itaquera";2012;"06 anos";2.825
+80037;"Itaquera";2012;"07 a 10 anos";12.073
+80037;"Itaquera";2012;"11 a 14 anos";13.476
+80037;"Itaquera";2012;"15 a 17 anos";10.211
+80037;"Itaquera";2012;"18 a 19 anos";6.862
+80037;"Itaquera";2012;"Total da Seleção";62.927
+80037;"Itaquera";2012;"Total Geral da População";206.142
+80038;"Jabaquara";2012;"00 a 03 anos";11.558
+80038;"Jabaquara";2012;"04 a 05 anos";5.305
+80038;"Jabaquara";2012;"06 anos";2.644
+80038;"Jabaquara";2012;"07 a 10 anos";10.975
+80038;"Jabaquara";2012;"11 a 14 anos";11.944
+80038;"Jabaquara";2012;"15 a 17 anos";9.154
+80038;"Jabaquara";2012;"18 a 19 anos";6.391
+80038;"Jabaquara";2012;"Total da Seleção";57.971
+80038;"Jabaquara";2012;"Total Geral da População";224.902
+80039;"Jaçanã";2012;"00 a 03 anos";4.987
+80039;"Jaçanã";2012;"04 a 05 anos";2.455
+80039;"Jaçanã";2012;"06 anos";1.255
+80039;"Jaçanã";2012;"07 a 10 anos";5.320
+80039;"Jaçanã";2012;"11 a 14 anos";5.803
+80039;"Jaçanã";2012;"15 a 17 anos";4.363
+80039;"Jaçanã";2012;"18 a 19 anos";2.973
+80039;"Jaçanã";2012;"Total da Seleção";27.156
+80039;"Jaçanã";2012;"Total Geral da População";94.935
+80040;"Jaguara";2012;"00 a 03 anos";1.096
+80040;"Jaguara";2012;"04 a 05 anos";517
+80040;"Jaguara";2012;"06 anos";259
+80040;"Jaguara";2012;"07 a 10 anos";1.084
+80040;"Jaguara";2012;"11 a 14 anos";1.184
+80040;"Jaguara";2012;"15 a 17 anos";901
+80040;"Jaguara";2012;"18 a 19 anos";639
+80040;"Jaguara";2012;"Total da Seleção";5.680
+80040;"Jaguara";2012;"Total Geral da População";24.703
+80041;"Jaguaré";2012;"00 a 03 anos";2.749
+80041;"Jaguaré";2012;"04 a 05 anos";1.312
+80041;"Jaguaré";2012;"06 anos";657
+80041;"Jaguaré";2012;"07 a 10 anos";2.709
+80041;"Jaguaré";2012;"11 a 14 anos";2.880
+80041;"Jaguaré";2012;"15 a 17 anos";2.187
+80041;"Jaguaré";2012;"18 a 19 anos";1.518
+80041;"Jaguaré";2012;"Total da Seleção";14.012
+80041;"Jaguaré";2012;"Total Geral da População";50.962
+80042;"Jaraguá";2012;"00 a 03 anos";11.485
+80042;"Jaraguá";2012;"04 a 05 anos";5.440
+80042;"Jaraguá";2012;"06 anos";2.780
+80042;"Jaraguá";2012;"07 a 10 anos";12.007
+80042;"Jaraguá";2012;"11 a 14 anos";13.456
+80042;"Jaraguá";2012;"15 a 17 anos";10.048
+80042;"Jaraguá";2012;"18 a 19 anos";6.698
+80042;"Jaraguá";2012;"Total da Seleção";61.914
+80042;"Jaraguá";2012;"Total Geral da População";190.571
+80043;"Jardim Ângela";2012;"00 a 03 anos";20.604
+80043;"Jardim Ângela";2012;"04 a 05 anos";9.784
+80043;"Jardim Ângela";2012;"06 anos";4.956
+80043;"Jardim Ângela";2012;"07 a 10 anos";20.948
+80043;"Jardim Ângela";2012;"11 a 14 anos";22.817
+80043;"Jardim Ângela";2012;"15 a 17 anos";16.971
+80043;"Jardim Ângela";2012;"18 a 19 anos";11.251
+80043;"Jardim Ângela";2012;"Total da Seleção";107.331
+80043;"Jardim Ângela";2012;"Total Geral da População";303.888
+80044;"Jardim Helena";2012;"00 a 03 anos";8.784
+80044;"Jardim Helena";2012;"04 a 05 anos";4.010
+80044;"Jardim Helena";2012;"06 anos";2.018
+80044;"Jardim Helena";2012;"07 a 10 anos";8.592
+80044;"Jardim Helena";2012;"11 a 14 anos";9.643
+80044;"Jardim Helena";2012;"15 a 17 anos";7.427
+80044;"Jardim Helena";2012;"18 a 19 anos";4.988
+80044;"Jardim Helena";2012;"Total da Seleção";45.462
+80044;"Jardim Helena";2012;"Total Geral da População";134.797
+80045;"Jardim Paulista";2012;"00 a 03 anos";3.017
+80045;"Jardim Paulista";2012;"04 a 05 anos";1.296
+80045;"Jardim Paulista";2012;"06 anos";613
+80045;"Jardim Paulista";2012;"07 a 10 anos";2.339
+80045;"Jardim Paulista";2012;"11 a 14 anos";2.369
+80045;"Jardim Paulista";2012;"15 a 17 anos";1.904
+80045;"Jardim Paulista";2012;"18 a 19 anos";1.522
+80045;"Jardim Paulista";2012;"Total da Seleção";13.060
+80045;"Jardim Paulista";2012;"Total Geral da População";89.216
+80046;"Jardim São Luís";2012;"00 a 03 anos";16.275
+80046;"Jardim São Luís";2012;"04 a 05 anos";7.614
+80046;"Jardim São Luís";2012;"06 anos";3.846
+80046;"Jardim São Luís";2012;"07 a 10 anos";16.272
+80046;"Jardim São Luís";2012;"11 a 14 anos";17.875
+80046;"Jardim São Luís";2012;"15 a 17 anos";13.333
+80046;"Jardim São Luís";2012;"18 a 19 anos";9.091
+80046;"Jardim São Luís";2012;"Total da Seleção";84.306
+80046;"Jardim São Luís";2012;"Total Geral da População";273.113
+80047;"José Bonifácio";2012;"00 a 03 anos";6.908
+80047;"José Bonifácio";2012;"04 a 05 anos";3.450
+80047;"José Bonifácio";2012;"06 anos";1.771
+80047;"José Bonifácio";2012;"07 a 10 anos";7.542
+80047;"José Bonifácio";2012;"11 a 14 anos";8.191
+80047;"José Bonifácio";2012;"15 a 17 anos";6.086
+80047;"José Bonifácio";2012;"18 a 19 anos";4.048
+80047;"José Bonifácio";2012;"Total da Seleção";37.996
+80047;"José Bonifácio";2012;"Total Geral da População";126.799
+80096;"Lajeado";2012;"00 a 03 anos";10.885
+80096;"Lajeado";2012;"04 a 05 anos";5.055
+80096;"Lajeado";2012;"06 anos";2.564
+80096;"Lajeado";2012;"07 a 10 anos";11.007
+80096;"Lajeado";2012;"11 a 14 anos";12.417
+80096;"Lajeado";2012;"15 a 17 anos";9.561
+80096;"Lajeado";2012;"18 a 19 anos";6.413
+80096;"Lajeado";2012;"Total da Seleção";57.902
+80096;"Lajeado";2012;"Total Geral da População";166.361
+80048;"Lapa";2012;"00 a 03 anos";2.586
+80048;"Lapa";2012;"04 a 05 anos";1.196
+80048;"Lapa";2012;"06 anos";584
+80048;"Lapa";2012;"07 a 10 anos";2.310
+80048;"Lapa";2012;"11 a 14 anos";2.373
+80048;"Lapa";2012;"15 a 17 anos";1.860
+80048;"Lapa";2012;"18 a 19 anos";1.364
+80048;"Lapa";2012;"Total da Seleção";12.273
+80048;"Lapa";2012;"Total Geral da População";66.178
+80049;"Liberdade";2012;"00 a 03 anos";2.899
+80049;"Liberdade";2012;"04 a 05 anos";1.264
+80049;"Liberdade";2012;"06 anos";606
+80049;"Liberdade";2012;"07 a 10 anos";2.366
+80049;"Liberdade";2012;"11 a 14 anos";2.493
+80049;"Liberdade";2012;"15 a 17 anos";2.068
+80049;"Liberdade";2012;"18 a 19 anos";1.624
+80049;"Liberdade";2012;"Total da Seleção";13.320
+80049;"Liberdade";2012;"Total Geral da População";69.945
+80050;"Limão";2012;"00 a 03 anos";4.234
+80050;"Limão";2012;"04 a 05 anos";1.908
+80050;"Limão";2012;"06 anos";945
+80050;"Limão";2012;"07 a 10 anos";3.906
+80050;"Limão";2012;"11 a 14 anos";4.263
+80050;"Limão";2012;"15 a 17 anos";3.290
+80050;"Limão";2012;"18 a 19 anos";2.327
+80050;"Limão";2012;"Total da Seleção";20.873
+80050;"Limão";2012;"Total Geral da População";79.922
+80051;"Mandaqui";2012;"00 a 03 anos";4.846
+80051;"Mandaqui";2012;"04 a 05 anos";2.262
+80051;"Mandaqui";2012;"06 anos";1.142
+80051;"Mandaqui";2012;"07 a 10 anos";4.855
+80051;"Mandaqui";2012;"11 a 14 anos";5.458
+80051;"Mandaqui";2012;"15 a 17 anos";4.286
+80051;"Mandaqui";2012;"18 a 19 anos";3.014
+80051;"Mandaqui";2012;"Total da Seleção";25.863
+80051;"Mandaqui";2012;"Total Geral da População";108.023
+80052;"Marsilac";2012;"00 a 03 anos";458
+80052;"Marsilac";2012;"04 a 05 anos";231
+80052;"Marsilac";2012;"06 anos";123
+80052;"Marsilac";2012;"07 a 10 anos";561
+80052;"Marsilac";2012;"11 a 14 anos";664
+80052;"Marsilac";2012;"15 a 17 anos";499
+80052;"Marsilac";2012;"18 a 19 anos";322
+80052;"Marsilac";2012;"Total da Seleção";2.858
+80052;"Marsilac";2012;"Total Geral da População";8.273
+80032;"Moema";2012;"00 a 03 anos";3.197
+80032;"Moema";2012;"04 a 05 anos";1.455
+80032;"Moema";2012;"06 anos";701
+80032;"Moema";2012;"07 a 10 anos";2.697
+80032;"Moema";2012;"11 a 14 anos";2.679
+80032;"Moema";2012;"15 a 17 anos";2.104
+80032;"Moema";2012;"18 a 19 anos";1.561
+80032;"Moema";2012;"Total da Seleção";14.394
+80032;"Moema";2012;"Total Geral da População";84.830
+80053;"Mooca";2012;"00 a 03 anos";3.278
+80053;"Mooca";2012;"04 a 05 anos";1.475
+80053;"Mooca";2012;"06 anos";716
+80053;"Mooca";2012;"07 a 10 anos";2.837
+80053;"Mooca";2012;"11 a 14 anos";2.980
+80053;"Mooca";2012;"15 a 17 anos";2.419
+80053;"Mooca";2012;"18 a 19 anos";1.796
+80053;"Mooca";2012;"Total da Seleção";15.501
+80053;"Mooca";2012;"Total Geral da População";76.825
+80054;"Morumbi";2012;"00 a 03 anos";2.418
+80054;"Morumbi";2012;"04 a 05 anos";1.080
+80054;"Morumbi";2012;"06 anos";536
+80054;"Morumbi";2012;"07 a 10 anos";2.234
+80054;"Morumbi";2012;"11 a 14 anos";2.446
+80054;"Morumbi";2012;"15 a 17 anos";1.834
+80054;"Morumbi";2012;"18 a 19 anos";1.258
+80054;"Morumbi";2012;"Total da Seleção";11.806
+80054;"Morumbi";2012;"Total Geral da População";48.249
+80055;"Parelheiros";2012;"00 a 03 anos";9.096
+80055;"Parelheiros";2012;"04 a 05 anos";4.248
+80055;"Parelheiros";2012;"06 anos";2.169
+80055;"Parelheiros";2012;"07 a 10 anos";9.402
+80055;"Parelheiros";2012;"11 a 14 anos";10.634
+80055;"Parelheiros";2012;"15 a 17 anos";8.018
+80055;"Parelheiros";2012;"18 a 19 anos";5.234
+80055;"Parelheiros";2012;"Total da Seleção";48.801
+80055;"Parelheiros";2012;"Total Geral da População";135.482
+80056;"Pari";2012;"00 a 03 anos";1.023
+80056;"Pari";2012;"04 a 05 anos";449
+80056;"Pari";2012;"06 anos";217
+80056;"Pari";2012;"07 a 10 anos";869
+80056;"Pari";2012;"11 a 14 anos";915
+80056;"Pari";2012;"15 a 17 anos";704
+80056;"Pari";2012;"18 a 19 anos";515
+80056;"Pari";2012;"Total da Seleção";4.692
+80056;"Pari";2012;"Total Geral da População";17.674
+80057;"Parque do Carmo";2012;"00 a 03 anos";4.033
+80057;"Parque do Carmo";2012;"04 a 05 anos";1.944
+80057;"Parque do Carmo";2012;"06 anos";987
+80057;"Parque do Carmo";2012;"07 a 10 anos";4.152
+80057;"Parque do Carmo";2012;"11 a 14 anos";4.495
+80057;"Parque do Carmo";2012;"15 a 17 anos";3.354
+80057;"Parque do Carmo";2012;"18 a 19 anos";2.272
+80057;"Parque do Carmo";2012;"Total da Seleção";21.237
+80057;"Parque do Carmo";2012;"Total Geral da População";68.973
+80058;"Pedreira";2012;"00 a 03 anos";8.885
+80058;"Pedreira";2012;"04 a 05 anos";4.307
+80058;"Pedreira";2012;"06 anos";2.194
+80058;"Pedreira";2012;"07 a 10 anos";9.316
+80058;"Pedreira";2012;"11 a 14 anos";10.234
+80058;"Pedreira";2012;"15 a 17 anos";7.767
+80058;"Pedreira";2012;"18 a 19 anos";5.258
+80058;"Pedreira";2012;"Total da Seleção";47.961
+80058;"Pedreira";2012;"Total Geral da População";147.597
+80059;"Penha";2012;"00 a 03 anos";5.770
+80059;"Penha";2012;"04 a 05 anos";2.699
+80059;"Penha";2012;"06 anos";1.350
+80059;"Penha";2012;"07 a 10 anos";5.621
+80059;"Penha";2012;"11 a 14 anos";6.154
+80059;"Penha";2012;"15 a 17 anos";4.808
+80059;"Penha";2012;"18 a 19 anos";3.423
+80059;"Penha";2012;"Total da Seleção";29.825
+80059;"Penha";2012;"Total Geral da População";128.200
+80060;"Perdizes";2012;"00 a 03 anos";4.010
+80060;"Perdizes";2012;"04 a 05 anos";1.928
+80060;"Perdizes";2012;"06 anos";946
+80060;"Perdizes";2012;"07 a 10 anos";3.724
+80060;"Perdizes";2012;"11 a 14 anos";3.764
+80060;"Perdizes";2012;"15 a 17 anos";2.955
+80060;"Perdizes";2012;"18 a 19 anos";2.273
+80060;"Perdizes";2012;"Total da Seleção";19.600
+80060;"Perdizes";2012;"Total Geral da População";112.093
+80061;"Perus";2012;"00 a 03 anos";5.294
+80061;"Perus";2012;"04 a 05 anos";2.431
+80061;"Perus";2012;"06 anos";1.230
+80061;"Perus";2012;"07 a 10 anos";5.277
+80061;"Perus";2012;"11 a 14 anos";5.924
+80061;"Perus";2012;"15 a 17 anos";4.454
+80061;"Perus";2012;"18 a 19 anos";2.985
+80061;"Perus";2012;"Total da Seleção";27.595
+80061;"Perus";2012;"Total Geral da População";81.948
+80062;"Pinheiros";2012;"00 a 03 anos";2.308
+80062;"Pinheiros";2012;"04 a 05 anos";1.041
+80062;"Pinheiros";2012;"06 anos";503
+80062;"Pinheiros";2012;"07 a 10 anos";1.959
+80062;"Pinheiros";2012;"11 a 14 anos";1.988
+80062;"Pinheiros";2012;"15 a 17 anos";1.561
+80062;"Pinheiros";2012;"18 a 19 anos";1.179
+80062;"Pinheiros";2012;"Total da Seleção";10.539
+80062;"Pinheiros";2012;"Total Geral da População";65.547
+80063;"Pirituba";2012;"00 a 03 anos";8.643
+80063;"Pirituba";2012;"04 a 05 anos";4.027
+80063;"Pirituba";2012;"06 anos";2.018
+80063;"Pirituba";2012;"07 a 10 anos";8.418
+80063;"Pirituba";2012;"11 a 14 anos";9.201
+80063;"Pirituba";2012;"15 a 17 anos";7.112
+80063;"Pirituba";2012;"18 a 19 anos";4.949
+80063;"Pirituba";2012;"Total da Seleção";44.368
+80063;"Pirituba";2012;"Total Geral da População";168.639
+80064;"Ponte Rasa";2012;"00 a 03 anos";4.541
+80064;"Ponte Rasa";2012;"04 a 05 anos";2.157
+80064;"Ponte Rasa";2012;"06 anos";1.095
+80064;"Ponte Rasa";2012;"07 a 10 anos";4.669
+80064;"Ponte Rasa";2012;"11 a 14 anos";5.213
+80064;"Ponte Rasa";2012;"15 a 17 anos";4.016
+80064;"Ponte Rasa";2012;"18 a 19 anos";2.784
+80064;"Ponte Rasa";2012;"Total da Seleção";24.475
+80064;"Ponte Rasa";2012;"Total Geral da População";93.008
+80065;"Raposo Tavares";2012;"00 a 03 anos";6.133
+80065;"Raposo Tavares";2012;"04 a 05 anos";2.881
+80065;"Raposo Tavares";2012;"06 anos";1.445
+80065;"Raposo Tavares";2012;"07 a 10 anos";5.995
+80065;"Raposo Tavares";2012;"11 a 14 anos";6.420
+80065;"Raposo Tavares";2012;"15 a 17 anos";4.794
+80065;"Raposo Tavares";2012;"18 a 19 anos";3.243
+80065;"Raposo Tavares";2012;"Total da Seleção";30.911
+80065;"Raposo Tavares";2012;"Total Geral da População";101.641
+80066;"República";2012;"00 a 03 anos";2.374
+80066;"República";2012;"04 a 05 anos";982
+80066;"República";2012;"06 anos";459
+80066;"República";2012;"07 a 10 anos";1.743
+80066;"República";2012;"11 a 14 anos";1.797
+80066;"República";2012;"15 a 17 anos";1.444
+80066;"República";2012;"18 a 19 anos";1.221
+80066;"República";2012;"Total da Seleção";10.020
+80066;"República";2012;"Total Geral da População";58.151
+80067;"Rio Pequeno";2012;"00 a 03 anos";6.868
+80067;"Rio Pequeno";2012;"04 a 05 anos";3.008
+80067;"Rio Pequeno";2012;"06 anos";1.479
+80067;"Rio Pequeno";2012;"07 a 10 anos";6.086
+80067;"Rio Pequeno";2012;"11 a 14 anos";6.607
+80067;"Rio Pequeno";2012;"15 a 17 anos";4.978
+80067;"Rio Pequeno";2012;"18 a 19 anos";3.482
+80067;"Rio Pequeno";2012;"Total da Seleção";32.508
+80067;"Rio Pequeno";2012;"Total Geral da População";119.581
+80068;"Sacomã";2012;"00 a 03 anos";13.002
+80068;"Sacomã";2012;"04 a 05 anos";6.268
+80068;"Sacomã";2012;"06 anos";3.159
+80068;"Sacomã";2012;"07 a 10 anos";13.129
+80068;"Sacomã";2012;"11 a 14 anos";14.097
+80068;"Sacomã";2012;"15 a 17 anos";10.766
+80068;"Sacomã";2012;"18 a 19 anos";7.485
+80068;"Sacomã";2012;"Total da Seleção";67.906
+80068;"Sacomã";2012;"Total Geral da População";251.202
+80069;"Santa Cecília";2012;"00 a 03 anos";3.357
+80069;"Santa Cecília";2012;"04 a 05 anos";1.445
+80069;"Santa Cecília";2012;"06 anos";692
+80069;"Santa Cecília";2012;"07 a 10 anos";2.720
+80069;"Santa Cecília";2012;"11 a 14 anos";2.886
+80069;"Santa Cecília";2012;"15 a 17 anos";2.332
+80069;"Santa Cecília";2012;"18 a 19 anos";1.844
+80069;"Santa Cecília";2012;"Total da Seleção";15.276
+80069;"Santa Cecília";2012;"Total Geral da População";84.867
+80070;"Santana";2012;"00 a 03 anos";4.495
+80070;"Santana";2012;"04 a 05 anos";1.991
+80070;"Santana";2012;"06 anos";982
+80070;"Santana";2012;"07 a 10 anos";4.076
+80070;"Santana";2012;"11 a 14 anos";4.586
+80070;"Santana";2012;"15 a 17 anos";3.732
+80070;"Santana";2012;"18 a 19 anos";2.772
+80070;"Santana";2012;"Total da Seleção";22.634
+80070;"Santana";2012;"Total Geral da População";117.559
+80071;"Santo Amaro";2012;"00 a 03 anos";2.814
+80071;"Santo Amaro";2012;"04 a 05 anos";1.339
+80071;"Santo Amaro";2012;"06 anos";666
+80071;"Santo Amaro";2012;"07 a 10 anos";2.707
+80071;"Santo Amaro";2012;"11 a 14 anos";2.845
+80071;"Santo Amaro";2012;"15 a 17 anos";2.203
+80071;"Santo Amaro";2012;"18 a 19 anos";1.563
+80071;"Santo Amaro";2012;"Total da Seleção";14.137
+80071;"Santo Amaro";2012;"Total Geral da População";72.343
+80095;"São Domingos";2012;"00 a 03 anos";4.291
+80095;"São Domingos";2012;"04 a 05 anos";2.074
+80095;"São Domingos";2012;"06 anos";1.045
+80095;"São Domingos";2012;"07 a 10 anos";4.358
+80095;"São Domingos";2012;"11 a 14 anos";4.701
+80095;"São Domingos";2012;"15 a 17 anos";3.604
+80095;"São Domingos";2012;"18 a 19 anos";2.498
+80095;"São Domingos";2012;"Total da Seleção";22.571
+80095;"São Domingos";2012;"Total Geral da População";85.169
+80072;"São Lucas";2012;"00 a 03 anos";6.559
+80072;"São Lucas";2012;"04 a 05 anos";3.214
+80072;"São Lucas";2012;"06 anos";1.619
+80072;"São Lucas";2012;"07 a 10 anos";6.689
+80072;"São Lucas";2012;"11 a 14 anos";7.144
+80072;"São Lucas";2012;"15 a 17 anos";5.547
+80072;"São Lucas";2012;"18 a 19 anos";3.935
+80072;"São Lucas";2012;"Total da Seleção";34.707
+80072;"São Lucas";2012;"Total Geral da População";142.586
+80073;"São Mateus";2012;"00 a 03 anos";8.553
+80073;"São Mateus";2012;"04 a 05 anos";3.982
+80073;"São Mateus";2012;"06 anos";2.018
+80073;"São Mateus";2012;"07 a 10 anos";8.649
+80073;"São Mateus";2012;"11 a 14 anos";9.720
+80073;"São Mateus";2012;"15 a 17 anos";7.419
+80073;"São Mateus";2012;"18 a 19 anos";5.059
+80073;"São Mateus";2012;"Total da Seleção";45.400
+80073;"São Mateus";2012;"Total Geral da População";155.046
+80074;"São Miguel";2012;"00 a 03 anos";5.331
+80074;"São Miguel";2012;"04 a 05 anos";2.320
+80074;"São Miguel";2012;"06 anos";1.155
+80074;"São Miguel";2012;"07 a 10 anos";4.918
+80074;"São Miguel";2012;"11 a 14 anos";5.615
+80074;"São Miguel";2012;"15 a 17 anos";4.353
+80074;"São Miguel";2012;"18 a 19 anos";3.003
+80074;"São Miguel";2012;"Total da Seleção";26.695
+80074;"São Miguel";2012;"Total Geral da População";91.322
+80075;"São Rafael";2012;"00 a 03 anos";8.864
+80075;"São Rafael";2012;"04 a 05 anos";4.492
+80075;"São Rafael";2012;"06 anos";2.323
+80075;"São Rafael";2012;"07 a 10 anos";9.991
+80075;"São Rafael";2012;"11 a 14 anos";10.950
+80075;"São Rafael";2012;"15 a 17 anos";8.149
+80075;"São Rafael";2012;"18 a 19 anos";5.363
+80075;"São Rafael";2012;"Total da Seleção";50.132
+80075;"São Rafael";2012;"Total Geral da População";147.093
+80076;"Sapopemba";2012;"00 a 03 anos";16.020
+80076;"Sapopemba";2012;"04 a 05 anos";7.628
+80076;"Sapopemba";2012;"06 anos";3.867
+80076;"Sapopemba";2012;"07 a 10 anos";16.399
+80076;"Sapopemba";2012;"11 a 14 anos";18.136
+80076;"Sapopemba";2012;"15 a 17 anos";13.896
+80076;"Sapopemba";2012;"18 a 19 anos";9.547
+80076;"Sapopemba";2012;"Total da Seleção";85.493
+80076;"Sapopemba";2012;"Total Geral da População";285.660
+80077;"Saúde";2012;"00 a 03 anos";4.956
+80077;"Saúde";2012;"04 a 05 anos";2.257
+80077;"Saúde";2012;"06 anos";1.098
+80077;"Saúde";2012;"07 a 10 anos";4.344
+80077;"Saúde";2012;"11 a 14 anos";4.508
+80077;"Saúde";2012;"15 a 17 anos";3.566
+80077;"Saúde";2012;"18 a 19 anos";2.665
+80077;"Saúde";2012;"Total da Seleção";23.394
+80077;"Saúde";2012;"Total Geral da População";131.652
+80078;"Sé";2012;"00 a 03 anos";1.305
+80078;"Sé";2012;"04 a 05 anos";537
+80078;"Sé";2012;"06 anos";261
+80078;"Sé";2012;"07 a 10 anos";1.087
+80078;"Sé";2012;"11 a 14 anos";1.233
+80078;"Sé";2012;"15 a 17 anos";941
+80078;"Sé";2012;"18 a 19 anos";703
+80078;"Sé";2012;"Total da Seleção";6.067
+80078;"Sé";2012;"Total Geral da População";24.304
+80079;"Socorro";2012;"00 a 03 anos";1.528
+80079;"Socorro";2012;"04 a 05 anos";721
+80079;"Socorro";2012;"06 anos";363
+80079;"Socorro";2012;"07 a 10 anos";1.521
+80079;"Socorro";2012;"11 a 14 anos";1.676
+80079;"Socorro";2012;"15 a 17 anos";1.303
+80079;"Socorro";2012;"18 a 19 anos";925
+80079;"Socorro";2012;"Total da Seleção";8.037
+80079;"Socorro";2012;"Total Geral da População";37.413
+80080;"Tatuapé";2012;"00 a 03 anos";3.493
+80080;"Tatuapé";2012;"04 a 05 anos";1.654
+80080;"Tatuapé";2012;"06 anos";831
+80080;"Tatuapé";2012;"07 a 10 anos";3.483
+80080;"Tatuapé";2012;"11 a 14 anos";3.861
+80080;"Tatuapé";2012;"15 a 17 anos";3.083
+80080;"Tatuapé";2012;"18 a 19 anos";2.230
+80080;"Tatuapé";2012;"Total da Seleção";18.635
+80080;"Tatuapé";2012;"Total Geral da População";92.672
+80081;"Tremembé";2012;"00 a 03 anos";11.696
+80081;"Tremembé";2012;"04 a 05 anos";5.401
+80081;"Tremembé";2012;"06 anos";2.728
+80081;"Tremembé";2012;"07 a 10 anos";11.633
+80081;"Tremembé";2012;"11 a 14 anos";13.067
+80081;"Tremembé";2012;"15 a 17 anos";10.089
+80081;"Tremembé";2012;"18 a 19 anos";6.868
+80081;"Tremembé";2012;"Total da Seleção";61.482
+80081;"Tremembé";2012;"Total Geral da População";202.585
+80082;"Tucuruvi";2012;"00 a 03 anos";3.873
+80082;"Tucuruvi";2012;"04 a 05 anos";1.825
+80082;"Tucuruvi";2012;"06 anos";913
+80082;"Tucuruvi";2012;"07 a 10 anos";3.786
+80082;"Tucuruvi";2012;"11 a 14 anos";4.155
+80082;"Tucuruvi";2012;"15 a 17 anos";3.316
+80082;"Tucuruvi";2012;"18 a 19 anos";2.433
+80082;"Tucuruvi";2012;"Total da Seleção";20.301
+80082;"Tucuruvi";2012;"Total Geral da População";98.117
+80083;"Vila Andrade";2012;"00 a 03 anos";8.185
+80083;"Vila Andrade";2012;"04 a 05 anos";4.078
+80083;"Vila Andrade";2012;"06 anos";2.065
+80083;"Vila Andrade";2012;"07 a 10 anos";8.505
+80083;"Vila Andrade";2012;"11 a 14 anos";8.810
+80083;"Vila Andrade";2012;"15 a 17 anos";6.354
+80083;"Vila Andrade";2012;"18 a 19 anos";4.354
+80083;"Vila Andrade";2012;"Total da Seleção";42.351
+80083;"Vila Andrade";2012;"Total Geral da População";134.480
+80084;"Vila Curuçá";2012;"00 a 03 anos";8.652
+80084;"Vila Curuçá";2012;"04 a 05 anos";4.191
+80084;"Vila Curuçá";2012;"06 anos";2.156
+80084;"Vila Curuçá";2012;"07 a 10 anos";9.364
+80084;"Vila Curuçá";2012;"11 a 14 anos";10.599
+80084;"Vila Curuçá";2012;"15 a 17 anos";8.141
+80084;"Vila Curuçá";2012;"18 a 19 anos";5.435
+80084;"Vila Curuçá";2012;"Total da Seleção";48.538
+80084;"Vila Curuçá";2012;"Total Geral da População";149.761
+80085;"Vila Formosa";2012;"00 a 03 anos";4.027
+80085;"Vila Formosa";2012;"04 a 05 anos";1.917
+80085;"Vila Formosa";2012;"06 anos";973
+80085;"Vila Formosa";2012;"07 a 10 anos";4.149
+80085;"Vila Formosa";2012;"11 a 14 anos";4.664
+80085;"Vila Formosa";2012;"15 a 17 anos";3.669
+80085;"Vila Formosa";2012;"18 a 19 anos";2.596
+80085;"Vila Formosa";2012;"Total da Seleção";21.995
+80085;"Vila Formosa";2012;"Total Geral da População";94.727
+80086;"Vila Guilherme";2012;"00 a 03 anos";2.686
+80086;"Vila Guilherme";2012;"04 a 05 anos";1.191
+80086;"Vila Guilherme";2012;"06 anos";587
+80086;"Vila Guilherme";2012;"07 a 10 anos";2.418
+80086;"Vila Guilherme";2012;"11 a 14 anos";2.622
+80086;"Vila Guilherme";2012;"15 a 17 anos";1.990
+80086;"Vila Guilherme";2012;"18 a 19 anos";1.405
+80086;"Vila Guilherme";2012;"Total da Seleção";12.899
+80086;"Vila Guilherme";2012;"Total Geral da População";54.941
+80087;"Vila Jacuí";2012;"00 a 03 anos";7.988
+80087;"Vila Jacuí";2012;"04 a 05 anos";4.019
+80087;"Vila Jacuí";2012;"06 anos";2.068
+80087;"Vila Jacuí";2012;"07 a 10 anos";8.841
+80087;"Vila Jacuí";2012;"11 a 14 anos";9.737
+80087;"Vila Jacuí";2012;"15 a 17 anos";7.463
+80087;"Vila Jacuí";2012;"18 a 19 anos";5.084
+80087;"Vila Jacuí";2012;"Total da Seleção";45.200
+80087;"Vila Jacuí";2012;"Total Geral da População";142.972
+80088;"Vila Leopoldina";2012;"00 a 03 anos";1.934
+80088;"Vila Leopoldina";2012;"04 a 05 anos";908
+80088;"Vila Leopoldina";2012;"06 anos";445
+80088;"Vila Leopoldina";2012;"07 a 10 anos";1.752
+80088;"Vila Leopoldina";2012;"11 a 14 anos";1.762
+80088;"Vila Leopoldina";2012;"15 a 17 anos";1.337
+80088;"Vila Leopoldina";2012;"18 a 19 anos";953
+80088;"Vila Leopoldina";2012;"Total da Seleção";9.091
+80088;"Vila Leopoldina";2012;"Total Geral da População";40.737
+80089;"Vila Maria";2012;"00 a 03 anos";6.366
+80089;"Vila Maria";2012;"04 a 05 anos";2.930
+80089;"Vila Maria";2012;"06 anos";1.460
+80089;"Vila Maria";2012;"07 a 10 anos";6.051
+80089;"Vila Maria";2012;"11 a 14 anos";6.566
+80089;"Vila Maria";2012;"15 a 17 anos";5.024
+80089;"Vila Maria";2012;"18 a 19 anos";3.525
+80089;"Vila Maria";2012;"Total da Seleção";31.922
+80089;"Vila Maria";2012;"Total Geral da População";113.506
+80090;"Vila Mariana";2012;"00 a 03 anos";4.446
+80090;"Vila Mariana";2012;"04 a 05 anos";2.000
+80090;"Vila Mariana";2012;"06 anos";966
+80090;"Vila Mariana";2012;"07 a 10 anos";3.778
+80090;"Vila Mariana";2012;"11 a 14 anos";3.951
+80090;"Vila Mariana";2012;"15 a 17 anos";3.261
+80090;"Vila Mariana";2012;"18 a 19 anos";2.594
+80090;"Vila Mariana";2012;"Total da Seleção";20.996
+80090;"Vila Mariana";2012;"Total Geral da População";130.941
+80091;"Vila Matilde";2012;"00 a 03 anos";4.827
+80091;"Vila Matilde";2012;"04 a 05 anos";2.303
+80091;"Vila Matilde";2012;"06 anos";1.162
+80091;"Vila Matilde";2012;"07 a 10 anos";4.882
+80091;"Vila Matilde";2012;"11 a 14 anos";5.365
+80091;"Vila Matilde";2012;"15 a 17 anos";4.196
+80091;"Vila Matilde";2012;"18 a 19 anos";2.951
+80091;"Vila Matilde";2012;"Total da Seleção";25.686
+80091;"Vila Matilde";2012;"Total Geral da População";105.140
+80092;"Vila Medeiros";2012;"00 a 03 anos";6.617
+80092;"Vila Medeiros";2012;"04 a 05 anos";3.037
+80092;"Vila Medeiros";2012;"06 anos";1.513
+80092;"Vila Medeiros";2012;"07 a 10 anos";6.290
+80092;"Vila Medeiros";2012;"11 a 14 anos";6.903
+80092;"Vila Medeiros";2012;"15 a 17 anos";5.376
+80092;"Vila Medeiros";2012;"18 a 19 anos";3.804
+80092;"Vila Medeiros";2012;"Total da Seleção";33.540
+80092;"Vila Medeiros";2012;"Total Geral da População";128.429
+80093;"Vila Prudente";2012;"00 a 03 anos";4.580
+80093;"Vila Prudente";2012;"04 a 05 anos";2.140
+80093;"Vila Prudente";2012;"06 anos";1.066
+80093;"Vila Prudente";2012;"07 a 10 anos";4.398
+80093;"Vila Prudente";2012;"11 a 14 anos";4.774
+80093;"Vila Prudente";2012;"15 a 17 anos";3.753
+80093;"Vila Prudente";2012;"18 a 19 anos";2.714
+80093;"Vila Prudente";2012;"Total da Seleção";23.425
+80093;"Vila Prudente";2012;"Total Geral da População";104.376
+80094;"Vila Sônia";2012;"00 a 03 anos";5.853
+80094;"Vila Sônia";2012;"04 a 05 anos";2.692
+80094;"Vila Sônia";2012;"06 anos";1.329
+80094;"Vila Sônia";2012;"07 a 10 anos";5.410
+80094;"Vila Sônia";2012;"11 a 14 anos";5.760
+80094;"Vila Sônia";2012;"15 a 17 anos";4.454
+80094;"Vila Sônia";2012;"18 a 19 anos";3.170
+80094;"Vila Sônia";2012;"Total da Seleção";28.668
+80094;"Vila Sônia";2012;"Total Geral da População";111.280

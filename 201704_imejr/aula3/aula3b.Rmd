@@ -1,0 +1,237 @@
+---
+title: "aula3b"
+output: html_document
+---
+
+## Pacotes
+
+```{r}
+library(tidyverse)
+library(abjutils)
+library(janitor)
+library(stringr)
+library(readxl)
+```
+
+Agora, vamos fazer uma análise sobre vagas em creches no município de São Paulo.
+
+-------------------------------------------------
+
+## Rascunhos para leitura
+
+```{r}
+dir('inputs')
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------
+
+## Leitura final
+
+### BD creches
+
+```{r warning=FALSE, message=FALSE}
+d_creches <- 'inputs/creches.xlsx' %>% 
+  read_excel(skip = 1) %>%
+  clean_names() %>% 
+  filter(distrito != 'Total Geral') %>% 
+  gather(tipo_ano, valor, -distrito) %>% 
+  separate(tipo_ano, c('ano', 'tipo'), sep = '_', fill = 'right') %>%  
+  mutate(tipo = if_else(is.na(tipo), 'matricula', 'demanda'),
+         ano = parse_number(ano)) %>% 
+  spread(tipo, valor)
+```
+
+### População (SEADE)
+
+```{r warning=FALSE, message=FALSE}
+ler <- function(arq) {
+  arq %>% 
+    read_csv2(locale = locale(encoding = 'latin1')) %>% 
+    clean_names() %>% 
+    select(distrito = 2, ano = 3, faixa = 4, pop = total) %>% 
+    filter(faixa == '00 a 03 anos') %>% 
+    select(-faixa) %>% 
+    mutate(distrito = rm_accent(toupper(distrito)))
+}
+
+d_pop <- dir('inputs', pattern = 'DIS_FXE', full.names = TRUE) %>% 
+  map_df(ler)
+
+d_pop
+```
+
+### Join
+
+```{r}
+d_tidy <- d_creches %>% 
+  inner_join(d_pop, c("distrito", "ano"))
+
+d_tidy
+```
+
+## No tempo
+
+```{r warning=FALSE, message=FALSE, fig.width=9}
+d_tidy %>%
+  gather(tipo, valor, demanda, matricula) %>% 
+  group_by(tipo, ano) %>% 
+  tally(valor) %>% 
+  spread(tipo, n)
+```
+
+```{r}
+d_tidy %>%
+  group_by(ano) %>% 
+  summarise_at(vars(demanda, matricula), funs(sum))
+```
+
+
+```{r}
+d_tidy %>% 
+  arrange(ano) %>% 
+  group_by(distrito) %>% 
+  summarise(demanda_media = mean(demanda),
+            demanda_dp = sd(demanda),
+            pop_2016 = last(pop),
+            demanda_pop = demanda_media / pop_2016) %>% 
+  arrange(desc(demanda_pop))
+```
+
+
+```{r}
+criterio1 <- .6
+criterio2 <- .03
+
+d_meta <- d_tidy %>% 
+  mutate(atendidos = matricula / pop,
+         falta_m = pop * criterio1 - matricula,
+         falta_d = demanda - pop * criterio2)
+```
+
+Quantas vagas faltam por distrito?
+
+```{r}
+d_meta %>% 
+  filter(ano == 2016) %>% 
+  arrange(desc(falta_m)) %>% 
+  mutate(falta_m = ceiling(falta_m))
+```
+
+Quantas vagas faltam para atingir 60% em todos os distritos?
+
+```{r}
+d_meta %>% 
+  filter(ano == 2016, falta_m >= 0) %>% 
+  arrange(desc(falta_m)) %>% 
+  summarise(total = ceiling(sum(falta_m))) %>% 
+  with(total)
+```
+
+Quantas vagas faltam no total?
+
+```{r}
+d_meta %>% 
+  filter(ano == 2016) %>% 
+  summarise(total = ceiling((sum(pop) * .6 - sum(matricula)))) %>% 
+  with(total)
+```
+
+Outro critério: não atendimento < 3% da população
+
+Qual é o não atendimento atual?
+
+```{r}
+d_meta %>% 
+  filter(ano == 2016) %>% 
+  summarise(taxa = sum(demanda) / sum(pop)) %>% 
+  with(taxa)
+```
+
+Quantas vagas faltam para atingir < 3% em todos os distritos?
+
+```{r}
+d_meta %>% 
+  filter(ano == 2016, falta_d >= 0) %>% 
+  arrange(desc(falta_d)) %>% 
+  summarise(total = ceiling(sum(falta_d))) %>% 
+  with(total)
+```
+
+Quantas vagas faltam no total?
+
+```{r}
+d_meta %>% 
+  filter(ano == 2016) %>% 
+  summarise(total = ceiling(sum(demanda) - sum(pop) * .03)) %>% 
+  with(total)
+```
+
+## Aplicação do purrr
+
+Qual a diferença entre usar o critério de matriculados por distrito e total para cada corte?
+
+```{r fig.width=10}
+
+criterios <- seq(0.5, 0.7, length.out = 100)
+
+vagas_necessarias <- criterios %>% 
+  map_dbl(~{
+    d_meta %>% 
+      filter(ano == 2016) %>% 
+      mutate(falta_m = pop * .x - matricula) %>% 
+      filter(falta_m >= 0) %>% 
+      summarise(total = sum(falta_m)) %>% 
+      with(total)
+})
+
+d_sum <- d_meta %>% 
+  filter(ano == 2016) %>% 
+  summarise(d = sum(demanda), 
+            m = sum(matricula), 
+            pop = sum(pop))
+```
+
+Uma forma
+
+```{r}
+t1 <- tibble(tipo = 'total', crit = criterios, n_crit = d_sum$pop * crit - d_sum$m)
+t2 <- tibble(tipo = 'por_distrito', crit = criterios, n_crit = vagas_necessarias)
+
+tab <- bind_rows(t1, t2)
+tab
+```
+
+Outra forma
+
+```{r}
+tab <- tibble(crit = criterios, 
+              total = d_sum$pop * crit - d_sum$m,
+              por_distrito = vagas_necessarias) %>% 
+  gather(tipo, n_crit, -crit)
+tab
+```
+
+```{r}
+tab %>% 
+  ggplot(aes(crit, n_crit, colour = tipo)) +
+  geom_line()
+```
+
