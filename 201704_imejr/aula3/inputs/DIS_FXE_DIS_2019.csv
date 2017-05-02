@@ -1,0 +1,865 @@
+"Código Localidade";"Nome Localidade";"Ano";"Faixa Etária - Escolar";"Total"
+80001;"Água Rasa";2019;"00 a 03 anos";3.488
+80001;"Água Rasa";2019;"04 a 05 anos";1.928
+80001;"Água Rasa";2019;"06 anos";948
+80001;"Água Rasa";2019;"07 a 10 anos";3.481
+80001;"Água Rasa";2019;"11 a 14 anos";2.997
+80001;"Água Rasa";2019;"15 a 17 anos";2.407
+80001;"Água Rasa";2019;"18 a 19 anos";1.735
+80001;"Água Rasa";2019;"Total da Seleção";16.984
+80001;"Água Rasa";2019;"Total Geral da População";82.846
+80002;"Alto de Pinheiros";2019;"00 a 03 anos";1.262
+80002;"Alto de Pinheiros";2019;"04 a 05 anos";682
+80002;"Alto de Pinheiros";2019;"06 anos";345
+80002;"Alto de Pinheiros";2019;"07 a 10 anos";1.370
+80002;"Alto de Pinheiros";2019;"11 a 14 anos";1.347
+80002;"Alto de Pinheiros";2019;"15 a 17 anos";1.047
+80002;"Alto de Pinheiros";2019;"18 a 19 anos";745
+80002;"Alto de Pinheiros";2019;"Total da Seleção";6.798
+80002;"Alto de Pinheiros";2019;"Total Geral da População";41.191
+80003;"Anhanguera";2019;"00 a 03 anos";4.754
+80003;"Anhanguera";2019;"04 a 05 anos";2.329
+80003;"Anhanguera";2019;"06 anos";1.145
+80003;"Anhanguera";2019;"07 a 10 anos";4.462
+80003;"Anhanguera";2019;"11 a 14 anos";4.519
+80003;"Anhanguera";2019;"15 a 17 anos";3.798
+80003;"Anhanguera";2019;"18 a 19 anos";2.843
+80003;"Anhanguera";2019;"Total da Seleção";23.850
+80003;"Anhanguera";2019;"Total Geral da População";82.976
+80004;"Aricanduva";2019;"00 a 03 anos";3.925
+80004;"Aricanduva";2019;"04 a 05 anos";2.090
+80004;"Aricanduva";2019;"06 anos";1.035
+80004;"Aricanduva";2019;"07 a 10 anos";3.953
+80004;"Aricanduva";2019;"11 a 14 anos";3.739
+80004;"Aricanduva";2019;"15 a 17 anos";3.085
+80004;"Aricanduva";2019;"18 a 19 anos";2.257
+80004;"Aricanduva";2019;"Total da Seleção";20.084
+80004;"Aricanduva";2019;"Total Geral da População";86.184
+80005;"Artur Alvim";2019;"00 a 03 anos";4.646
+80005;"Artur Alvim";2019;"04 a 05 anos";2.469
+80005;"Artur Alvim";2019;"06 anos";1.229
+80005;"Artur Alvim";2019;"07 a 10 anos";4.729
+80005;"Artur Alvim";2019;"11 a 14 anos";4.491
+80005;"Artur Alvim";2019;"15 a 17 anos";3.584
+80005;"Artur Alvim";2019;"18 a 19 anos";2.608
+80005;"Artur Alvim";2019;"Total da Seleção";23.756
+80005;"Artur Alvim";2019;"Total Geral da População";100.887
+80006;"Barra Funda";2019;"00 a 03 anos";756
+80006;"Barra Funda";2019;"04 a 05 anos";420
+80006;"Barra Funda";2019;"06 anos";206
+80006;"Barra Funda";2019;"07 a 10 anos";738
+80006;"Barra Funda";2019;"11 a 14 anos";593
+80006;"Barra Funda";2019;"15 a 17 anos";453
+80006;"Barra Funda";2019;"18 a 19 anos";313
+80006;"Barra Funda";2019;"Total da Seleção";3.479
+80006;"Barra Funda";2019;"Total Geral da População";15.927
+80007;"Bela Vista";2019;"00 a 03 anos";3.120
+80007;"Bela Vista";2019;"04 a 05 anos";1.712
+80007;"Bela Vista";2019;"06 anos";823
+80007;"Bela Vista";2019;"07 a 10 anos";2.833
+80007;"Bela Vista";2019;"11 a 14 anos";2.068
+80007;"Bela Vista";2019;"15 a 17 anos";1.523
+80007;"Bela Vista";2019;"18 a 19 anos";1.054
+80007;"Bela Vista";2019;"Total da Seleção";13.133
+80007;"Bela Vista";2019;"Total Geral da População";72.925
+80008;"Belém";2019;"00 a 03 anos";2.978
+80008;"Belém";2019;"04 a 05 anos";1.711
+80008;"Belém";2019;"06 anos";827
+80008;"Belém";2019;"07 a 10 anos";2.798
+80008;"Belém";2019;"11 a 14 anos";1.940
+80008;"Belém";2019;"15 a 17 anos";1.470
+80008;"Belém";2019;"18 a 19 anos";1.022
+80008;"Belém";2019;"Total da Seleção";12.746
+80008;"Belém";2019;"Total Geral da População";48.850
+80009;"Bom Retiro";2019;"00 a 03 anos";2.221
+80009;"Bom Retiro";2019;"04 a 05 anos";1.233
+80009;"Bom Retiro";2019;"06 anos";602
+80009;"Bom Retiro";2019;"07 a 10 anos";2.140
+80009;"Bom Retiro";2019;"11 a 14 anos";1.710
+80009;"Bom Retiro";2019;"15 a 17 anos";1.332
+80009;"Bom Retiro";2019;"18 a 19 anos";935
+80009;"Bom Retiro";2019;"Total da Seleção";10.173
+80009;"Bom Retiro";2019;"Total Geral da População";38.449
+80010;"Brás";2019;"00 a 03 anos";2.042
+80010;"Brás";2019;"04 a 05 anos";1.181
+80010;"Brás";2019;"06 anos";566
+80010;"Brás";2019;"07 a 10 anos";1.889
+80010;"Brás";2019;"11 a 14 anos";1.286
+80010;"Brás";2019;"15 a 17 anos";1.057
+80010;"Brás";2019;"18 a 19 anos";759
+80010;"Brás";2019;"Total da Seleção";8.780
+80010;"Brás";2019;"Total Geral da População";32.711
+80011;"Brasilândia";2019;"00 a 03 anos";18.325
+80011;"Brasilândia";2019;"04 a 05 anos";9.597
+80011;"Brasilândia";2019;"06 anos";4.655
+80011;"Brasilândia";2019;"07 a 10 anos";16.932
+80011;"Brasilândia";2019;"11 a 14 anos";14.874
+80011;"Brasilândia";2019;"15 a 17 anos";12.625
+80011;"Brasilândia";2019;"18 a 19 anos";9.249
+80011;"Brasilândia";2019;"Total da Seleção";86.257
+80011;"Brasilândia";2019;"Total Geral da População";280.278
+80012;"Butantã";2019;"00 a 03 anos";2.072
+80012;"Butantã";2019;"04 a 05 anos";1.136
+80012;"Butantã";2019;"06 anos";560
+80012;"Butantã";2019;"07 a 10 anos";2.068
+80012;"Butantã";2019;"11 a 14 anos";1.789
+80012;"Butantã";2019;"15 a 17 anos";1.394
+80012;"Butantã";2019;"18 a 19 anos";981
+80012;"Butantã";2019;"Total da Seleção";10.000
+80012;"Butantã";2019;"Total Geral da População";53.904
+80013;"Cachoeirinha";2019;"00 a 03 anos";8.670
+80013;"Cachoeirinha";2019;"04 a 05 anos";4.636
+80013;"Cachoeirinha";2019;"06 anos";2.271
+80013;"Cachoeirinha";2019;"07 a 10 anos";8.392
+80013;"Cachoeirinha";2019;"11 a 14 anos";7.440
+80013;"Cachoeirinha";2019;"15 a 17 anos";6.085
+80013;"Cachoeirinha";2019;"18 a 19 anos";4.395
+80013;"Cachoeirinha";2019;"Total da Seleção";41.889
+80013;"Cachoeirinha";2019;"Total Geral da População";146.039
+80014;"Cambuci";2019;"00 a 03 anos";1.909
+80014;"Cambuci";2019;"04 a 05 anos";1.047
+80014;"Cambuci";2019;"06 anos";518
+80014;"Cambuci";2019;"07 a 10 anos";1.942
+80014;"Cambuci";2019;"11 a 14 anos";1.709
+80014;"Cambuci";2019;"15 a 17 anos";1.296
+80014;"Cambuci";2019;"18 a 19 anos";900
+80014;"Cambuci";2019;"Total da Seleção";9.321
+80014;"Cambuci";2019;"Total Geral da População";40.357
+80015;"Campo Belo";2019;"00 a 03 anos";2.523
+80015;"Campo Belo";2019;"04 a 05 anos";1.406
+80015;"Campo Belo";2019;"06 anos";700
+80015;"Campo Belo";2019;"07 a 10 anos";2.650
+80015;"Campo Belo";2019;"11 a 14 anos";2.356
+80015;"Campo Belo";2019;"15 a 17 anos";1.782
+80015;"Campo Belo";2019;"18 a 19 anos";1.215
+80015;"Campo Belo";2019;"Total da Seleção";12.632
+80015;"Campo Belo";2019;"Total Geral da População";63.962
+80016;"Campo Grande";2019;"00 a 03 anos";4.440
+80016;"Campo Grande";2019;"04 a 05 anos";2.419
+80016;"Campo Grande";2019;"06 anos";1.217
+80016;"Campo Grande";2019;"07 a 10 anos";4.765
+80016;"Campo Grande";2019;"11 a 14 anos";4.579
+80016;"Campo Grande";2019;"15 a 17 anos";3.560
+80016;"Campo Grande";2019;"18 a 19 anos";2.530
+80016;"Campo Grande";2019;"Total da Seleção";23.510
+80016;"Campo Grande";2019;"Total Geral da População";106.227
+80017;"Campo Limpo";2019;"00 a 03 anos";12.744
+80017;"Campo Limpo";2019;"04 a 05 anos";6.665
+80017;"Campo Limpo";2019;"06 anos";3.296
+80017;"Campo Limpo";2019;"07 a 10 anos";12.610
+80017;"Campo Limpo";2019;"11 a 14 anos";11.874
+80017;"Campo Limpo";2019;"15 a 17 anos";9.421
+80017;"Campo Limpo";2019;"18 a 19 anos";6.790
+80017;"Campo Limpo";2019;"Total da Seleção";63.400
+80017;"Campo Limpo";2019;"Total Geral da População";227.235
+80018;"Cangaiba";2019;"00 a 03 anos";7.353
+80018;"Cangaiba";2019;"04 a 05 anos";3.934
+80018;"Cangaiba";2019;"06 anos";1.921
+80018;"Cangaiba";2019;"07 a 10 anos";7.053
+80018;"Cangaiba";2019;"11 a 14 anos";6.218
+80018;"Cangaiba";2019;"15 a 17 anos";5.160
+80018;"Cangaiba";2019;"18 a 19 anos";3.811
+80018;"Cangaiba";2019;"Total da Seleção";35.450
+80018;"Cangaiba";2019;"Total Geral da População";137.923
+80019;"Capão Redondo";2019;"00 a 03 anos";17.595
+80019;"Capão Redondo";2019;"04 a 05 anos";9.178
+80019;"Capão Redondo";2019;"06 anos";4.496
+80019;"Capão Redondo";2019;"07 a 10 anos";16.821
+80019;"Capão Redondo";2019;"11 a 14 anos";15.429
+80019;"Capão Redondo";2019;"15 a 17 anos";12.725
+80019;"Capão Redondo";2019;"18 a 19 anos";9.228
+80019;"Capão Redondo";2019;"Total da Seleção";85.472
+80019;"Capão Redondo";2019;"Total Geral da População";293.651
+80020;"Carrão";2019;"00 a 03 anos";3.350
+80020;"Carrão";2019;"04 a 05 anos";1.812
+80020;"Carrão";2019;"06 anos";901
+80020;"Carrão";2019;"07 a 10 anos";3.451
+80020;"Carrão";2019;"11 a 14 anos";3.259
+80020;"Carrão";2019;"15 a 17 anos";2.676
+80020;"Carrão";2019;"18 a 19 anos";1.951
+80020;"Carrão";2019;"Total da Seleção";17.400
+80020;"Carrão";2019;"Total Geral da População";84.831
+80021;"Casa Verde";2019;"00 a 03 anos";4.243
+80021;"Casa Verde";2019;"04 a 05 anos";2.311
+80021;"Casa Verde";2019;"06 anos";1.133
+80021;"Casa Verde";2019;"07 a 10 anos";4.144
+80021;"Casa Verde";2019;"11 a 14 anos";3.567
+80021;"Casa Verde";2019;"15 a 17 anos";2.880
+80021;"Casa Verde";2019;"18 a 19 anos";2.071
+80021;"Casa Verde";2019;"Total da Seleção";20.349
+80021;"Casa Verde";2019;"Total Geral da População";86.007
+80022;"Cidade Ademar";2019;"00 a 03 anos";16.529
+80022;"Cidade Ademar";2019;"04 a 05 anos";8.738
+80022;"Cidade Ademar";2019;"06 anos";4.278
+80022;"Cidade Ademar";2019;"07 a 10 anos";15.846
+80022;"Cidade Ademar";2019;"11 a 14 anos";14.127
+80022;"Cidade Ademar";2019;"15 a 17 anos";11.436
+80022;"Cidade Ademar";2019;"18 a 19 anos";8.260
+80022;"Cidade Ademar";2019;"Total da Seleção";79.214
+80022;"Cidade Ademar";2019;"Total Geral da População";283.949
+80023;"Cidade Dutra";2019;"00 a 03 anos";10.895
+80023;"Cidade Dutra";2019;"04 a 05 anos";5.763
+80023;"Cidade Dutra";2019;"06 anos";2.829
+80023;"Cidade Dutra";2019;"07 a 10 anos";10.589
+80023;"Cidade Dutra";2019;"11 a 14 anos";9.729
+80023;"Cidade Dutra";2019;"15 a 17 anos";8.131
+80023;"Cidade Dutra";2019;"18 a 19 anos";5.946
+80023;"Cidade Dutra";2019;"Total da Seleção";53.882
+80023;"Cidade Dutra";2019;"Total Geral da População";202.297
+80024;"Cidade Lider";2019;"00 a 03 anos";7.132
+80024;"Cidade Lider";2019;"04 a 05 anos";3.729
+80024;"Cidade Lider";2019;"06 anos";1.837
+80024;"Cidade Lider";2019;"07 a 10 anos";6.969
+80024;"Cidade Lider";2019;"11 a 14 anos";6.551
+80024;"Cidade Lider";2019;"15 a 17 anos";5.407
+80024;"Cidade Lider";2019;"18 a 19 anos";3.921
+80024;"Cidade Lider";2019;"Total da Seleção";35.546
+80024;"Cidade Lider";2019;"Total Geral da População";134.425
+80025;"Cidade Tiradentes";2019;"00 a 03 anos";14.430
+80025;"Cidade Tiradentes";2019;"04 a 05 anos";7.185
+80025;"Cidade Tiradentes";2019;"06 anos";3.531
+80025;"Cidade Tiradentes";2019;"07 a 10 anos";13.682
+80025;"Cidade Tiradentes";2019;"11 a 14 anos";13.630
+80025;"Cidade Tiradentes";2019;"15 a 17 anos";11.551
+80025;"Cidade Tiradentes";2019;"18 a 19 anos";8.388
+80025;"Cidade Tiradentes";2019;"Total da Seleção";72.397
+80025;"Cidade Tiradentes";2019;"Total Geral da População";233.110
+80026;"Consolação";2019;"00 a 03 anos";1.861
+80026;"Consolação";2019;"04 a 05 anos";932
+80026;"Consolação";2019;"06 anos";445
+80026;"Consolação";2019;"07 a 10 anos";1.576
+80026;"Consolação";2019;"11 a 14 anos";1.297
+80026;"Consolação";2019;"15 a 17 anos";1.022
+80026;"Consolação";2019;"18 a 19 anos";724
+80026;"Consolação";2019;"Total da Seleção";7.857
+80026;"Consolação";2019;"Total Geral da População";57.421
+80027;"Cursino";2019;"00 a 03 anos";4.979
+80027;"Cursino";2019;"04 a 05 anos";2.741
+80027;"Cursino";2019;"06 anos";1.364
+80027;"Cursino";2019;"07 a 10 anos";5.153
+80027;"Cursino";2019;"11 a 14 anos";4.631
+80027;"Cursino";2019;"15 a 17 anos";3.590
+80027;"Cursino";2019;"18 a 19 anos";2.517
+80027;"Cursino";2019;"Total da Seleção";24.975
+80027;"Cursino";2019;"Total Geral da População";113.347
+80028;"Ermelino Matarazzo";2019;"00 a 03 anos";6.425
+80028;"Ermelino Matarazzo";2019;"04 a 05 anos";3.378
+80028;"Ermelino Matarazzo";2019;"06 anos";1.668
+80028;"Ermelino Matarazzo";2019;"07 a 10 anos";6.351
+80028;"Ermelino Matarazzo";2019;"11 a 14 anos";5.942
+80028;"Ermelino Matarazzo";2019;"15 a 17 anos";4.776
+80028;"Ermelino Matarazzo";2019;"18 a 19 anos";3.445
+80028;"Ermelino Matarazzo";2019;"Total da Seleção";31.985
+80028;"Ermelino Matarazzo";2019;"Total Geral da População";118.268
+80029;"Freguesia do Ó";2019;"00 a 03 anos";6.773
+80029;"Freguesia do Ó";2019;"04 a 05 anos";3.664
+80029;"Freguesia do Ó";2019;"06 anos";1.793
+80029;"Freguesia do Ó";2019;"07 a 10 anos";6.558
+80029;"Freguesia do Ó";2019;"11 a 14 anos";5.726
+80029;"Freguesia do Ó";2019;"15 a 17 anos";4.745
+80029;"Freguesia do Ó";2019;"18 a 19 anos";3.513
+80029;"Freguesia do Ó";2019;"Total da Seleção";32.772
+80029;"Freguesia do Ó";2019;"Total Geral da População";140.324
+80030;"Grajaú";2019;"00 a 03 anos";24.348
+80030;"Grajaú";2019;"04 a 05 anos";12.633
+80030;"Grajaú";2019;"06 anos";6.180
+80030;"Grajaú";2019;"07 a 10 anos";23.078
+80030;"Grajaú";2019;"11 a 14 anos";21.238
+80030;"Grajaú";2019;"15 a 17 anos";17.779
+80030;"Grajaú";2019;"18 a 19 anos";13.022
+80030;"Grajaú";2019;"Total da Seleção";118.278
+80030;"Grajaú";2019;"Total Geral da População";387.148
+80031;"Guaianases";2019;"00 a 03 anos";6.782
+80031;"Guaianases";2019;"04 a 05 anos";3.500
+80031;"Guaianases";2019;"06 anos";1.707
+80031;"Guaianases";2019;"07 a 10 anos";6.359
+80031;"Guaianases";2019;"11 a 14 anos";5.845
+80031;"Guaianases";2019;"15 a 17 anos";4.920
+80031;"Guaianases";2019;"18 a 19 anos";3.591
+80031;"Guaianases";2019;"Total da Seleção";32.704
+80031;"Guaianases";2019;"Total Geral da População";109.089
+80033;"Iguatemi";2019;"00 a 03 anos";9.518
+80033;"Iguatemi";2019;"04 a 05 anos";4.824
+80033;"Iguatemi";2019;"06 anos";2.347
+80033;"Iguatemi";2019;"07 a 10 anos";8.762
+80033;"Iguatemi";2019;"11 a 14 anos";8.167
+80033;"Iguatemi";2019;"15 a 17 anos";6.936
+80033;"Iguatemi";2019;"18 a 19 anos";5.087
+80033;"Iguatemi";2019;"Total da Seleção";45.641
+80033;"Iguatemi";2019;"Total Geral da População";147.514
+80034;"Ipiranga";2019;"00 a 03 anos";4.936
+80034;"Ipiranga";2019;"04 a 05 anos";2.699
+80034;"Ipiranga";2019;"06 anos";1.337
+80034;"Ipiranga";2019;"07 a 10 anos";5.028
+80034;"Ipiranga";2019;"11 a 14 anos";4.525
+80034;"Ipiranga";2019;"15 a 17 anos";3.574
+80034;"Ipiranga";2019;"18 a 19 anos";2.544
+80034;"Ipiranga";2019;"Total da Seleção";24.643
+80034;"Ipiranga";2019;"Total Geral da População";111.744
+80035;"Itaim Bibi";2019;"00 a 03 anos";3.684
+80035;"Itaim Bibi";2019;"04 a 05 anos";2.109
+80035;"Itaim Bibi";2019;"06 anos";1.051
+80035;"Itaim Bibi";2019;"07 a 10 anos";3.890
+80035;"Itaim Bibi";2019;"11 a 14 anos";3.178
+80035;"Itaim Bibi";2019;"15 a 17 anos";2.096
+80035;"Itaim Bibi";2019;"18 a 19 anos";1.368
+80035;"Itaim Bibi";2019;"Total da Seleção";17.376
+80035;"Itaim Bibi";2019;"Total Geral da População";96.896
+80036;"Itaim Paulista";2019;"00 a 03 anos";13.898
+80036;"Itaim Paulista";2019;"04 a 05 anos";7.165
+80036;"Itaim Paulista";2019;"06 anos";3.517
+80036;"Itaim Paulista";2019;"07 a 10 anos";13.320
+80036;"Itaim Paulista";2019;"11 a 14 anos";12.585
+80036;"Itaim Paulista";2019;"15 a 17 anos";10.463
+80036;"Itaim Paulista";2019;"18 a 19 anos";7.715
+80036;"Itaim Paulista";2019;"Total da Seleção";68.663
+80036;"Itaim Paulista";2019;"Total Geral da População";233.767
+80037;"Itaquera";2019;"00 a 03 anos";11.665
+80037;"Itaquera";2019;"04 a 05 anos";6.151
+80037;"Itaquera";2019;"06 anos";3.029
+80037;"Itaquera";2019;"07 a 10 anos";11.435
+80037;"Itaquera";2019;"11 a 14 anos";10.625
+80037;"Itaquera";2019;"15 a 17 anos";8.738
+80037;"Itaquera";2019;"18 a 19 anos";6.405
+80037;"Itaquera";2019;"Total da Seleção";58.048
+80037;"Itaquera";2019;"Total Geral da População";210.858
+80038;"Jabaquara";2019;"00 a 03 anos";11.142
+80038;"Jabaquara";2019;"04 a 05 anos";6.034
+80038;"Jabaquara";2019;"06 anos";2.988
+80038;"Jabaquara";2019;"07 a 10 anos";11.256
+80038;"Jabaquara";2019;"11 a 14 anos";10.173
+80038;"Jabaquara";2019;"15 a 17 anos";7.989
+80038;"Jabaquara";2019;"18 a 19 anos";5.758
+80038;"Jabaquara";2019;"Total da Seleção";55.340
+80038;"Jabaquara";2019;"Total Geral da População";228.815
+80039;"Jaçanã";2019;"00 a 03 anos";4.706
+80039;"Jaçanã";2019;"04 a 05 anos";2.427
+80039;"Jaçanã";2019;"06 anos";1.212
+80039;"Jaçanã";2019;"07 a 10 anos";4.778
+80039;"Jaçanã";2019;"11 a 14 anos";4.786
+80039;"Jaçanã";2019;"15 a 17 anos";3.906
+80039;"Jaçanã";2019;"18 a 19 anos";2.812
+80039;"Jaçanã";2019;"Total da Seleção";24.627
+80039;"Jaçanã";2019;"Total Geral da População";95.934
+80040;"Jaguara";2019;"00 a 03 anos";1.061
+80040;"Jaguara";2019;"04 a 05 anos";580
+80040;"Jaguara";2019;"06 anos";286
+80040;"Jaguara";2019;"07 a 10 anos";1.061
+80040;"Jaguara";2019;"11 a 14 anos";954
+80040;"Jaguara";2019;"15 a 17 anos";789
+80040;"Jaguara";2019;"18 a 19 anos";566
+80040;"Jaguara";2019;"Total da Seleção";5.297
+80040;"Jaguara";2019;"Total Geral da População";24.042
+80041;"Jaguaré";2019;"00 a 03 anos";2.748
+80041;"Jaguaré";2019;"04 a 05 anos";1.479
+80041;"Jaguaré";2019;"06 anos";735
+80041;"Jaguaré";2019;"07 a 10 anos";2.807
+80041;"Jaguaré";2019;"11 a 14 anos";2.618
+80041;"Jaguaré";2019;"15 a 17 anos";2.103
+80041;"Jaguaré";2019;"18 a 19 anos";1.486
+80041;"Jaguaré";2019;"Total da Seleção";13.976
+80041;"Jaguaré";2019;"Total Geral da População";54.697
+80042;"Jaraguá";2019;"00 a 03 anos";12.379
+80042;"Jaraguá";2019;"04 a 05 anos";6.405
+80042;"Jaraguá";2019;"06 anos";3.133
+80042;"Jaraguá";2019;"07 a 10 anos";11.747
+80042;"Jaraguá";2019;"11 a 14 anos";11.009
+80042;"Jaraguá";2019;"15 a 17 anos";9.449
+80042;"Jaraguá";2019;"18 a 19 anos";6.954
+80042;"Jaraguá";2019;"Total da Seleção";61.076
+80042;"Jaraguá";2019;"Total Geral da População";210.217
+80043;"Jardim Ângela";2019;"00 a 03 anos";20.986
+80043;"Jardim Ângela";2019;"04 a 05 anos";10.909
+80043;"Jardim Ângela";2019;"06 anos";5.392
+80043;"Jardim Ângela";2019;"07 a 10 anos";20.688
+80043;"Jardim Ângela";2019;"11 a 14 anos";19.717
+80043;"Jardim Ângela";2019;"15 a 17 anos";15.970
+80043;"Jardim Ângela";2019;"18 a 19 anos";11.437
+80043;"Jardim Ângela";2019;"Total da Seleção";105.099
+80043;"Jardim Ângela";2019;"Total Geral da População";334.057
+80044;"Jardim Helena";2019;"00 a 03 anos";8.821
+80044;"Jardim Helena";2019;"04 a 05 anos";4.593
+80044;"Jardim Helena";2019;"06 anos";2.231
+80044;"Jardim Helena";2019;"07 a 10 anos";8.162
+80044;"Jardim Helena";2019;"11 a 14 anos";7.210
+80044;"Jardim Helena";2019;"15 a 17 anos";5.965
+80044;"Jardim Helena";2019;"18 a 19 anos";4.401
+80044;"Jardim Helena";2019;"Total da Seleção";41.383
+80044;"Jardim Helena";2019;"Total Geral da População";135.358
+80045;"Jardim Paulista";2019;"00 a 03 anos";3.226
+80045;"Jardim Paulista";2019;"04 a 05 anos";1.769
+80045;"Jardim Paulista";2019;"06 anos";866
+80045;"Jardim Paulista";2019;"07 a 10 anos";3.130
+80045;"Jardim Paulista";2019;"11 a 14 anos";2.523
+80045;"Jardim Paulista";2019;"15 a 17 anos";1.798
+80045;"Jardim Paulista";2019;"18 a 19 anos";1.220
+80045;"Jardim Paulista";2019;"Total da Seleção";14.532
+80045;"Jardim Paulista";2019;"Total Geral da População";90.588
+80046;"Jardim São Luís";2019;"00 a 03 anos";16.668
+80046;"Jardim São Luís";2019;"04 a 05 anos";8.797
+80046;"Jardim São Luís";2019;"06 anos";4.315
+80046;"Jardim São Luís";2019;"07 a 10 anos";16.108
+80046;"Jardim São Luís";2019;"11 a 14 anos";14.690
+80046;"Jardim São Luís";2019;"15 a 17 anos";12.175
+80046;"Jardim São Luís";2019;"18 a 19 anos";8.833
+80046;"Jardim São Luís";2019;"Total da Seleção";81.586
+80046;"Jardim São Luís";2019;"Total Geral da População";291.198
+80047;"José Bonifácio";2019;"00 a 03 anos";6.611
+80047;"José Bonifácio";2019;"04 a 05 anos";3.386
+80047;"José Bonifácio";2019;"06 anos";1.704
+80047;"José Bonifácio";2019;"07 a 10 anos";6.889
+80047;"José Bonifácio";2019;"11 a 14 anos";7.161
+80047;"José Bonifácio";2019;"15 a 17 anos";5.812
+80047;"José Bonifácio";2019;"18 a 19 anos";4.167
+80047;"José Bonifácio";2019;"Total da Seleção";35.730
+80047;"José Bonifácio";2019;"Total Geral da População";135.461
+80096;"Lajeado";2019;"00 a 03 anos";10.941
+80096;"Lajeado";2019;"04 a 05 anos";5.632
+80096;"Lajeado";2019;"06 anos";2.756
+80096;"Lajeado";2019;"07 a 10 anos";10.358
+80096;"Lajeado";2019;"11 a 14 anos";9.624
+80096;"Lajeado";2019;"15 a 17 anos";7.872
+80096;"Lajeado";2019;"18 a 19 anos";5.827
+80096;"Lajeado";2019;"Total da Seleção";53.010
+80096;"Lajeado";2019;"Total Geral da População";173.469
+80048;"Lapa";2019;"00 a 03 anos";2.513
+80048;"Lapa";2019;"04 a 05 anos";1.402
+80048;"Lapa";2019;"06 anos";699
+80048;"Lapa";2019;"07 a 10 anos";2.660
+80048;"Lapa";2019;"11 a 14 anos";2.391
+80048;"Lapa";2019;"15 a 17 anos";1.797
+80048;"Lapa";2019;"18 a 19 anos";1.240
+80048;"Lapa";2019;"Total da Seleção";12.702
+80048;"Lapa";2019;"Total Geral da População";67.118
+80049;"Liberdade";2019;"00 a 03 anos";3.033
+80049;"Liberdade";2019;"04 a 05 anos";1.709
+80049;"Liberdade";2019;"06 anos";839
+80049;"Liberdade";2019;"07 a 10 anos";3.016
+80049;"Liberdade";2019;"11 a 14 anos";2.422
+80049;"Liberdade";2019;"15 a 17 anos";1.813
+80049;"Liberdade";2019;"18 a 19 anos";1.261
+80049;"Liberdade";2019;"Total da Seleção";14.093
+80049;"Liberdade";2019;"Total Geral da População";72.503
+80050;"Limão";2019;"00 a 03 anos";4.323
+80050;"Limão";2019;"04 a 05 anos";2.351
+80050;"Limão";2019;"06 anos";1.146
+80050;"Limão";2019;"07 a 10 anos";4.125
+80050;"Limão";2019;"11 a 14 anos";3.451
+80050;"Limão";2019;"15 a 17 anos";2.820
+80050;"Limão";2019;"18 a 19 anos";2.029
+80050;"Limão";2019;"Total da Seleção";20.245
+80050;"Limão";2019;"Total Geral da População";79.613
+80051;"Mandaqui";2019;"00 a 03 anos";4.790
+80051;"Mandaqui";2019;"04 a 05 anos";2.567
+80051;"Mandaqui";2019;"06 anos";1.267
+80051;"Mandaqui";2019;"07 a 10 anos";4.768
+80051;"Mandaqui";2019;"11 a 14 anos";4.382
+80051;"Mandaqui";2019;"15 a 17 anos";3.600
+80051;"Mandaqui";2019;"18 a 19 anos";2.653
+80051;"Mandaqui";2019;"Total da Seleção";24.027
+80051;"Mandaqui";2019;"Total Geral da População";109.131
+80052;"Marsilac";2019;"00 a 03 anos";428
+80052;"Marsilac";2019;"04 a 05 anos";205
+80052;"Marsilac";2019;"06 anos";102
+80052;"Marsilac";2019;"07 a 10 anos";423
+80052;"Marsilac";2019;"11 a 14 anos";477
+80052;"Marsilac";2019;"15 a 17 anos";402
+80052;"Marsilac";2019;"18 a 19 anos";310
+80052;"Marsilac";2019;"Total da Seleção";2.347
+80052;"Marsilac";2019;"Total Geral da População";8.398
+80032;"Moema";2019;"00 a 03 anos";3.015
+80032;"Moema";2019;"04 a 05 anos";1.669
+80032;"Moema";2019;"06 anos";841
+80032;"Moema";2019;"07 a 10 anos";3.270
+80032;"Moema";2019;"11 a 14 anos";2.996
+80032;"Moema";2019;"15 a 17 anos";2.103
+80032;"Moema";2019;"18 a 19 anos";1.430
+80032;"Moema";2019;"Total da Seleção";15.324
+80032;"Moema";2019;"Total Geral da População";88.949
+80053;"Mooca";2019;"00 a 03 anos";3.361
+80053;"Mooca";2019;"04 a 05 anos";1.856
+80053;"Mooca";2019;"06 anos";919
+80053;"Mooca";2019;"07 a 10 anos";3.414
+80053;"Mooca";2019;"11 a 14 anos";2.951
+80053;"Mooca";2019;"15 a 17 anos";2.238
+80053;"Mooca";2019;"18 a 19 anos";1.577
+80053;"Mooca";2019;"Total da Seleção";16.316
+80053;"Mooca";2019;"Total Geral da População";79.997
+80054;"Morumbi";2019;"00 a 03 anos";2.681
+80054;"Morumbi";2019;"04 a 05 anos";1.472
+80054;"Morumbi";2019;"06 anos";716
+80054;"Morumbi";2019;"07 a 10 anos";2.557
+80054;"Morumbi";2019;"11 a 14 anos";2.119
+80054;"Morumbi";2019;"15 a 17 anos";1.775
+80054;"Morumbi";2019;"18 a 19 anos";1.288
+80054;"Morumbi";2019;"Total da Seleção";12.608
+80054;"Morumbi";2019;"Total Geral da População";52.416
+80055;"Parelheiros";2019;"00 a 03 anos";10.159
+80055;"Parelheiros";2019;"04 a 05 anos";5.166
+80055;"Parelheiros";2019;"06 anos";2.505
+80055;"Parelheiros";2019;"07 a 10 anos";9.269
+80055;"Parelheiros";2019;"11 a 14 anos";8.528
+80055;"Parelheiros";2019;"15 a 17 anos";7.321
+80055;"Parelheiros";2019;"18 a 19 anos";5.411
+80055;"Parelheiros";2019;"Total da Seleção";48.359
+80055;"Parelheiros";2019;"Total Geral da População";151.339
+80056;"Pari";2019;"00 a 03 anos";1.148
+80056;"Pari";2019;"04 a 05 anos";630
+80056;"Pari";2019;"06 anos";306
+80056;"Pari";2019;"07 a 10 anos";1.076
+80056;"Pari";2019;"11 a 14 anos";848
+80056;"Pari";2019;"15 a 17 anos";677
+80056;"Pari";2019;"18 a 19 anos";472
+80056;"Pari";2019;"Total da Seleção";5.157
+80056;"Pari";2019;"Total Geral da População";18.910
+80057;"Parque do Carmo";2019;"00 a 03 anos";3.926
+80057;"Parque do Carmo";2019;"04 a 05 anos";2.078
+80057;"Parque do Carmo";2019;"06 anos";1.028
+80057;"Parque do Carmo";2019;"07 a 10 anos";3.915
+80057;"Parque do Carmo";2019;"11 a 14 anos";3.696
+80057;"Parque do Carmo";2019;"15 a 17 anos";3.071
+80057;"Parque do Carmo";2019;"18 a 19 anos";2.200
+80057;"Parque do Carmo";2019;"Total da Seleção";19.914
+80057;"Parque do Carmo";2019;"Total Geral da População";71.418
+80058;"Pedreira";2019;"00 a 03 anos";8.801
+80058;"Pedreira";2019;"04 a 05 anos";4.472
+80058;"Pedreira";2019;"06 anos";2.220
+80058;"Pedreira";2019;"07 a 10 anos";8.705
+80058;"Pedreira";2019;"11 a 14 anos";8.652
+80058;"Pedreira";2019;"15 a 17 anos";6.970
+80058;"Pedreira";2019;"18 a 19 anos";5.075
+80058;"Pedreira";2019;"Total da Seleção";44.895
+80058;"Pedreira";2019;"Total Geral da População";159.325
+80059;"Penha";2019;"00 a 03 anos";5.728
+80059;"Penha";2019;"04 a 05 anos";3.101
+80059;"Penha";2019;"06 anos";1.530
+80059;"Penha";2019;"07 a 10 anos";5.731
+80059;"Penha";2019;"11 a 14 anos";5.179
+80059;"Penha";2019;"15 a 17 anos";4.202
+80059;"Penha";2019;"18 a 19 anos";3.037
+80059;"Penha";2019;"Total da Seleção";28.508
+80059;"Penha";2019;"Total Geral da População";129.042
+80060;"Perdizes";2019;"00 a 03 anos";3.988
+80060;"Perdizes";2019;"04 a 05 anos";2.139
+80060;"Perdizes";2019;"06 anos";1.067
+80060;"Perdizes";2019;"07 a 10 anos";4.111
+80060;"Perdizes";2019;"11 a 14 anos";3.819
+80060;"Perdizes";2019;"15 a 17 anos";2.911
+80060;"Perdizes";2019;"18 a 19 anos";1.980
+80060;"Perdizes";2019;"Total da Seleção";20.015
+80060;"Perdizes";2019;"Total Geral da População";114.552
+80061;"Perus";2019;"00 a 03 anos";5.689
+80061;"Perus";2019;"04 a 05 anos";2.947
+80061;"Perus";2019;"06 anos";1.431
+80061;"Perus";2019;"07 a 10 anos";5.251
+80061;"Perus";2019;"11 a 14 anos";4.695
+80061;"Perus";2019;"15 a 17 anos";3.939
+80061;"Perus";2019;"18 a 19 anos";2.909
+80061;"Perus";2019;"Total da Seleção";26.861
+80061;"Perus";2019;"Total Geral da População";88.387
+80062;"Pinheiros";2019;"00 a 03 anos";2.281
+80062;"Pinheiros";2019;"04 a 05 anos";1.273
+80062;"Pinheiros";2019;"06 anos";633
+80062;"Pinheiros";2019;"07 a 10 anos";2.365
+80062;"Pinheiros";2019;"11 a 14 anos";2.039
+80062;"Pinheiros";2019;"15 a 17 anos";1.494
+80062;"Pinheiros";2019;"18 a 19 anos";1.013
+80062;"Pinheiros";2019;"Total da Seleção";11.098
+80062;"Pinheiros";2019;"Total Geral da População";65.895
+80063;"Pirituba";2019;"00 a 03 anos";8.401
+80063;"Pirituba";2019;"04 a 05 anos";4.500
+80063;"Pirituba";2019;"06 anos";2.225
+80063;"Pirituba";2019;"07 a 10 anos";8.400
+80063;"Pirituba";2019;"11 a 14 anos";7.690
+80063;"Pirituba";2019;"15 a 17 anos";6.146
+80063;"Pirituba";2019;"18 a 19 anos";4.438
+80063;"Pirituba";2019;"Total da Seleção";41.800
+80063;"Pirituba";2019;"Total Geral da População";170.940
+80064;"Ponte Rasa";2019;"00 a 03 anos";4.201
+80064;"Ponte Rasa";2019;"04 a 05 anos";2.233
+80064;"Ponte Rasa";2019;"06 anos";1.108
+80064;"Ponte Rasa";2019;"07 a 10 anos";4.249
+80064;"Ponte Rasa";2019;"11 a 14 anos";4.036
+80064;"Ponte Rasa";2019;"15 a 17 anos";3.287
+80064;"Ponte Rasa";2019;"18 a 19 anos";2.409
+80064;"Ponte Rasa";2019;"Total da Seleção";21.523
+80064;"Ponte Rasa";2019;"Total Geral da População";90.145
+80065;"Raposo Tavares";2019;"00 a 03 anos";6.285
+80065;"Raposo Tavares";2019;"04 a 05 anos";3.386
+80065;"Raposo Tavares";2019;"06 anos";1.655
+80065;"Raposo Tavares";2019;"07 a 10 anos";6.061
+80065;"Raposo Tavares";2019;"11 a 14 anos";5.308
+80065;"Raposo Tavares";2019;"15 a 17 anos";4.475
+80065;"Raposo Tavares";2019;"18 a 19 anos";3.180
+80065;"Raposo Tavares";2019;"Total da Seleção";30.350
+80065;"Raposo Tavares";2019;"Total Geral da População";106.735
+80066;"República";2019;"00 a 03 anos";2.662
+80066;"República";2019;"04 a 05 anos";1.511
+80066;"República";2019;"06 anos";733
+80066;"República";2019;"07 a 10 anos";2.538
+80066;"República";2019;"11 a 14 anos";1.855
+80066;"República";2019;"15 a 17 anos";1.367
+80066;"República";2019;"18 a 19 anos";943
+80066;"República";2019;"Total da Seleção";11.609
+80066;"República";2019;"Total Geral da População";61.478
+80067;"Rio Pequeno";2019;"00 a 03 anos";7.332
+80067;"Rio Pequeno";2019;"04 a 05 anos";4.059
+80067;"Rio Pequeno";2019;"06 anos";1.962
+80067;"Rio Pequeno";2019;"07 a 10 anos";6.847
+80067;"Rio Pequeno";2019;"11 a 14 anos";5.350
+80067;"Rio Pequeno";2019;"15 a 17 anos";4.456
+80067;"Rio Pequeno";2019;"18 a 19 anos";3.200
+80067;"Rio Pequeno";2019;"Total da Seleção";33.206
+80067;"Rio Pequeno";2019;"Total Geral da População";123.238
+80068;"Sacomã";2019;"00 a 03 anos";12.603
+80068;"Sacomã";2019;"04 a 05 anos";6.652
+80068;"Sacomã";2019;"06 anos";3.310
+80068;"Sacomã";2019;"07 a 10 anos";12.816
+80068;"Sacomã";2019;"11 a 14 anos";12.300
+80068;"Sacomã";2019;"15 a 17 anos";9.843
+80068;"Sacomã";2019;"18 a 19 anos";7.028
+80068;"Sacomã";2019;"Total da Seleção";64.552
+80068;"Sacomã";2019;"Total Geral da População";262.193
+80069;"Santa Cecília";2019;"00 a 03 anos";3.698
+80069;"Santa Cecília";2019;"04 a 05 anos";2.036
+80069;"Santa Cecília";2019;"06 anos";992
+80069;"Santa Cecília";2019;"07 a 10 anos";3.530
+80069;"Santa Cecília";2019;"11 a 14 anos";2.801
+80069;"Santa Cecília";2019;"15 a 17 anos";2.122
+80069;"Santa Cecília";2019;"18 a 19 anos";1.499
+80069;"Santa Cecília";2019;"Total da Seleção";16.678
+80069;"Santa Cecília";2019;"Total Geral da População";88.170
+80070;"Santana";2019;"00 a 03 anos";4.571
+80070;"Santana";2019;"04 a 05 anos";2.509
+80070;"Santana";2019;"06 anos";1.225
+80070;"Santana";2019;"07 a 10 anos";4.411
+80070;"Santana";2019;"11 a 14 anos";3.670
+80070;"Santana";2019;"15 a 17 anos";2.948
+80070;"Santana";2019;"18 a 19 anos";2.167
+80070;"Santana";2019;"Total da Seleção";21.501
+80070;"Santana";2019;"Total Geral da População";113.729
+80071;"Santo Amaro";2019;"00 a 03 anos";2.710
+80071;"Santo Amaro";2019;"04 a 05 anos";1.504
+80071;"Santo Amaro";2019;"06 anos";755
+80071;"Santo Amaro";2019;"07 a 10 anos";2.907
+80071;"Santo Amaro";2019;"11 a 14 anos";2.715
+80071;"Santo Amaro";2019;"15 a 17 anos";2.144
+80071;"Santo Amaro";2019;"18 a 19 anos";1.510
+80071;"Santo Amaro";2019;"Total da Seleção";14.245
+80071;"Santo Amaro";2019;"Total Geral da População";74.294
+80095;"São Domingos";2019;"00 a 03 anos";4.041
+80095;"São Domingos";2019;"04 a 05 anos";2.144
+80095;"São Domingos";2019;"06 anos";1.069
+80095;"São Domingos";2019;"07 a 10 anos";4.155
+80095;"São Domingos";2019;"11 a 14 anos";4.005
+80095;"São Domingos";2019;"15 a 17 anos";3.203
+80095;"São Domingos";2019;"18 a 19 anos";2.291
+80095;"São Domingos";2019;"Total da Seleção";20.908
+80095;"São Domingos";2019;"Total Geral da População";86.258
+80072;"São Lucas";2019;"00 a 03 anos";6.175
+80072;"São Lucas";2019;"04 a 05 anos";3.203
+80072;"São Lucas";2019;"06 anos";1.603
+80072;"São Lucas";2019;"07 a 10 anos";6.337
+80072;"São Lucas";2019;"11 a 14 anos";6.278
+80072;"São Lucas";2019;"15 a 17 anos";4.931
+80072;"São Lucas";2019;"18 a 19 anos";3.497
+80072;"São Lucas";2019;"Total da Seleção";32.024
+80072;"São Lucas";2019;"Total Geral da População";142.953
+80073;"São Mateus";2019;"00 a 03 anos";8.339
+80073;"São Mateus";2019;"04 a 05 anos";4.450
+80073;"São Mateus";2019;"06 anos";2.185
+80073;"São Mateus";2019;"07 a 10 anos";8.143
+80073;"São Mateus";2019;"11 a 14 anos";7.398
+80073;"São Mateus";2019;"15 a 17 anos";6.167
+80073;"São Mateus";2019;"18 a 19 anos";4.543
+80073;"São Mateus";2019;"Total da Seleção";41.225
+80073;"São Mateus";2019;"Total Geral da População";155.289
+80074;"São Miguel";2019;"00 a 03 anos";5.501
+80074;"São Miguel";2019;"04 a 05 anos";2.970
+80074;"São Miguel";2019;"06 anos";1.431
+80074;"São Miguel";2019;"07 a 10 anos";5.021
+80074;"São Miguel";2019;"11 a 14 anos";4.049
+80074;"São Miguel";2019;"15 a 17 anos";3.413
+80074;"São Miguel";2019;"18 a 19 anos";2.551
+80074;"São Miguel";2019;"Total da Seleção";24.936
+80074;"São Miguel";2019;"Total Geral da População";89.364
+80075;"São Rafael";2019;"00 a 03 anos";8.795
+80075;"São Rafael";2019;"04 a 05 anos";4.449
+80075;"São Rafael";2019;"06 anos";2.218
+80075;"São Rafael";2019;"07 a 10 anos";8.839
+80075;"São Rafael";2019;"11 a 14 anos";9.133
+80075;"São Rafael";2019;"15 a 17 anos";7.691
+80075;"São Rafael";2019;"18 a 19 anos";5.523
+80075;"São Rafael";2019;"Total da Seleção";46.648
+80075;"São Rafael";2019;"Total Geral da População";158.143
+80076;"Sapopemba";2019;"00 a 03 anos";15.601
+80076;"Sapopemba";2019;"04 a 05 anos";8.203
+80076;"Sapopemba";2019;"06 anos";4.041
+80076;"Sapopemba";2019;"07 a 10 anos";15.292
+80076;"Sapopemba";2019;"11 a 14 anos";14.302
+80076;"Sapopemba";2019;"15 a 17 anos";11.826
+80076;"Sapopemba";2019;"18 a 19 anos";8.602
+80076;"Sapopemba";2019;"Total da Seleção";77.867
+80076;"Sapopemba";2019;"Total Geral da População";289.284
+80077;"Saúde";2019;"00 a 03 anos";4.862
+80077;"Saúde";2019;"04 a 05 anos";2.733
+80077;"Saúde";2019;"06 anos";1.360
+80077;"Saúde";2019;"07 a 10 anos";5.096
+80077;"Saúde";2019;"11 a 14 anos";4.438
+80077;"Saúde";2019;"15 a 17 anos";3.333
+80077;"Saúde";2019;"18 a 19 anos";2.302
+80077;"Saúde";2019;"Total da Seleção";24.124
+80077;"Saúde";2019;"Total Geral da População";133.944
+80078;"Sé";2019;"00 a 03 anos";1.667
+80078;"Sé";2019;"04 a 05 anos";954
+80078;"Sé";2019;"06 anos";450
+80078;"Sé";2019;"07 a 10 anos";1.440
+80078;"Sé";2019;"11 a 14 anos";911
+80078;"Sé";2019;"15 a 17 anos";850
+80078;"Sé";2019;"18 a 19 anos";630
+80078;"Sé";2019;"Total da Seleção";6.902
+80078;"Sé";2019;"Total Geral da População";26.423
+80079;"Socorro";2019;"00 a 03 anos";1.518
+80079;"Socorro";2019;"04 a 05 anos";842
+80079;"Socorro";2019;"06 anos";413
+80079;"Socorro";2019;"07 a 10 anos";1.501
+80079;"Socorro";2019;"11 a 14 anos";1.303
+80079;"Socorro";2019;"15 a 17 anos";1.126
+80079;"Socorro";2019;"18 a 19 anos";812
+80079;"Socorro";2019;"Total da Seleção";7.515
+80079;"Socorro";2019;"Total Geral da População";36.194
+80080;"Tatuapé";2019;"00 a 03 anos";3.607
+80080;"Tatuapé";2019;"04 a 05 anos";1.963
+80080;"Tatuapé";2019;"06 anos";969
+80080;"Tatuapé";2019;"07 a 10 anos";3.634
+80080;"Tatuapé";2019;"11 a 14 anos";3.320
+80080;"Tatuapé";2019;"15 a 17 anos";2.781
+80080;"Tatuapé";2019;"18 a 19 anos";2.033
+80080;"Tatuapé";2019;"Total da Seleção";18.307
+80080;"Tatuapé";2019;"Total Geral da População";95.705
+80081;"Tremembé";2019;"00 a 03 anos";12.759
+80081;"Tremembé";2019;"04 a 05 anos";6.646
+80081;"Tremembé";2019;"06 anos";3.241
+80081;"Tremembé";2019;"07 a 10 anos";11.998
+80081;"Tremembé";2019;"11 a 14 anos";10.869
+80081;"Tremembé";2019;"15 a 17 anos";9.090
+80081;"Tremembé";2019;"18 a 19 anos";6.702
+80081;"Tremembé";2019;"Total da Seleção";61.305
+80081;"Tremembé";2019;"Total Geral da População";221.051
+80082;"Tucuruvi";2019;"00 a 03 anos";3.794
+80082;"Tucuruvi";2019;"04 a 05 anos";2.045
+80082;"Tucuruvi";2019;"06 anos";1.010
+80082;"Tucuruvi";2019;"07 a 10 anos";3.810
+80082;"Tucuruvi";2019;"11 a 14 anos";3.485
+80082;"Tucuruvi";2019;"15 a 17 anos";2.809
+80082;"Tucuruvi";2019;"18 a 19 anos";2.029
+80082;"Tucuruvi";2019;"Total da Seleção";18.982
+80082;"Tucuruvi";2019;"Total Geral da População";96.608
+80083;"Vila Andrade";2019;"00 a 03 anos";8.484
+80083;"Vila Andrade";2019;"04 a 05 anos";4.231
+80083;"Vila Andrade";2019;"06 anos";2.120
+80083;"Vila Andrade";2019;"07 a 10 anos";8.581
+80083;"Vila Andrade";2019;"11 a 14 anos";8.953
+80083;"Vila Andrade";2019;"15 a 17 anos";7.181
+80083;"Vila Andrade";2019;"18 a 19 anos";5.088
+80083;"Vila Andrade";2019;"Total da Seleção";44.638
+80083;"Vila Andrade";2019;"Total Geral da População";160.173
+80084;"Vila Curuçá";2019;"00 a 03 anos";8.516
+80084;"Vila Curuçá";2019;"04 a 05 anos";4.358
+80084;"Vila Curuçá";2019;"06 anos";2.144
+80084;"Vila Curuçá";2019;"07 a 10 anos";8.220
+80084;"Vila Curuçá";2019;"11 a 14 anos";8.004
+80084;"Vila Curuçá";2019;"15 a 17 anos";6.782
+80084;"Vila Curuçá";2019;"18 a 19 anos";5.020
+80084;"Vila Curuçá";2019;"Total da Seleção";43.044
+80084;"Vila Curuçá";2019;"Total Geral da População";152.967
+80085;"Vila Formosa";2019;"00 a 03 anos";3.933
+80085;"Vila Formosa";2019;"04 a 05 anos";2.067
+80085;"Vila Formosa";2019;"06 anos";1.023
+80085;"Vila Formosa";2019;"07 a 10 anos";3.920
+80085;"Vila Formosa";2019;"11 a 14 anos";3.740
+80085;"Vila Formosa";2019;"15 a 17 anos";3.062
+80085;"Vila Formosa";2019;"18 a 19 anos";2.255
+80085;"Vila Formosa";2019;"Total da Seleção";20.000
+80085;"Vila Formosa";2019;"Total Geral da População";94.205
+80086;"Vila Guilherme";2019;"00 a 03 anos";2.849
+80086;"Vila Guilherme";2019;"04 a 05 anos";1.599
+80086;"Vila Guilherme";2019;"06 anos";782
+80086;"Vila Guilherme";2019;"07 a 10 anos";2.800
+80086;"Vila Guilherme";2019;"11 a 14 anos";2.284
+80086;"Vila Guilherme";2019;"15 a 17 anos";1.858
+80086;"Vila Guilherme";2019;"18 a 19 anos";1.324
+80086;"Vila Guilherme";2019;"Total da Seleção";13.496
+80086;"Vila Guilherme";2019;"Total Geral da População";56.846
+80087;"Vila Jacuí";2019;"00 a 03 anos";7.341
+80087;"Vila Jacuí";2019;"04 a 05 anos";3.654
+80087;"Vila Jacuí";2019;"06 anos";1.834
+80087;"Vila Jacuí";2019;"07 a 10 anos";7.473
+80087;"Vila Jacuí";2019;"11 a 14 anos";7.898
+80087;"Vila Jacuí";2019;"15 a 17 anos";6.345
+80087;"Vila Jacuí";2019;"18 a 19 anos";4.607
+80087;"Vila Jacuí";2019;"Total da Seleção";39.152
+80087;"Vila Jacuí";2019;"Total Geral da População";145.443
+80088;"Vila Leopoldina";2019;"00 a 03 anos";1.801
+80088;"Vila Leopoldina";2019;"04 a 05 anos";989
+80088;"Vila Leopoldina";2019;"06 anos";502
+80088;"Vila Leopoldina";2019;"07 a 10 anos";1.993
+80088;"Vila Leopoldina";2019;"11 a 14 anos";1.921
+80088;"Vila Leopoldina";2019;"15 a 17 anos";1.409
+80088;"Vila Leopoldina";2019;"18 a 19 anos";971
+80088;"Vila Leopoldina";2019;"Total da Seleção";9.586
+80088;"Vila Leopoldina";2019;"Total Geral da População";44.643
+80089;"Vila Maria";2019;"00 a 03 anos";6.390
+80089;"Vila Maria";2019;"04 a 05 anos";3.439
+80089;"Vila Maria";2019;"06 anos";1.681
+80089;"Vila Maria";2019;"07 a 10 anos";6.139
+80089;"Vila Maria";2019;"11 a 14 anos";5.312
+80089;"Vila Maria";2019;"15 a 17 anos";4.353
+80089;"Vila Maria";2019;"18 a 19 anos";3.121
+80089;"Vila Maria";2019;"Total da Seleção";30.435
+80089;"Vila Maria";2019;"Total Geral da População";113.931
+80090;"Vila Mariana";2019;"00 a 03 anos";4.717
+80090;"Vila Mariana";2019;"04 a 05 anos";2.559
+80090;"Vila Mariana";2019;"06 anos";1.256
+80090;"Vila Mariana";2019;"07 a 10 anos";4.595
+80090;"Vila Mariana";2019;"11 a 14 anos";3.866
+80090;"Vila Mariana";2019;"15 a 17 anos";2.914
+80090;"Vila Mariana";2019;"18 a 19 anos";2.013
+80090;"Vila Mariana";2019;"Total da Seleção";21.920
+80090;"Vila Mariana";2019;"Total Geral da População";132.122
+80091;"Vila Matilde";2019;"00 a 03 anos";4.633
+80091;"Vila Matilde";2019;"04 a 05 anos";2.461
+80091;"Vila Matilde";2019;"06 anos";1.224
+80091;"Vila Matilde";2019;"07 a 10 anos";4.718
+80091;"Vila Matilde";2019;"11 a 14 anos";4.494
+80091;"Vila Matilde";2019;"15 a 17 anos";3.612
+80091;"Vila Matilde";2019;"18 a 19 anos";2.621
+80091;"Vila Matilde";2019;"Total da Seleção";23.763
+80091;"Vila Matilde";2019;"Total Geral da População";105.550
+80092;"Vila Medeiros";2019;"00 a 03 anos";6.327
+80092;"Vila Medeiros";2019;"04 a 05 anos";3.410
+80092;"Vila Medeiros";2019;"06 anos";1.675
+80092;"Vila Medeiros";2019;"07 a 10 anos";6.205
+80092;"Vila Medeiros";2019;"11 a 14 anos";5.480
+80092;"Vila Medeiros";2019;"15 a 17 anos";4.391
+80092;"Vila Medeiros";2019;"18 a 19 anos";3.178
+80092;"Vila Medeiros";2019;"Total da Seleção";30.666
+80092;"Vila Medeiros";2019;"Total Geral da População";123.979
+80093;"Vila Prudente";2019;"00 a 03 anos";4.410
+80093;"Vila Prudente";2019;"04 a 05 anos";2.361
+80093;"Vila Prudente";2019;"06 anos";1.172
+80093;"Vila Prudente";2019;"07 a 10 anos";4.490
+80093;"Vila Prudente";2019;"11 a 14 anos";4.174
+80093;"Vila Prudente";2019;"15 a 17 anos";3.244
+80093;"Vila Prudente";2019;"18 a 19 anos";2.329
+80093;"Vila Prudente";2019;"Total da Seleção";22.180
+80093;"Vila Prudente";2019;"Total Geral da População";104.668
+80094;"Vila Sônia";2019;"00 a 03 anos";6.177
+80094;"Vila Sônia";2019;"04 a 05 anos";3.357
+80094;"Vila Sônia";2019;"06 anos";1.650
+80094;"Vila Sônia";2019;"07 a 10 anos";6.088
+80094;"Vila Sônia";2019;"11 a 14 anos";5.316
+80094;"Vila Sônia";2019;"15 a 17 anos";4.266
+80094;"Vila Sônia";2019;"18 a 19 anos";3.033
+80094;"Vila Sônia";2019;"Total da Seleção";29.887
+80094;"Vila Sônia";2019;"Total Geral da População";120.505
