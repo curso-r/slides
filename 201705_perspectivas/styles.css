@@ -1,0 +1,17 @@
+.text {
+  text-align: justify;
+}
+
+.reveal ul {
+  display: block;
+}
+
+.reveal ol {
+  display: block;
+}
+
+.reveal img {
+  border: none;
+  border-style: none;
+  max-height: 80%;
+}

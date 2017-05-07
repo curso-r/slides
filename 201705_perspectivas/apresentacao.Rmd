@@ -1,0 +1,197 @@
+---
+title: "Aprendizado estatístico"
+output: 
+  revealjs::revealjs_presentation:
+    theme: simple
+    highlight: pygments
+    transition: slide
+    background_transition: slide
+    slide_level: 1
+    mathjax: default
+    center: false
+    css: styles.css
+---
+
+# Julio Trecenti
+
+<style type="text/css">
+td {
+  vertical-align: center;
+}
+</style>
+
+<small>
+40% estatístico, 30% programador, 20% hacker, 10% matemático
+</small>
+
+<table style="border:none;border-color:none;">
+<tr>
+<td>
+<img style="border:none;height:60px" src='http://www.matheus.eti.br/agiletrends/wp-content/uploads/2013/06/patrocinador-imeusp.png' />
+</td>
+<td>
+Doutorando em Estatística no IME-USP  
+</td>
+</tr>
+
+<tr>
+<td>
+<img style="border:none;height:60px" src='https://avatars1.githubusercontent.com/u/6782276?v=3&s=200' />
+</td>
+<td>
+Diretor-Técnico da Associação Brasileira de Jurimetria  
+</td>
+</tr>
+
+<tr>
+<td>
+<img style="border:none;height:60px" src='http://www.conre3.org.br/novo_site/img/logos/logoconre3azulmarinho.jpg' />
+</td>
+<td>
+ Vice-presidente do CONRE-3
+</td>
+</tr>
+
+<tr>
+<td>
+<img style="border:none;height:60px" src='http://platipus.com.br/img/platipus_logo.png' />
+</td>
+<td>
+Sócio da Platipus Consultoria
+</td>
+</tr>
+
+<tr>
+<td>
+<img style="border:none;height:60px" src='http://curso-r.com/img/logo.png' />
+</td>
+<td>
+Sócio da Curso-R
+</td>
+</tr>
+</table>
+
+<!---------------------------------------------------------------------------->
+
+# Fazendo ciência de dados
+
+<img style="border:none;width:100%" src='https://raw.githubusercontent.com/hadley/r4ds/master/diagrams/data-science.png' />
+
+# Tipos de estatística
+
+**Descritiva** -> visualização de dados  
+
+> - surpreende, mas não tem escala
+
+**Inferencial** -> modelagem / aprendizado  
+
+> - tem escala, mas não surpreende
+
+# Exemplo de visualização
+
+```{r echo=F, message=F, warning=F}
+library(tidyverse)
+d <- read_tsv('data/DatasaurusDozen.tsv') %>% 
+  filter(dataset != 'v_lines')
+```
+
+```{r echo=F, message=F, warning=F}
+stats <- d %>% 
+  group_by(dataset) %>% 
+  summarise_all(funs(mean, var))
+d %>% 
+  group_by(dataset) %>% 
+  summarise(cor = cor(x, y)) %>% 
+  inner_join(stats, 'dataset') %>% 
+  knitr::kable()
+```
+
+---
+
+```{r echo=F, message=F, warning=F, fig.width=9, fig.height=9}
+d %>% 
+  ggplot(aes(x, y)) +
+  geom_point() +
+  facet_wrap(~dataset) +
+  theme_minimal()
+```
+
+# Aprendizado estatístico
+
+- **Supervisionado**: prever ou estimar *outputs* a partir de *inputs*
+    - Interesse em **predição** (qual é o $y$ para um novo $X$?)
+    - Interesse em **inferência** (*como* $X$ afeta $y$?)
+
+$$
+y \approx f(X)
+$$
+
+ou
+
+$$
+y = f(X) + \epsilon
+$$
+
+- **Não supervisionado**: estudar *inputs*; não existe *output*
+    - dividir em grupos
+
+$$
+X
+$$
+
+<!---------------------------------------------------------------------------->
+
+# Livros
+
+- [Introduction to Statistical Learning](http://www-bcf.usc.edu/~gareth/ISL/).
+- [Elements of Statistical Learning](https://statweb.stanford.edu/~tibs/ElemStatLearn/).
+- [R for data science](http://r4ds.had.co.nz).
+
+<!---------------------------------------------------------------------------->
+
+# CAPTCHAs
+
+```{r echo=FALSE, fig.height=4}
+arq <- 'data/20170418114407537e79223a32.png'
+arq_aud <- 'data/20170418114407537e79223a32.wav'
+arq %>% 
+  magick::image_read() %>% 
+  plot()
+```
+
+```{r}
+captchaReceitaAudio::predizer(arq_aud)
+```
+
+<!---------------------------------------------------------------------------->
+
+# Classificador
+
+No R
+
+# Modelagem
+
+No R
+
+<!---------------------------------------------------------------------------->
+
+# Avanços recentes
+
+- Quebrar o captcha usando sem picotar as letras.
+    - Modelos de aprendizado profundo (deep learning).
+
+<!---------------------------------------------------------------------------->
+
+# Sigam-nos!
+
+- Blog Curso-R -> http://curso-r.com
+    - Sigam-nos no Facebook e Twitter!
+- Material Curso-R -> http://material.curso-r.com
+- Página com quebradores de CAPTCHAs -> https://github.com/decryptr
+- Outros links
+    - https://github.com/jtrecenti -> Pessoal
+    - https://github.com/curso-r -> Curso-R
+    - https://github.com/courtsbr -> Scrapers de tribunais
+    - https://github.com/abjur -> Jurimetria
+    - https://github.com/conre3 -> CONRE-3
+
