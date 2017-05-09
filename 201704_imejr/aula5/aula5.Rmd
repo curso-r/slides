@@ -32,6 +32,9 @@ Hoje:
     - modelo linear generalizado
     - árvores de decisão
 - O problema do sobreajuste
+- (se der tempo) não supervisionado
+    - hierárquico
+    - kmeans
 
 ----------------------------------------------------------
 
@@ -496,3 +499,45 @@ Na prática:
 
 - Separar a base em 2 partes: treino e teste e avaliar o erro na base de teste
 - Cross-validation: validação cruzada
+
+----------------------------------------------------------
+
+# Não supervisionada
+
+## Análise de Agrupamento
+
+Análise de agrupamento geralmente é uma ótima maneira de realizar estudos preliminares em uma base de dados, e algumas vezes pode trazer resultados muito úteis.
+
+Como o próprio nome diz, geralmente a análise de agrupamento serve para formar grupos de indivíduos a partir da comparação das suas medidas em relação à diversas variáveis. Não confunda aqui com árvores de decisão, pois nesse caso não há uma variável "resposta".
+
+Existem dois tipos principais de análise de agrupamento: _hierárquico_ e _k-means_. 
+
+### K-means
+No modelo k-means, selecionamos previamente o número de grupos e o modelo calcula, com base em algum critério, qual a melhor forma de alocar os indivíduos nesses grupos. 
+
+Para ajustar essa análise utilizaremos a função `kmeans` do pacote `stats`. Existem mais pacotes que fazem essa análise no R.
+
+```{r}
+kms <- kmeans(mtcars, centers=2)
+kms
+```
+
+### Hierárquico
+
+No modelo hierárquico, contudo, não selecionamos previamente o número de grupos, e o resultado da análise é um gráfico chamado _dendrograma_, que cria uma ordem de agrupamento dos indivíduos, desde o nível mais fragmentado (número de grupos igual ao número de indivíduos) até um agrupamento único.
+
+Para ajustar o modelo hierárquico, utilizaremos a função `hclust`, do pacote `stats`. Existem vários métodos para ordenação dos ordenamentos. Utilizaremos aqui o método `ward.D`.
+
+Diferentemente do método K-means, os métodos hierárquicos partem de uma matriz de distâncias ou, mais genericamente, matriz de dissimilaridades. A matrix de distâncias é uma matriz `d` com `dim(d) = c(n, n)`, onde `n` é o número de indivíduos. Geralmente é uma matriz simétrica, e na diagonal vale zero. 
+
+```{r}
+d <- dist(mtcars) # calcula matriz de distâncias euclidianas.
+str(d)
+hc <- hclust(d, method='ward.D')
+hc
+plot(hc)
+```
+
+No método hierárquico, portanto, geralmente precisamos tomar 2 decisões para rodar a análise e construir o dendrograma: i) o método para obtenção da matriz de distâncias e o método para ordenação das aglomerações.
+
+__OBS:__ Na análise de agrupamento, muitas vezes a escala das variáveis faz diferença, e variáveis que assumem valores muito altos podem ter uma influência maior do que outras no resultado da análise. Por isso, muitas vezes temos interesse em re-escalar as variáveis, geralmente subtraindo a média e dividindo pelo desvio padrão (normalização). Para isso, veja `?scale`.
