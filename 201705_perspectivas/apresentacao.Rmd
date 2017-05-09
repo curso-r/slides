@@ -27,7 +27,7 @@ td {
 <table style="border:none;border-color:none;">
 <tr>
 <td>
-<img style="border:none;height:60px" src='http://www.matheus.eti.br/agiletrends/wp-content/uploads/2013/06/patrocinador-imeusp.png' />
+<img style="border:none;height:50px" src='img/ime.png' />
 </td>
 <td>
 Doutorando em Estatística no IME-USP  
@@ -36,7 +36,7 @@ Doutorando em Estatística no IME-USP
 
 <tr>
 <td>
-<img style="border:none;height:60px" src='https://avatars1.githubusercontent.com/u/6782276?v=3&s=200' />
+<img style="border:none;height:50px" src='img/abj.png' />
 </td>
 <td>
 Diretor-Técnico da Associação Brasileira de Jurimetria  
@@ -45,16 +45,16 @@ Diretor-Técnico da Associação Brasileira de Jurimetria
 
 <tr>
 <td>
-<img style="border:none;height:60px" src='http://www.conre3.org.br/novo_site/img/logos/logoconre3azulmarinho.jpg' />
+<img style="border:none;height:50px" src='img/conre3.jpg' />
 </td>
 <td>
- Vice-presidente do CONRE-3
+Vice-presidente do CONRE-3
 </td>
 </tr>
 
 <tr>
 <td>
-<img style="border:none;height:60px" src='http://platipus.com.br/img/platipus_logo.png' />
+<img style="border:none;height:50px" src='img/platipus.png' />
 </td>
 <td>
 Sócio da Platipus Consultoria
@@ -63,19 +63,24 @@ Sócio da Platipus Consultoria
 
 <tr>
 <td>
-<img style="border:none;height:60px" src='http://curso-r.com/img/logo.png' />
+<img style="border:none;height:50px" src='img/curso-r.png' />
 </td>
 <td>
 Sócio da Curso-R
 </td>
 </tr>
+<tr>
+</tr>
+
 </table>
+
+
 
 <!---------------------------------------------------------------------------->
 
 # Fazendo ciência de dados
 
-<img style="border:none;width:100%" src='https://raw.githubusercontent.com/hadley/r4ds/master/diagrams/data-science.png' />
+<img style="border:none;width:100%" src='img/ds.png' />
 
 # Tipos de estatística
 
@@ -108,7 +113,7 @@ d %>%
 
 ---
 
-```{r echo=F, message=F, warning=F, fig.width=9, fig.height=9}
+```{r echo=F, message=F, warning=F, fig.width=9, fig.height=7}
 d %>% 
   ggplot(aes(x, y)) +
   geom_point() +
