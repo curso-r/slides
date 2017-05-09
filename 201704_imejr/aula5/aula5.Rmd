@@ -106,6 +106,8 @@ v %>% discard(~sum(.x) > 4)
 
 ### modify_at e modify_if
 
+Mude para map_if e map_at se não funcionar. O purrr está mudando nos últimos dias
+
 ```{r}
 v <- list(c(1, 2), c(3, 4), c(5, 6))
 v %>% modify_if(~sum(.x) > 4, sum)
@@ -133,12 +135,11 @@ Ver [aqui](http://curso-r.com/blog/2017/04/20/2017-04-09-try/)
 ### progress bars
 
 ```{r}
-v <- c(1:100)
-v <- plyr::llply(identity, .progress = 'text')
+v <- c(1:100000)
+v %>%  plyr::l_ply(identity, .progress = 'text')
 ```
 
 Ver [aqui](http://curso-r.com/blog/2017/04/10/2017-04-08-progress/)
-
 
 ----------------------------------------------------------
 
@@ -224,7 +225,7 @@ library(rpart.plot)
 Leitura
 
 ```{r}
-bodyfat <- readRDS('inputs/bodyfat.rds')
+bodyfat <- read_rds('inputs/bodyfat.rds')
 ```
 
 Visualização
@@ -274,6 +275,10 @@ augment(ajuste)
 ```
 
 Gráfico de resíduos
+
+$$
+\hat e = y - \hat y
+$$
 
 ```{r}
 ajuste %>% 
@@ -380,7 +385,6 @@ rpart.plot(arvore)
 ```{r}
 probs <- predict(arvore, newdata = titanic, type = 'prob')[, 2]
 classes <- predict(arvore, newdata = titanic, type = 'class')
-
 list(probs = head(probs), classes = head(classes))
 ```
 
