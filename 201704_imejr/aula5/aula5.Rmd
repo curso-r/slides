@@ -1,0 +1,494 @@
+---
+title: "aula5"
+output: html_document
+---
+
+Na última vez:
+
+
+- Visualização de dados com ggplot2
+    - teoria
+    - principais geoms
+        - dispersão
+        - histograma
+        - boxplot
+        - barras
+    - facets
+    - temas
+    - exercícios
+
+----------------------------------------------------------
+
+Hoje:
+
+- purrr e plyr
+- Modelagem
+    - Definição de aprendizado estatístico
+        - Supervisionado
+        - Não supervisionado
+- Modelos supervisionados
+    - modelo linear
+        - pacote broom
+    - modelo linear generalizado
+    - árvores de decisão
+- O problema do sobreajuste
+
+----------------------------------------------------------
+
+
+# Trabalhando com vetores e listas com `purrr`
+
+```{r}
+library(stringr)
+library(purrr)
+```
+
+## Funcionais
+
+- Tem uma estrutura básica
+
+```{r, eval = FALSE, echo = T}
+exemplo_de_funcional (
+  x,     # objeto sobre o qual a função será aplicada
+  .f,    # função que será aplicada
+  ...    # outros parâmetros da função
+)
+```
+
+>- Repete `.f` em cada elemento de `x`
+>- Junta os pedaços depois
+>- ... geralmente são passados para dentro da `.f`
+
+## História
+
+- Funções `apply`, `lapply`, `sapply`
+- Pacote `plyr`
+    - Ainda tem coisas úteis: `.progress` e `.parallel`
+- Futuro
+    - `purrr` terá tudo.
+
+### `map`
+
+```{r}
+v <- list(c(1, 2), c(3, 4), c(5, 6))
+v %>% map(sum)
+```
+
+Outras formas de escrever
+
+```{r}
+v %>% map(function(x) sum(x))
+v %>% map(~sum(.x))
+```
+
+```{r}
+v1 <- list(c(1, 2), c(3, 4), c(5, 6))
+v2 <- list(c(7, 8), c(9, 10), c(11, 12))
+
+map2(v1, v2, sum)
+map2(v1, v2, ~.x + .y)
+```
+
+### map_<type>
+
+```{r}
+v <- list(c(1, 2, 3), c(3, 4, 5))
+v %>% map_chr(str_c, collapse = ' ')
+```
+
+### keep e discard
+
+```{r}
+v <- list(c(1, 2), c(3, 4), c(5, 6))
+v %>% keep(~sum(.x) > 4)
+v %>% discard(~sum(.x) > 4)
+```
+
+### modify_at e modify_if
+
+```{r}
+v <- list(c(1, 2), c(3, 4), c(5, 6))
+v %>% modify_if(~sum(.x) > 4, sum)
+v %>% modify_at(c(1, 3), ~sum(.x) > 4)
+```
+
+### walk
+
+```{r}
+v <- c('a.txt', 'b.txt', 'c.txt')
+v %>% walk(~cat(.x, file = .x))
+```
+
+### cross_df
+
+```{r}
+v <- list(a = c(1, 2, 3), b = c(4, 5, 6))
+cross_df(v)
+```
+
+### possibly, safely, quietly
+
+Ver [aqui](http://curso-r.com/blog/2017/04/20/2017-04-09-try/)
+
+### progress bars
+
+```{r}
+v <- c(1:100)
+v <- plyr::llply(identity, .progress = 'text')
+```
+
+Ver [aqui](http://curso-r.com/blog/2017/04/10/2017-04-08-progress/)
+
+
+----------------------------------------------------------
+
+# Tipos de aprendizado estatístico
+
+## Supervisionado
+ 
+Estimar a probabilidade de uma transação ser uma fraude. São fornecidos dados relativos a transações passadas e se estas foram uma fraude ou não. É considerado um estudo de aprendizado supervisionado. 
+ 
+## Não Supervisionado
+
+Um estudo em que são fornecidas diversas informações sobre os hábitos de compras dos clientes e deseja-se identificar diferentes segmentos, é um estudo de aprendizado não-supervisionado.
+
+----------------------------------------------------------
+
+# Aprendizado Supervisionado
+
+1. Definir o objetivo
+2. Definir a variável resposta ($y$)
+3. Definir as covariáveis que ajudam a prever a resposta ($X$)
+4. Coletar dados
+5. Ajustar/Treinar o modelo
+
+-----------------------------------------------------
+
+## O que é treinar o modelo?
+
+Encontrar uma função $f$ nesta equação:
+
+$$
+y = f(X) + \epsilon
+$$
+
+em que:
+
+- $y$ é o que queremos explicar: variável resposta,
+- $X$ são as informações que explicam: matriz de variáveis explicativas e
+- $\epsilon$ é um ruído aleatório.
+
+## Como obter uma $f$?
+
+Definimos uma estrutura genérica (modelo) para $f$ e ajustamos para os dados obtidos.
+
+- Regressão linear
+- Regressão logística
+- Árvore de decisão
+- Florestas Aleatórias
+- Redes Neurais
+
+----------------------------------------------------
+
+## Regressão linear
+
+Suposição de que $f(X)$ é da forma:
+
+$$
+f(X) = \alpha + \beta X
+$$
+
+Reduz o problema para: estimar $\alpha$ e $\beta$.
+
+## Como estimar $\alpha$ e $\beta$?
+
+$\alpha$ e $\beta$ são escolhidos de tal forma que:
+
+$$
+\sum_{i = 1}^{n} [y_i - (\alpha + \beta x_i)]^2
+$$
+
+seja o menor possível. Isto é, estamos minimizando o *erro quadrático*.
+
+----------------------------------------------------
+
+## Exemplo:
+
+```{r}
+library(tidyverse)
+library(broom)
+library(rpart)
+library(rpart.plot)
+```
+
+Leitura
+
+```{r}
+bodyfat <- readRDS('inputs/bodyfat.rds')
+```
+
+Visualização
+
+```{r}
+ggplot(bodyfat, aes(x = WEIGHT, y = BODYFAT)) + 
+  geom_point()
+```
+
+Ajuste do modelo
+
+```{r}
+ajuste <- lm(BODYFAT ~ WEIGHT, data = bodyfat)
+summary(ajuste)
+str(ajuste, max.level = 1)
+```
+
+Valores preditos e erro quadrático médio
+
+```{r}
+predito <- predict(ajuste, newdata = bodyfat)
+mse <- mean((bodyfat$BODYFAT - predito) ^ 2)
+erro_usando_media <- mean((bodyfat$BODYFAT - mean(bodyfat$BODYFAT)) ^ 2)
+
+c(mse = mse, erro_usando_media = erro_usando_media)
+```
+
+Funções tidy, pacote `broom`:
+
+`tidy()`: parte de cima do `summary()`.
+
+```{r}
+tidy(ajuste)
+```
+
+`tidy()`: parte de baixo do `summary()`.
+
+```{r}
+glance(ajuste)
+```
+
+
+`augment()`: adicionando predições
+
+```{r}
+augment(ajuste)
+```
+
+Gráfico de resíduos
+
+```{r}
+ajuste %>% 
+  augment() %>% 
+  ggplot(aes(x = .fitted, y = .std.resid)) +
+  geom_point()
+```
+
+Intervalos de confiança
+
+```{r}
+confint_tidy(ajuste)
+```
+
+----------------------------------------------------
+
+## Logística
+
+Primeiro:
+
+$$
+y = f(X) + \epsilon
+$$
+
+equivale a
+
+$$
+E[y|X] = f(X)
+$$
+
+Quando temos uma resposta binária, temos
+
+$$
+E[y|X] = P(y = 1|X) = p
+$$
+
+Como $p$ varia entre zero e um e como $f(X)$ não tem restrições, poderíamos ajustar modelos com estimativas maiores que um ou menores que zero. Para ajustar isso, fazemos um ajuste logístico para inserir a $f$, e modelamos
+
+$$
+\log \frac{p}{1-p} = f(X)
+$$
+
+Esse é o modelo logístico!
+
+## Por quê a função logística?
+
+![](intuicao_logistica.jpeg)
+
+## Exemplo
+
+```{r}
+titanic <- read_rds('inputs/titanic.rds')
+glimpse(titanic)
+```
+
+```{r}
+logistico <- glm(Survived ~ Sex + Age + Pclass, data = titanic,
+                 family = binomial)
+
+tidy(logistico)
+```
+
+```{r}
+glance(logistico)
+```
+
+
+```{r}
+augment(logistico)
+```
+
+```{r}
+logistico %>% 
+  augment() %>% 
+  ggplot(aes(x = as.numeric(.rownames), y = .std.resid)) +
+  geom_point()
+```
+
+----------------------------------------------------
+
+## Árvore de decisão
+
+- Cria regras do tipo se-então para aproximar uma função.
+
+![](tree.png)
+
+Funcionamento básico:
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+set.seed(1)
+base <- map_df(c(0, 2), ~tibble(color = .x, x = rnorm(100, .x))) %>% 
+  mutate(cor = ifelse(color <= 0, 'azul', 'vermelho'))
+ggplot(base, aes(x = x, fill = cor)) + 
+  geom_histogram(position = 'dodge', bins = 20)
+```
+
+## Exemplo 
+
+```{r}
+arvore <- rpart(Survived ~ Sex + Age + Pclass, data = titanic)
+rpart.plot(arvore)
+```
+
+```{r}
+probs <- predict(arvore, newdata = titanic, type = 'prob')[, 2]
+classes <- predict(arvore, newdata = titanic, type = 'class')
+
+list(probs = head(probs), classes = head(classes))
+```
+
+Avaliando a qualidade do modelo:
+
+Curva ROC
+
+[ver aqui](https://en.wikipedia.org/wiki/Receiver_operating_characteristic#Basic_concept)
+
+- `tpr`: true positive rate = sensibilidade
+- `tnr`: true negative rate = especificidade
+- `fpr`: false positive rate = 1 - especificidade
+- `fnr`: false negative rate = 1 - sensibilidade
+
+```{r}
+cortes <- seq(0, 1, by = 0.01)
+s <- as.integer(titanic$Survived) - 1
+valores <- cortes %>% 
+  enframe('id', 'corte') %>% 
+  mutate(fpr = map_dbl(corte, ~sum(probs > .x & s == 0) / sum(s == 0)),
+         tpr = map_dbl(corte, ~sum(probs > .x & s == 1) / sum(s == 1)),
+         fnr = 1 - tpr, tnr = 1 - fpr)
+
+ggplot(valores, aes(x = fpr, y = tpr)) + 
+  geom_step() + 
+  geom_abline(color = 'blue', linetype = 'dashed')
+```
+
+Função de custo
+
+```{r}
+valores %>%
+  mutate(custo = fpr + fnr) %>%
+  ggplot(aes(x = corte, y = custo)) +
+  geom_line()
+```
+
+-----------------------------------------------
+
+## Overfitting
+
+Deve ser uma das principais preocupações quando ajustamos um modelo
+
+## O que é overfitting?
+
+O modelo está ajustando variações que são inerentemente aleatórias dos dados.
+
+## Exemplo
+
+```{r}
+set.seed(7)
+dados <- tibble(x = runif(10), y = 2 * x + rnorm(10, 0, 0.1))
+ggplot(dados, aes(x = x, y = y)) + 
+  geom_point()
+```
+
+```{r}
+modelo1 <- lm(y ~ x, data = dados)
+modelo2 <- lm(y ~ poly(x, 9), data = dados)
+
+erro_modelo1 <- mean((dados$y - predict(modelo1)) ^ 2)
+erro_modelo2 <- mean((dados$y - predict(modelo2)) ^ 2)
+
+round(c(erro_modelo1 = erro_modelo1, erro_modelo2 = erro_modelo2), 3)
+```
+
+Como fica graficamente?
+
+```{r}
+ggplot(dados, aes(x = x, y = y)) + 
+  geom_point() + 
+  geom_smooth(formula = y ~ x, colour = "red", se = FALSE, method = 'lm') +
+  geom_smooth(formula = y ~ poly(x, 9), se = FALSE, method = 'lm')
+```
+
+Gerando mais dados
+
+```{r}
+dados2 <- tibble(x = runif(100), y = 2 * x + rnorm(100, 0, 0.1))
+
+erro_modelo1 <- mean((dados2$y - predict(modelo1, newdata = dados2)) ^ 2)
+erro_modelo2 <- mean((dados2$y - predict(modelo2, newdata = dados2)) ^ 2)
+round(c(erro_modelo1 = erro_modelo1, erro_modelo2 = erro_modelo2), 3)
+```
+
+Como fica graficamente?
+
+```{r}
+dados %>% 
+  mutate(parte = 1) %>% 
+  bind_rows(dados2) %>% 
+  mutate(parte = ifelse(is.na(parte), '2', '1')) %>% 
+  ggplot(aes(x = x, y = y)) + 
+  geom_smooth(formula = y ~ x, colour = "red", se = FALSE, method = 'lm',
+              data = dados) +
+  geom_smooth(formula = y ~ poly(x, 9), se = FALSE, method = 'lm',
+              data = dados) +
+  geom_point(aes(colour = parte))
+```
+
+
+## Como evitar overfitting?
+
+- Será que o meu modelo está muito complexo? 
+- Princípio da Navalha de Occam ou Lei da parcimônia
+- Viés versus variância
+
+Na prática:
+
+- Separar a base em 2 partes: treino e teste e avaliar o erro na base de teste
+- Cross-validation: validação cruzada
