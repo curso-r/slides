@@ -67,15 +67,14 @@ modelos <- map(1:9, ~lm(y ~ poly(x, .x), data = dados))
 erros <- map_dbl(modelos, ~mean((dados$y - predict(.x))^2))
 erros2 <- map_dbl(modelos, ~mean((dados2$y - predict(.x, newdata = dados2))^2))
 
-cores <- sample(colors(TRUE), 10)
-smooths <- map2(0:9, cores, 
-                ~geom_smooth(formula = y ~ poly(x, .x), 
-                             colour = .y, 
-                             se = FALSE, 
-                             method = 'lm'))
-smooths[[1]] <- ggplot(dados, aes(x = x, y = y)) + 
+set.seed(1)
+cores <- sample(colors(TRUE), 9)
+smooths <- map2(1:9, cores, 
+                ~geom_smooth(formula = y ~ poly(x, .x), colour = .y, 
+                             se = FALSE, method = 'lm'))
+p_base <- ggplot(dados, aes(x = x, y = y)) + 
   geom_point()
-
+smooths <- append(list(p_base), smooths)
 smooths %>% reduce(`+`)
 ```
 
