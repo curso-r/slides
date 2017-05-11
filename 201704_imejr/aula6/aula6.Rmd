@@ -1,0 +1,93 @@
+---
+title: "aula6"
+output: html_document
+---
+
+Na última vez:
+
+- purrr e plyr
+- Modelagem
+    - Definição de aprendizado estatístico
+        - Supervisionado
+        - Não supervisionado
+- Modelos supervisionados
+    - modelo linear
+        - pacote broom
+    - modelo linear generalizado
+    - árvores de decisão
+- O problema do sobreajuste
+
+----------------------------------------------------------
+
+Hoje:
+
+- modelagem preditiva
+    - validação cruzada
+- exemplos com imagens
+    - onda roxa
+    - xadrez colorido
+- exemplo com áudio
+    - captcha
+
+----------------------------------------------------------
+
+## Configurações
+
+```{r a, eval = FALSE}
+# install.packages("GGally")
+# install.packages("jpeg")
+# install.packages("rpart.plot")
+```
+
+## Cross-validation
+
+```{r b, echo=FALSE, message=FALSE}
+library(tidyverse)
+```
+
+```{r c}
+set.seed(7)
+dados <- tibble(
+  x = runif(10),
+  y = 2 * x + 3 * x ^ 2 + rnorm(10, 0, 0.15) 
+)
+dados2 <- tibble(
+  x = runif(100),
+  y = 2 * x + 3 * x ^ 2 + rnorm(100, 0, 0.1) 
+)
+```
+
+```{r d}
+ggplot(dados, aes(x = x, y = y)) + 
+  geom_point()
+```
+
+```{r e, echo = FALSE}
+modelos <- map(1:9, ~lm(y ~ poly(x, .x), data = dados))
+erros <- map_dbl(modelos, ~mean((dados$y - predict(.x))^2))
+erros2 <- map_dbl(modelos, ~mean((dados2$y - predict(.x, newdata = dados2))^2))
+
+cores <- sample(colors(TRUE), 10)
+smooths <- map2(0:9, cores, 
+                ~geom_smooth(formula = y ~ poly(x, .x), 
+                             colour = .y, 
+                             se = FALSE, 
+                             method = 'lm'))
+smooths[[1]] <- ggplot(dados, aes(x = x, y = y)) + 
+  geom_point()
+
+smooths %>% reduce(`+`)
+```
+
+
+```{r f, echo=FALSE}
+cbind(erros, erros2) %>%
+  as_tibble() %>%
+  mutate(grau = 1:n()) %>%
+  filter(grau < 7) %>%
+  gather(base, erro, starts_with("erro")) %>%
+  ggplot(aes(x = grau, y = erro, colour = base)) +
+  geom_line() +
+  scale_x_continuous(breaks = 1:7)
+```
+
