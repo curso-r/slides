@@ -58,23 +58,18 @@ mtcars2 <- data.table::fread(arq_mtcars)
 
 ```{r}
 library(haven)
-# SAS
 read_sas("input/mtcars.sas7bdat")
-write_sas(mtcars, "input/mtcars.sas7bdat")
-
-# SPSS
+# write_sas(mtcars, "input/mtcars.sas7bdat")
 read_sav("input/mtcars.sav")
-write_sav(mtcars, "input/mtcars.sav")
-
-# Stata
-read_dta("input/mtcars.dta")
-write_dta(mtcars, "input/mtcars.dta")
+# write_sav(mtcars, "input/mtcars.sav")
+read_stata("input/mtcars.dta")
+# write_dta(mtcars, "input/mtcars.dta", 14)
 ```
 
 ### readxl e openxlsx
 
 ```{r}
-openxlsx::write.xlsx(mtcars, 'input/mtcars.xlsx')
+# openxlsx::write.xlsx(mtcars, 'input/mtcars.xlsx')
 openxlsx::read.xlsx('input/mtcars.xlsx')
 readxl::read_excel('input/mtcars.xlsx')
 ```
@@ -82,7 +77,7 @@ readxl::read_excel('input/mtcars.xlsx')
 ### feather
 
 ```{r}
-feather::write_feather(mtcars, 'input/mtcars.feather')
+# feather::write_feather(mtcars, 'input/mtcars.feather')
 feather::read_feather('input/mtcars.feather')
 ```
 
@@ -98,11 +93,15 @@ flights
 ```
 
 ```{r}
+# install.packages('RSQLite')
 my_db <- src_sqlite("input/my_db.sqlite3", create = TRUE)
-flights_sqlite <- copy_to(my_db, flights, temporary = FALSE, 
-                          indexes = list(c("year", "month", "day"), 
-                                         "carrier", "tailnum"))
-flights_sqlite <- tbl(nycflights13_sqlite(), "flights")
+
+flights_sqlite <- copy_to(my_db, flights, 
+                          temporary = FALSE, 
+                          overwrite = TRUE,
+                          indexes = list(c("year", "month", "day"), "carrier", "tailnum"))
+
+flights_sqlite <- tbl(my_db, "flights")
 flights_sqlite
 ```
 
@@ -175,17 +174,17 @@ Um exemplo de pacote que utiliza API usando esse tutorial melhores práticas pod
 
 ```{r}
 library(tidyverse)
+# devtools::install_github('jennybc/googlesheets')
 library(googlesheets)
 gs_auth()
+
 d_gs <- 'questionario_' %>% 
   gs_ls() %>% 
   with(sheet_key) %>% 
   gs_key(verbose = FALSE)
+
+# nao vai funcionar
 d_quest <- gs_read(d_gs, verbose = FALSE, ws = 1)
-d_inscr <- gs_read(d_gs, verbose = FALSE, ws = 2) %>% 
-  select(email, tipo, periodo) %>% 
-  distinct(email, .keep_all = TRUE) %>% 
-  mutate(email = str_trim(email))
 ```
 
 #### Twitter
@@ -205,6 +204,8 @@ userTimeline('hadleywickham', n = 20)
 ### REST
 
 ```{r}
+# devtools::install_github('jtrecenti/spgtfs')
+# devtools::install_github('jtrecenti/sptrans')
 library(spgtfs)
 library(sptrans)
 library(leaflet)
