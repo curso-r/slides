@@ -119,6 +119,8 @@ gera_formulas <- function(n_vars) {
   })
 }
 
+
+
 # leva aproximadamente 1 minuto
 xadrez_lms_com_cv <- n_vars_no_modelo %>% 
   map(gera_formulas) %>% 

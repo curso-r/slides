@@ -64,8 +64,10 @@ onda_roxa$noise1 <- rnorm(nrow(onda_roxa))
 onda_roxa$noise2 <- rnorm(nrow(onda_roxa))
 onda_roxa$noise3 <- rnorm(nrow(onda_roxa))
 
-onda_roxa_treino <- onda_roxa %>% sample_frac(2 / 10)
-onda_roxa_teste <- onda_roxa %>% anti_join(onda_roxa_treino, 'id')
+onda_roxa_treino <- onda_roxa %>% 
+  sample_frac(2 / 10)
+onda_roxa_teste <- onda_roxa %>% 
+  anti_join(onda_roxa_treino, 'id')
 
 # Descritiva ===================================================================
 set.seed(19880923)
@@ -83,7 +85,8 @@ set.seed(19880923)
 f <- b ~ x + y + r + g + noise1 + noise2 + noise3
 # cenário I - regressão linear  selecionado SEM cross-validation (stepwise)-----
 onda_roxa_lm <- glm(f, data = onda_roxa_treino)
-onda_roxa_lm_sem_cv <- onda_roxa_lm %>% stepAIC(trace = TRUE)
+onda_roxa_lm_sem_cv <- onda_roxa_lm %>% 
+  stepAIC(trace = TRUE)
 
 # cenário II - regressão linear selecionado COM cross-validation ---------------
 variaveis <- c("x", "y", "r", "g", "noise1", "noise2", "noise3")
@@ -126,7 +129,7 @@ onda_roxa_tree_sem_cv <- rpart(f, data = onda_roxa_treino,
                                maxdepth = 30,
                                cp = 0.001)
 rpart.plot(onda_roxa_tree_sem_cv)
-printcp(onda_roxa_tree_sem_cv)
+plotcp(onda_roxa_tree_sem_cv)
 
 onda_roxa_tree_com_cv <- prune(
   onda_roxa_tree_sem_cv, 
@@ -143,6 +146,9 @@ m_test <- onda_roxa_teste %>%
   select(r, x, y, g, noise1, noise2, noise3) %>% 
   as.matrix()
 
+# twidlr
+# caret
+# mlr
 onda_roxa_lasso_com_cv <- cv.glmnet(m_train, onda_roxa_treino$b)
 plot(onda_roxa_lasso_com_cv)
 coef(onda_roxa_lasso_com_cv)

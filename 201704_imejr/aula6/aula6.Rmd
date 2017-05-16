@@ -72,9 +72,12 @@ cores <- sample(colors(TRUE), 9)
 smooths <- map2(1:9, cores, 
                 ~geom_smooth(formula = y ~ poly(x, .x), colour = .y, 
                              se = FALSE, method = 'lm'))
+
 p_base <- ggplot(dados, aes(x = x, y = y)) + 
   geom_point()
+
 smooths <- append(list(p_base), smooths)
+
 smooths %>% reduce(`+`)
 ```
 
