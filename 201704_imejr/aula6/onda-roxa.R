@@ -201,6 +201,26 @@ onda_roxa_azuis_preditos <- onda_roxa_teste_com_predicoes_para_grafico %>%
 
 onda_roxa_azuis_preditos
 
+#################################################
+
+plotar <- function(img) {
+  onda_roxa_teste_com_predicoes_para_grafico %>%
+    filter(imagem == img) %>% 
+    ggplot(aes(x = x, y = y, colour = cor)) +
+    geom_point(show.legend = FALSE) +
+    scale_colour_manual(values = cores) +
+    labs(x = "x", y = "y") +
+    coord_fixed(ratio = 1) +
+    theme_bw() 
+}
+
+grafs <- onda_roxa_teste_com_predicoes_para_grafico %>% 
+  distinct(imagem) %>% 
+  mutate(gg = map(imagem, plotar),
+         gg = setNames(gg, imagem))
+
+grafs$gg$tree_sem_cv
+
 # intuição
 onda_roxa %>%
   sample_n(500) %>% 

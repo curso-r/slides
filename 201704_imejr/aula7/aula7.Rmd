@@ -1,0 +1,547 @@
+---
+title: "aula7"
+output: html_document
+---
+
+Na última vez:
+
+- modelagem preditiva
+    - validação cruzada
+- exemplos com imagens
+    - onda roxa
+    - xadrez colorido
+- exemplo com áudio
+    - captcha
+
+----------------------------------------------------------
+
+Hoje:
+
+- Conectando o R
+    - Leitura de dados
+        - readr e `data.table::fread()` para dados em texto
+        - haven para SAS, SPSS e Stata
+        - readxl, openxlsx
+        - `feather` para python.
+    - SQL, mongodb, spark
+    - tableau, powerBI, QlikView
+    - APIs
+        - Oauth2
+            - Google sheets
+            - Twitter
+        - REST APIs
+            - SPTrans
+- Web scraping
+    - `httr`
+    - `xml2` e `rvest`
+
+----------------------------------------------------------
+
+```{r}
+library(tidyverse)
+```
+
+# Conectando o R
+
+## Leitura de dados
+
+### readr e data.table::fread
+
+```{r}
+arq_mtcars <- readr_example("mtcars.csv")
+
+mtcars1 <- read_csv(arq_mtcars)
+mtcars2 <- data.table::fread(arq_mtcars)
+```
+
+### Haven
+
+```{r}
+library(haven)
+# SAS
+read_sas("input/mtcars.sas7bdat")
+write_sas(mtcars, "input/mtcars.sas7bdat")
+
+# SPSS
+read_sav("input/mtcars.sav")
+write_sav(mtcars, "input/mtcars.sav")
+
+# Stata
+read_dta("input/mtcars.dta")
+write_dta(mtcars, "input/mtcars.dta")
+```
+
+### readxl e openxlsx
+
+```{r}
+openxlsx::write.xlsx(mtcars, 'input/mtcars.xlsx')
+openxlsx::read.xlsx('input/mtcars.xlsx')
+readxl::read_excel('input/mtcars.xlsx')
+```
+
+### feather
+
+```{r}
+feather::write_feather(mtcars, 'input/mtcars.feather')
+feather::read_feather('input/mtcars.feather')
+```
+
+## SQL, mongodb, spark
+
+### SQL
+
+https://cran.r-project.org/web/packages/dplyr/vignettes/databases.html
+
+```{r}
+library(nycflights13)
+flights
+```
+
+```{r}
+my_db <- src_sqlite("input/my_db.sqlite3", create = TRUE)
+flights_sqlite <- copy_to(my_db, flights, temporary = FALSE, 
+                          indexes = list(c("year", "month", "day"), 
+                                         "carrier", "tailnum"))
+flights_sqlite <- tbl(nycflights13_sqlite(), "flights")
+flights_sqlite
+```
+
+```{r}
+tbl(my_db, sql("SELECT * FROM flights"))
+```
+
+Avaliação preguiçosa
+
+```{r}
+c1 <- filter(flights_sqlite, year == 2013, month == 1, day == 1)
+c2 <- select(c1, year, month, day, carrier, dep_delay, air_time, distance)
+c3 <- mutate(c2, speed = distance / air_time * 60)
+c4 <- arrange(c3, year, month, day, carrier)
+```
+
+```{r}
+c4
+```
+
+```{r}
+collect(c4)
+```
+
+### Mongodb
+
+https://jeroen.github.io/mongolite/
+
+### Spark
+
+http://spark.rstudio.com/
+
+```{r}
+# install.packages("sparklyr")
+library(sparklyr)
+# spark_install(version = "1.6.2")
+sc <- spark_connect(master = "local")
+```
+
+```{r}
+flights_tbl <- copy_to(sc, flights, "flights")
+x <- flights_tbl %>% 
+  filter(dep_delay == 2)
+collect(x)
+```
+
+## tableau, powerBI, QlikView, Excel
+
+- Tableau: https://onlinehelp.tableau.com/current/pro/desktop/en-us/r_connection_manage.html
+- PowerBI: https://powerbi.microsoft.com/en-us/documentation/powerbi-desktop-r-scripts/ 
+- Excel: https://bert-toolkit.com/
+- Qlikview: https://community.qlik.com/docs/DOC-6542 
+
+----------------------------------------------------------
+
+## APIs
+
+O `httr` foi criado pensando-se nas modernas APIs que vêm sendo desenvolvidas
+nos últimos anos. O `httr` já tem métodos apropriados para trabalhar com 
+Facebook, Twitter e Google, entre outros.
+
+Para um guia completo de como utilizar APIs no R, 
+acesse [esse tutorial](https://cran.r-project.org/web/packages/httr/vignettes/api-packages.html).
+Um exemplo de pacote que utiliza API usando esse tutorial melhores práticas pode ser
+[acessado aqui](https://github.com/jtrecenti/sptrans).
+
+### Oauth2.0
+
+#### Google sheets
+
+```{r}
+library(tidyverse)
+library(googlesheets)
+gs_auth()
+d_gs <- 'questionario_' %>% 
+  gs_ls() %>% 
+  with(sheet_key) %>% 
+  gs_key(verbose = FALSE)
+d_quest <- gs_read(d_gs, verbose = FALSE, ws = 1)
+d_inscr <- gs_read(d_gs, verbose = FALSE, ws = 2) %>% 
+  select(email, tipo, periodo) %>% 
+  distinct(email, .keep_all = TRUE) %>% 
+  mutate(email = str_trim(email))
+```
+
+#### Twitter
+
+```{r}
+library(twitteR)
+consumer_key <- "<>"
+consumer_secret <- "<>"
+access_token <- "<>"
+access_secret <- "<>"
+
+setup_twitter_oauth(consumer_key, consumer_secret, 
+                    access_token, access_secret)
+userTimeline('hadleywickham', n = 20)
+```
+
+### REST
+
+```{r}
+library(spgtfs)
+library(sptrans)
+library(leaflet)
+
+token <- '9c6a929918184684664d6456066f7f19d1d05cbf7c3840e6813c11d4b6024549'
+
+# > sptrans:::olhovivo_GET
+# function (path, id, pat = olhovivo_pat()) 
+# {
+#     u <- url_base()
+#     u_busca <- paste0(u, path, id)
+#     req <- httr::GET(u_busca)
+#     if (req$status_code == 401) {
+#         olhovivo_auth()
+#         req <- httr::GET(u_busca)
+#     }
+#     req
+# }
+
+stops <- gtfs$data[[8]]
+stop_times <- gtfs$data[[9]]
+trips <- gtfs$data[[10]]
+
+trip_ids <- search_path(end1 = 'Avenida 9 de Julho, 2000, São Paulo', 
+                        end2 = 'Av. Pres. Juscelino Kubitschek, 500, São Paulo')
+
+trip_ids %>% 
+  collect_bus(trip_id, 'trip') %>% 
+  head(1) %>% 
+  leaflet() %>% 
+  setView(lng = -46.68844, lat = -23.59029, zoom = 14) %>% 
+  addTiles() %>% 
+  addMarkers(lng = ~px, lat = ~py)
+```
+
+----------------------------------------------------------
+
+# Web scraping
+
+## Pacotes `httr`, `xml2` e `rvest`
+
+Esses são os três pacotes mais modernos do R utilizados para fazer web scraping. O pacote `xml2` tem a finalidade de estruturar arquivos HTML ou XML de forma eficiente, tornando possível a obtenção de *tags* e seus atributos dentro de um arquivo. Já o pacote `httr` é responsável por realizar requisições web para obtenção das páginas de interesse, buscando reduzir ao máximo a complexidade da programação. O pacote `rvest` é escrito **sobre** os dois anteriores e por isso eleva ainda mais o nível de especialização para raspagem de dados.
+
+As características dos pacotes implicam na seguinte regra de bolso. Para trabalhar com páginas simples, basta carregar o `rvest` e utilizar suas funcionalidades. Caso o acesso à página exija ações mais complexas e/ou artifícios de ferramentas web, será necessário utilizar o `httr`. O `xml2` só será usado explicitamente nos casos raros em que a página está em XML, que pode ser visto como uma generalização do HTML.
+
+Esses pacotes não são suficientes para acessar todo tipo de conteúdo da web. Um exemplo claro disso são páginas em que o conteúdo é produzido por `javascript`, o que acontece em muitos sites modernos.  Para trabalhar com esses sites, é necessário realmente "simular" um navegador que acessa a página web. Uma das melhores ferramentas para isso é o `selenium`. Não discutiremos `selenium` nesse curso, mas caso queira se aprofundar, acesse [aqui](http://www.seleniumhq.org/).
+
+### Sessões e cookies
+
+No momento que acessamos uma página web, nosso navegador baixa alguns arquivos que "identificam" nosso acesso à página. Esses arquivos são chamados cookies e são usados pelos sites para realizar diversas atividades, como carregar uma página pré-definida pelo usuário caso este acesse o site pela segunda vez.
+
+O `httr` e por consequência o `rvest` já guardam esses cookies de forma automática, de forma que o usuário não precise se preocupar com isso. Em casos raros, para construir o web scraper é necessário modificar esses cookies. Nesses casos, estude a função `cookies()` do `httr`.
+
+### `GET` e `POST`
+
+Uma requisição **GET** envia uma `url` ao servidor, possivelmente com alguns parâmetros nessa `url` (que ficam no final da `url` depois do `?`). O servidor, por sua vez, recebe essa `url`, processa os parâmetros e retorna uma página HTML para o navegador.
+
+A requisição **POST**, no entanto, envia uma `url` não modificada para o servidor, mas envia também uma lista de dados preenchidos pelo usuário, que podem ser números, textos ou até imagens. Na maioria dos casos, ao submeter um formulário de um site, fazemos uma requisição POST.
+
+O `httr` possui os métodos `GET` e `POST` implementados e são muito similares. A lista de parâmetros enviados pelo usuário pode ser armazenado numa `list` nomeada, e adicionado ao `GET` pelo parâmetro `query` ou no `POST` pelo parâmetro `body`. Veremos exemplos disso mais adiante.
+
+### Outras funções do `httr`
+
+Outras funções úteis:
+
+- `write_disk()` para escrever uma requisição direto em disco, além de guardar na memória RAM.
+- `config()` para adicionar configurações adicionais. Por exemplo, quando acessar uma página `https` com certificados inadequados numa requisição GET, rode `GET('https://www...', config(ssl_verifypeer = FALSE))`.
+- `oauth_app()` para trabalhar com APIs. Não discutiremos conexão com APIs nesse curso, mas é um importante conceito a ser estudado.
+
+### Principais funções do `rvest`
+
+**Para acessar páginas da web:**
+
+- `html_session()` abre uma sessão do usuário (baixa página, carrega cookies etc).
+- `follow_link()`, `jump_to()` acessa uma página web a partir de um link (tag `<a>`) ou url.
+- `html_form()` carrega todos os formulários contidos numa página.
+- `set_value()` atribui valores a parâmetros do formulário.
+- `submit_form()` submete um formulário obtido em `html_form`.
+
+**Para trabalhar com arquivos HTML:**
+
+- `read_html()` lê o arquivo HTML de forma estruturada e facilita impressão.
+- `html_nodes()` cria uma lista com os nós identificados por uma busca em CSS path ou XPath. 
+- `html_node()` é um caso especial que assume que só será encontrado um resultado.
+- `html_text()` extrai todo o conteúdo de um objeto e retorna um texto.
+- `html_table()` extrai o conteúdo de uma `<table>` e transforma em um `data_frame`.
+- `html_attr()` extrai um atributo de uma tag, por exemplo `href` da tag `<a>`.
+
+### CSS path e XPath
+
+O CSS path e o XPath são formas distintas de buscar tags dentro de um documento HTML.
+
+O CSS path é mais simples de implementar e tem uma sintaxe menos verborrágica, mas o XPath é mais poderoso. A regra de bolso é tentar fazer a seleção primeiro em CSS e, caso não seja possível, implementar em XPath.
+
+Esses paths serão mostrados *en passant* durante o curso, mas não serão abordados em detalhe. Caso queira se aprofundar no assunto, comece pela ajuda da função `?html_nodes`.
+
+--------------------------------------------------------
+
+# Exemplo 1: chance de gol
+
+## Parte 0: pacotes
+
+```{r warning=FALSE, message=FALSE}
+library(tidyverse)
+library(httr)
+library(rvest)
+```
+
+## Parte 1: acessando a página de um ano
+
+```{r eval=FALSE}
+ano <- 2015
+cdg_url <- sprintf('http://www.chancedegol.com.br/br%02d.htm', ano - 2000)
+
+cdg_html <- cdg_url %>%
+  httr::GET() %>%
+  httr::content('text', encoding = 'latin1') %>%
+  xml2::read_html() %>%
+  rvest::html_node('table')
+```
+
+## Parte 2: cores da tabela
+
+```{r eval=FALSE}
+cores <- cdg_html %>%
+  html_nodes(xpath = '//font[@color="#FF0000"]') %>%
+  html_text()
+```
+
+## Parte 3: nomes e estrutura da tabela
+
+```{r eval=FALSE}
+cdg_data <- cdg_html %>%
+  html_table(header = TRUE) %>%
+  set_names(c('dt_jogo', 'mandante', 'placar', 'visitante',
+              'p_mandante', 'p_empate', 'p_visitante')) %>% 
+  mutate(p_vitorioso = cores) %>% 
+  as_tibble() %>% 
+  mutate(result = 'OK')
+
+cdg_data
+```
+
+## Parte 4: colocando dentro de uma função
+
+```{r eval=FALSE}
+cdg_ano <- function(ano) {
+  cdg_url <- sprintf('http://www.chancedegol.com.br/br%02d.htm', ano - 2000)
+  
+  cdg_html <- cdg_url %>%
+    GET() %>%
+    content('text', encoding = 'latin1') %>%
+    read_html() %>%
+    html_node('table')
+  
+  cores <- cdg_html %>%
+    html_nodes(xpath = '//font[@color="#FF0000"]') %>%
+    html_text()
+  
+  cdg_data <- cdg_html %>%
+    html_table(header = TRUE) %>%
+    set_names(c('dt_jogo', 'mandante', 'placar', 'visitante',
+               'p_mandante', 'p_empate', 'p_visitante')) %>% 
+    mutate(p_vitorioso = cores) %>% 
+    as_tibble() %>% 
+    mutate(result = 'OK')
+  
+  cdg_data
+}
+```
+
+## Parte 5: vetorizando anos
+
+```{r eval=FALSE}
+cdg_anos <- function(anos) {
+  cdg_ano_safe <- failwith(tibble(result = 'erro'), cdg_ano)
+  anos %>% 
+    set_names(anos) %>% 
+    purrr::map_df(cdg_ano_safe, .id = 'ano')
+}
+
+d_cdg <- cdg_anos(c(2014, 2015))
+d_cdg
+```
+
+-----------------------------------------------------------------------------
+
+# Exemplo 2: Sabesp
+
+## Passo 0: pacotes
+
+```{r warning=FALSE, message=FALSE}
+library(tidyverse)
+library(lubridate)
+library(httr)
+library(rvest)
+```
+
+## Passo 1: acessa página principal
+
+```{r eval=FALSE}
+link <- 'http://www2.sabesp.com.br/mananciais/DivulgacaoSiteSabesp.aspx'
+txt <- GET(link)
+```
+
+## Passo 2: função que pega viewstate ou eventvalidation da página
+
+```{r eval=FALSE}
+# tipo pode ser "#__VIEWSTATE" ou "#__EVENTVALIDATION"
+pegar_tags <- function(req, tipo) {
+  req %>% 
+    content('text') %>% 
+    read_html() %>% 
+    html_node(tipo) %>% 
+    html_attr('value')
+}
+
+# exemplo
+viewstate <- pegar_tags(txt, "#__VIEWSTATE")
+eventval <- pegar_tags(txt, "#__EVENTVALIDATION")
+```
+
+## Passo 3: dados da requisição
+
+```{r eval=FALSE}
+sabesp_dados <- function(data, vs, ev) {
+  data <- as.Date(data)
+  dados <- list(cmbDia = lubridate::day(data), 
+                cmbMes = lubridate::month(data), 
+                cmbAno = lubridate::year(data), 
+                Imagebutton1.x = '0', 
+                Imagebutton1.y = '0', 
+                '__VIEWSTATE' = vs, 
+                '__EVENTVALIDATION' = ev,
+                '__VIEWSTATEENCRYPTED' = '')
+}
+
+# exemplo
+data <- '2017-02-14'
+form <- sabesp_dados(data, viewstate, eventval)
+# requisicao de busca
+result <- POST(link, body = form)
+```
+
+## Passo 4: pegar nomes dos sistemas
+
+```{r eval=FALSE}
+sabesp_nm_sistemas <- function(r) {
+  nomes <- r %>% 
+    content('text') %>% 
+    read_html() %>% 
+    html_nodes('img') %>% 
+    html_attr('src') %>% 
+    keep(~str_detect(.x, '\\.gif$')) %>% 
+    map_chr(~str_match(.x, '/(.+)\\.gif')[, 2])
+  nomes
+}
+
+sabesp_nm_sistemas(result)
+```
+
+## Passo 5: pegar conteúdo da página
+
+```{r eval=FALSE}
+sabesp_conteudo <- function(r) {
+  nomes <- sabesp_nm_sistemas(r)
+  r %>% 
+    content('text') %>% 
+    read_html() %>% 
+    html_node('#tabDados') %>% 
+    html_table(fill = TRUE) %>%
+    select(titulo = X1, info = X2) %>%
+    filter(titulo != '') %>%
+    mutate(lugar = rep(nomes, each = 4)) %>% #View
+    mutate(info = info %>% 
+             str_extract('[-0-9, %m]+$') %>% 
+             str_replace_all('^[^:]+:', '') %>% 
+             str_replace_all(',', '.') %>% 
+             str_replace_all('[^0-9.]', '') %>%
+             as.numeric()) %>% 
+    as_tibble()
+}
+
+# exemplo
+sabesp_conteudo(result)
+```
+
+## Passo 6: colocar tudo numa função
+
+```{r eval=FALSE}
+sabesp_dia <- function(data) {
+  link <- 'http://www2.sabesp.com.br/mananciais/DivulgacaoSiteSabesp.aspx'
+  txt <- GET(link)
+  viewstate <- pegar_tags(txt, "#__VIEWSTATE")
+  eventval <- pegar_tags(txt, "#__EVENTVALIDATION")
+  form <- sabesp_dados(data, viewstate, eventval)
+  result <- POST(link, body = form)
+  d_res <- sabesp_conteudo(result) %>% 
+    mutate(result = 'OK')
+  return(d_res)
+}
+
+# exemplo
+sabesp_dia('2017-02-14')
+```
+
+
+```{r eval=FALSE}
+sabesp_dias <- function(datas) {
+  sabesp_dia_safe <- failwith(tibble(result = 'erro'), sabesp_dia)
+  datas %>% 
+    set_names(as.character(datas)) %>% 
+    purrr::map_df(sabesp_dia_safe, .id = 'data')
+}
+
+# exemplo
+dts <- Sys.Date() - months(0:13)
+d_sabesp <- sabesp_dias(dts)
+```
+
+## Gráfico
+
+```{r, fig.width=9}
+p <- d_sabesp %>% 
+  filter(titulo == 'índice armazenado') %>% 
+  mutate(data = ymd(data)) %>% 
+  ggplot( aes(x = data, y = info, colour = lugar)) +
+  geom_line(size = 1.5) +
+  theme_bw(16) +
+  theme(legend.position = 'bottom') +
+  labs(x = '', y = 'Volume (%)', colour = 'Sistema') +
+  ggtitle('Volume dos sistemas da Sabesp',
+          'extraído diretamente do site da sabesp via web scraping')
+
+p
+# p %>% 
+#   plotly::ggplotly() %>% 
+#   plotly::layout(showlegend = F)
+```
+
