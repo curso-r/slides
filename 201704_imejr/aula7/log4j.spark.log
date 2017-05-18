@@ -1507,3 +1507,159 @@ WHERE (`dep_delay` = 2.0)
 17/05/16 17:30:47 INFO DAGScheduler: ResultStage 44 (collect at utils.scala:195) finished in 0,086 s
 17/05/16 17:30:47 INFO TaskSchedulerImpl: Removed TaskSet 44.0, whose tasks have all completed, from pool 
 17/05/16 17:30:47 INFO DAGScheduler: Job 28 finished: collect at utils.scala:195, took 0,092274 s
+17/05/16 17:35:26 INFO SparkContext: Invoking stop() from shutdown hook
+17/05/16 17:35:26 INFO SparkUI: Stopped Spark web UI at http://127.0.0.1:4040
+17/05/16 17:35:26 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+17/05/16 17:35:26 INFO MemoryStore: MemoryStore cleared
+17/05/16 17:35:26 INFO BlockManager: BlockManager stopped
+17/05/16 17:35:26 INFO BlockManagerMaster: BlockManagerMaster stopped
+17/05/16 17:35:26 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+17/05/16 17:35:26 INFO SparkContext: Successfully stopped SparkContext
+17/05/16 17:35:26 INFO ShutdownHookManager: Shutdown hook called
+17/05/16 17:35:26 INFO ShutdownHookManager: Deleting directory /tmp/spark-8709937b-fcc1-42c2-accc-28e4bf1d83f9
+17/05/16 17:35:26 INFO RemoteActorRefProvider$RemotingTerminator: Shutting down remote daemon.
+17/05/16 17:35:26 INFO RemoteActorRefProvider$RemotingTerminator: Remote daemon shut down; proceeding with flushing remote transports.
+17/05/16 17:35:26 INFO ShutdownHookManager: Deleting directory /tmp/spark-61f9d9f9-5952-4a0a-bedc-2a2aac3a5028
+17/05/16 17:35:26 INFO ShutdownHookManager: Deleting directory /tmp/spark-61f9d9f9-5952-4a0a-bedc-2a2aac3a5028/httpd-a5bdce60-f41a-40b2-8033-514295d7ef18
+17/05/16 19:21:03 INFO SparkContext: Running Spark version 1.6.2
+17/05/16 19:21:03 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+17/05/16 19:21:04 INFO SecurityManager: Changing view acls to: jtrecenti
+17/05/16 19:21:04 INFO SecurityManager: Changing modify acls to: jtrecenti
+17/05/16 19:21:04 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: Set(jtrecenti); users with modify permissions: Set(jtrecenti)
+17/05/16 19:21:04 INFO Utils: Successfully started service 'sparkDriver' on port 43341.
+17/05/16 19:21:04 INFO Slf4jLogger: Slf4jLogger started
+17/05/16 19:21:05 INFO Remoting: Starting remoting
+17/05/16 19:21:05 INFO Remoting: Remoting started; listening on addresses :[akka.tcp://sparkDriverActorSystem@127.0.0.1:41569]
+17/05/16 19:21:05 INFO Utils: Successfully started service 'sparkDriverActorSystem' on port 41569.
+17/05/16 19:21:05 INFO SparkEnv: Registering MapOutputTracker
+17/05/16 19:21:05 INFO SparkEnv: Registering BlockManagerMaster
+17/05/16 19:21:05 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-d17695e3-98d6-44ed-be30-2a5e4bb0043c
+17/05/16 19:21:05 INFO MemoryStore: MemoryStore started with capacity 511.5 MB
+17/05/16 19:21:05 INFO SparkEnv: Registering OutputCommitCoordinator
+17/05/16 19:21:05 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+17/05/16 19:21:05 INFO SparkUI: Started SparkUI at http://127.0.0.1:4040
+17/05/16 19:21:05 INFO HttpFileServer: HTTP File server directory is /tmp/spark-99bdc3e6-f509-48da-882c-43b2b260c3d0/httpd-24907d37-ddaa-44cd-8939-6a56256c7319
+17/05/16 19:21:05 INFO HttpServer: Starting HTTP Server
+17/05/16 19:21:05 INFO Utils: Successfully started service 'HTTP file server' on port 38525.
+17/05/16 19:21:05 INFO SparkContext: Added JAR file:/usr/local/lib/R/site-library/sparklyr/java/spark-csv_2.11-1.3.0.jar at http://127.0.0.1:38525/jars/spark-csv_2.11-1.3.0.jar with timestamp 1494973265797
+17/05/16 19:21:05 INFO SparkContext: Added JAR file:/usr/local/lib/R/site-library/sparklyr/java/commons-csv-1.1.jar at http://127.0.0.1:38525/jars/commons-csv-1.1.jar with timestamp 1494973265798
+17/05/16 19:21:05 INFO SparkContext: Added JAR file:/usr/local/lib/R/site-library/sparklyr/java/univocity-parsers-1.5.1.jar at http://127.0.0.1:38525/jars/univocity-parsers-1.5.1.jar with timestamp 1494973265803
+17/05/16 19:21:05 INFO SparkContext: Added JAR file:/usr/local/lib/R/site-library/sparklyr/java/sparklyr-1.6-2.10.jar at http://127.0.0.1:38525/jars/sparklyr-1.6-2.10.jar with timestamp 1494973265804
+17/05/16 19:21:05 INFO Executor: Starting executor ID driver on host localhost
+17/05/16 19:21:05 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 46786.
+17/05/16 19:21:05 INFO NettyBlockTransferService: Server created on 46786
+17/05/16 19:21:05 INFO BlockManagerMaster: Trying to register BlockManager
+17/05/16 19:21:05 INFO BlockManagerMasterEndpoint: Registering block manager localhost:46786 with 511.5 MB RAM, BlockManagerId(driver, localhost, 46786)
+17/05/16 19:21:05 INFO BlockManagerMaster: Registered BlockManager
+17/05/16 19:21:07 INFO HiveContext: Initializing execution hive, version 1.2.1
+17/05/16 19:21:07 INFO ClientWrapper: Inspected Hadoop version: 2.6.0
+17/05/16 19:21:07 INFO ClientWrapper: Loaded org.apache.hadoop.hive.shims.Hadoop23Shims for Hadoop version 2.6.0
+17/05/16 19:21:07 INFO HiveMetaStore: 0: Opening raw store with implemenation class:org.apache.hadoop.hive.metastore.ObjectStore
+17/05/16 19:21:07 INFO ObjectStore: ObjectStore, initialize called
+17/05/16 19:21:07 INFO Persistence: Property datanucleus.cache.level2 unknown - will be ignored
+17/05/16 19:21:07 INFO Persistence: Property hive.metastore.integral.jdo.pushdown unknown - will be ignored
+17/05/16 19:21:07 WARN Connection: BoneCP specified but not present in CLASSPATH (or one of dependencies)
+17/05/16 19:21:08 WARN Connection: BoneCP specified but not present in CLASSPATH (or one of dependencies)
+17/05/16 19:21:11 INFO ObjectStore: Setting MetaStore object pin classes with hive.metastore.cache.pinobjtypes="Table,StorageDescriptor,SerDeInfo,Partition,Database,Type,FieldSchema,Order"
+17/05/16 19:21:12 INFO Datastore: The class "org.apache.hadoop.hive.metastore.model.MFieldSchema" is tagged as "embedded-only" so does not have its own datastore table.
+17/05/16 19:21:12 INFO Datastore: The class "org.apache.hadoop.hive.metastore.model.MOrder" is tagged as "embedded-only" so does not have its own datastore table.
+17/05/16 19:21:15 INFO Datastore: The class "org.apache.hadoop.hive.metastore.model.MFieldSchema" is tagged as "embedded-only" so does not have its own datastore table.
+17/05/16 19:21:15 INFO Datastore: The class "org.apache.hadoop.hive.metastore.model.MOrder" is tagged as "embedded-only" so does not have its own datastore table.
+17/05/16 19:21:15 INFO MetaStoreDirectSql: Using direct SQL, underlying DB is DERBY
+17/05/16 19:21:15 INFO ObjectStore: Initialized ObjectStore
+17/05/16 19:21:16 WARN ObjectStore: Version information not found in metastore. hive.metastore.schema.verification is not enabled so recording the schema version 1.2.0
+17/05/16 19:21:16 WARN ObjectStore: Failed to get database default, returning NoSuchObjectException
+17/05/16 19:21:16 INFO HiveMetaStore: Added admin role in metastore
+17/05/16 19:21:16 INFO HiveMetaStore: Added public role in metastore
+17/05/16 19:21:16 INFO HiveMetaStore: No user is added in admin role, since config is empty
+17/05/16 19:21:17 INFO HiveMetaStore: 0: get_all_databases
+17/05/16 19:21:17 INFO audit: ugi=jtrecenti	ip=unknown-ip-addr	cmd=get_all_databases	
+17/05/16 19:21:17 INFO HiveMetaStore: 0: get_functions: db=default pat=*
+17/05/16 19:21:17 INFO audit: ugi=jtrecenti	ip=unknown-ip-addr	cmd=get_functions: db=default pat=*	
+17/05/16 19:21:17 INFO Datastore: The class "org.apache.hadoop.hive.metastore.model.MResourceUri" is tagged as "embedded-only" so does not have its own datastore table.
+17/05/16 19:21:17 INFO SessionState: Created HDFS directory: /tmp/hive/jtrecenti
+17/05/16 19:21:17 INFO SessionState: Created local directory: /tmp/jtrecenti
+17/05/16 19:21:17 INFO SessionState: Created local directory: /tmp/a11f30c3-fc3d-49c7-b466-e5d6094e45bb_resources
+17/05/16 19:21:17 INFO SessionState: Created HDFS directory: /tmp/hive/jtrecenti/a11f30c3-fc3d-49c7-b466-e5d6094e45bb
+17/05/16 19:21:17 INFO SessionState: Created local directory: /tmp/jtrecenti/a11f30c3-fc3d-49c7-b466-e5d6094e45bb
+17/05/16 19:21:17 INFO SessionState: Created HDFS directory: /tmp/hive/jtrecenti/a11f30c3-fc3d-49c7-b466-e5d6094e45bb/_tmp_space.db
+17/05/16 19:21:17 INFO HiveContext: default warehouse location is /user/hive/warehouse
+17/05/16 19:21:17 INFO HiveContext: Initializing HiveMetastoreConnection version 1.2.1 using Spark classes.
+17/05/16 19:21:17 INFO ClientWrapper: Inspected Hadoop version: 2.6.0
+17/05/16 19:21:17 INFO ClientWrapper: Loaded org.apache.hadoop.hive.shims.Hadoop23Shims for Hadoop version 2.6.0
+17/05/16 19:21:18 INFO HiveMetaStore: 0: Opening raw store with implemenation class:org.apache.hadoop.hive.metastore.ObjectStore
+17/05/16 19:21:18 INFO ObjectStore: ObjectStore, initialize called
+17/05/16 19:21:18 INFO Persistence: Property datanucleus.cache.level2 unknown - will be ignored
+17/05/16 19:21:18 INFO Persistence: Property hive.metastore.integral.jdo.pushdown unknown - will be ignored
+17/05/16 19:21:18 WARN Connection: BoneCP specified but not present in CLASSPATH (or one of dependencies)
+17/05/16 19:21:18 WARN Connection: BoneCP specified but not present in CLASSPATH (or one of dependencies)
+17/05/16 19:21:20 INFO ObjectStore: Setting MetaStore object pin classes with hive.metastore.cache.pinobjtypes="Table,StorageDescriptor,SerDeInfo,Partition,Database,Type,FieldSchema,Order"
+17/05/16 19:21:20 INFO Datastore: The class "org.apache.hadoop.hive.metastore.model.MFieldSchema" is tagged as "embedded-only" so does not have its own datastore table.
+17/05/16 19:21:20 INFO Datastore: The class "org.apache.hadoop.hive.metastore.model.MOrder" is tagged as "embedded-only" so does not have its own datastore table.
+17/05/16 19:21:21 INFO Datastore: The class "org.apache.hadoop.hive.metastore.model.MFieldSchema" is tagged as "embedded-only" so does not have its own datastore table.
+17/05/16 19:21:21 INFO Datastore: The class "org.apache.hadoop.hive.metastore.model.MOrder" is tagged as "embedded-only" so does not have its own datastore table.
+17/05/16 19:21:21 INFO MetaStoreDirectSql: Using direct SQL, underlying DB is DERBY
+17/05/16 19:21:21 INFO ObjectStore: Initialized ObjectStore
+17/05/16 19:21:22 WARN ObjectStore: Version information not found in metastore. hive.metastore.schema.verification is not enabled so recording the schema version 1.2.0
+17/05/16 19:21:22 WARN ObjectStore: Failed to get database default, returning NoSuchObjectException
+17/05/16 19:21:22 INFO HiveMetaStore: Added admin role in metastore
+17/05/16 19:21:22 INFO HiveMetaStore: Added public role in metastore
+17/05/16 19:21:22 INFO HiveMetaStore: No user is added in admin role, since config is empty
+17/05/16 19:21:22 INFO HiveMetaStore: 0: get_all_databases
+17/05/16 19:21:22 INFO audit: ugi=jtrecenti	ip=unknown-ip-addr	cmd=get_all_databases	
+17/05/16 19:21:22 INFO HiveMetaStore: 0: get_functions: db=default pat=*
+17/05/16 19:21:22 INFO audit: ugi=jtrecenti	ip=unknown-ip-addr	cmd=get_functions: db=default pat=*	
+17/05/16 19:21:22 INFO Datastore: The class "org.apache.hadoop.hive.metastore.model.MResourceUri" is tagged as "embedded-only" so does not have its own datastore table.
+17/05/16 19:21:22 INFO SessionState: Created local directory: /tmp/a0aa5adb-aa6c-4256-a060-6a2671742eb5_resources
+17/05/16 19:21:22 INFO SessionState: Created HDFS directory: /tmp/hive/jtrecenti/a0aa5adb-aa6c-4256-a060-6a2671742eb5
+17/05/16 19:21:22 INFO SessionState: Created local directory: /tmp/jtrecenti/a0aa5adb-aa6c-4256-a060-6a2671742eb5
+17/05/16 19:21:22 INFO SessionState: Created HDFS directory: /tmp/hive/jtrecenti/a0aa5adb-aa6c-4256-a060-6a2671742eb5/_tmp_space.db
+17/05/16 19:21:23 INFO HiveMetaStore: 0: get_tables: db=default pat=.*
+17/05/16 19:21:23 INFO audit: ugi=jtrecenti	ip=unknown-ip-addr	cmd=get_tables: db=default pat=.*	
+17/05/16 19:21:23 INFO SparkContext: Starting job: collect at utils.scala:195
+17/05/16 19:21:23 INFO DAGScheduler: Got job 0 (collect at utils.scala:195) with 1 output partitions
+17/05/16 19:21:23 INFO DAGScheduler: Final stage: ResultStage 0 (collect at utils.scala:195)
+17/05/16 19:21:23 INFO DAGScheduler: Parents of final stage: List()
+17/05/16 19:21:23 INFO DAGScheduler: Missing parents: List()
+17/05/16 19:21:23 INFO DAGScheduler: Submitting ResultStage 0 (MapPartitionsRDD[1] at collect at utils.scala:195), which has no missing parents
+17/05/16 19:21:23 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 1968.0 B, free 1968.0 B)
+17/05/16 19:21:23 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 1230.0 B, free 3.1 KB)
+17/05/16 19:21:23 INFO BlockManagerInfo: Added broadcast_0_piece0 in memory on localhost:46786 (size: 1230.0 B, free: 511.5 MB)
+17/05/16 19:21:23 INFO SparkContext: Created broadcast 0 from broadcast at DAGScheduler.scala:1006
+17/05/16 19:21:23 INFO DAGScheduler: Submitting 1 missing tasks from ResultStage 0 (MapPartitionsRDD[1] at collect at utils.scala:195)
+17/05/16 19:21:23 INFO TaskSchedulerImpl: Adding task set 0.0 with 1 tasks
+17/05/16 19:21:23 INFO TaskSetManager: Starting task 0.0 in stage 0.0 (TID 0, localhost, partition 0,PROCESS_LOCAL, 2348 bytes)
+17/05/16 19:21:23 INFO Executor: Running task 0.0 in stage 0.0 (TID 0)
+17/05/16 19:21:23 INFO Executor: Fetching http://127.0.0.1:38525/jars/spark-csv_2.11-1.3.0.jar with timestamp 1494973265797
+17/05/16 19:21:23 INFO Utils: Fetching http://127.0.0.1:38525/jars/spark-csv_2.11-1.3.0.jar to /tmp/spark-99bdc3e6-f509-48da-882c-43b2b260c3d0/userFiles-af1647f9-ad66-4539-8528-74d33ecf120c/fetchFileTemp6430507141309126100.tmp
+17/05/16 19:21:23 INFO Executor: Adding file:/tmp/spark-99bdc3e6-f509-48da-882c-43b2b260c3d0/userFiles-af1647f9-ad66-4539-8528-74d33ecf120c/spark-csv_2.11-1.3.0.jar to class loader
+17/05/16 19:21:23 INFO Executor: Fetching http://127.0.0.1:38525/jars/univocity-parsers-1.5.1.jar with timestamp 1494973265803
+17/05/16 19:21:23 INFO Utils: Fetching http://127.0.0.1:38525/jars/univocity-parsers-1.5.1.jar to /tmp/spark-99bdc3e6-f509-48da-882c-43b2b260c3d0/userFiles-af1647f9-ad66-4539-8528-74d33ecf120c/fetchFileTemp4301494862769988951.tmp
+17/05/16 19:21:23 INFO Executor: Adding file:/tmp/spark-99bdc3e6-f509-48da-882c-43b2b260c3d0/userFiles-af1647f9-ad66-4539-8528-74d33ecf120c/univocity-parsers-1.5.1.jar to class loader
+17/05/16 19:21:23 INFO Executor: Fetching http://127.0.0.1:38525/jars/sparklyr-1.6-2.10.jar with timestamp 1494973265804
+17/05/16 19:21:23 INFO Utils: Fetching http://127.0.0.1:38525/jars/sparklyr-1.6-2.10.jar to /tmp/spark-99bdc3e6-f509-48da-882c-43b2b260c3d0/userFiles-af1647f9-ad66-4539-8528-74d33ecf120c/fetchFileTemp8684855066517082035.tmp
+17/05/16 19:21:23 INFO Executor: Adding file:/tmp/spark-99bdc3e6-f509-48da-882c-43b2b260c3d0/userFiles-af1647f9-ad66-4539-8528-74d33ecf120c/sparklyr-1.6-2.10.jar to class loader
+17/05/16 19:21:23 INFO Executor: Fetching http://127.0.0.1:38525/jars/commons-csv-1.1.jar with timestamp 1494973265798
+17/05/16 19:21:23 INFO Utils: Fetching http://127.0.0.1:38525/jars/commons-csv-1.1.jar to /tmp/spark-99bdc3e6-f509-48da-882c-43b2b260c3d0/userFiles-af1647f9-ad66-4539-8528-74d33ecf120c/fetchFileTemp5374540373080060653.tmp
+17/05/16 19:21:23 INFO Executor: Adding file:/tmp/spark-99bdc3e6-f509-48da-882c-43b2b260c3d0/userFiles-af1647f9-ad66-4539-8528-74d33ecf120c/commons-csv-1.1.jar to class loader
+17/05/16 19:21:23 INFO Executor: Finished task 0.0 in stage 0.0 (TID 0). 940 bytes result sent to driver
+17/05/16 19:21:23 INFO TaskSetManager: Finished task 0.0 in stage 0.0 (TID 0) in 127 ms on localhost (1/1)
+17/05/16 19:21:23 INFO TaskSchedulerImpl: Removed TaskSet 0.0, whose tasks have all completed, from pool 
+17/05/16 19:21:23 INFO DAGScheduler: ResultStage 0 (collect at utils.scala:195) finished in 0,139 s
+17/05/16 19:21:23 INFO DAGScheduler: Job 0 finished: collect at utils.scala:195, took 0,258110 s
+17/05/16 19:51:06 INFO BlockManagerInfo: Removed broadcast_0_piece0 on localhost:46786 in memory (size: 1230.0 B, free: 511.5 MB)
+17/05/16 19:51:06 INFO ContextCleaner: Cleaned accumulator 1
+17/05/16 21:32:10 INFO SparkContext: Invoking stop() from shutdown hook
+17/05/16 21:32:10 INFO SparkUI: Stopped Spark web UI at http://127.0.0.1:4040
+17/05/16 21:32:10 INFO MapOutputTrackerMasterEndpoint: MapOutputTrackerMasterEndpoint stopped!
+17/05/16 21:32:10 INFO MemoryStore: MemoryStore cleared
+17/05/16 21:32:10 INFO BlockManager: BlockManager stopped
+17/05/16 21:32:10 INFO BlockManagerMaster: BlockManagerMaster stopped
+17/05/16 21:32:10 INFO OutputCommitCoordinator$OutputCommitCoordinatorEndpoint: OutputCommitCoordinator stopped!
+17/05/16 21:32:10 INFO SparkContext: Successfully stopped SparkContext
+17/05/16 21:32:10 INFO ShutdownHookManager: Shutdown hook called
+17/05/16 21:32:10 INFO ShutdownHookManager: Deleting directory /tmp/spark-99bdc3e6-f509-48da-882c-43b2b260c3d0
+17/05/16 21:32:10 INFO RemoteActorRefProvider$RemotingTerminator: Shutting down remote daemon.
+17/05/16 21:32:10 INFO ShutdownHookManager: Deleting directory /tmp/spark-99bdc3e6-f509-48da-882c-43b2b260c3d0/httpd-24907d37-ddaa-44cd-8939-6a56256c7319
+17/05/16 21:32:10 INFO ShutdownHookManager: Deleting directory /tmp/spark-cd751951-b234-4728-b77e-d3a672a97e21
+17/05/16 21:32:10 INFO RemoteActorRefProvider$RemotingTerminator: Remote daemon shut down; proceeding with flushing remote transports.

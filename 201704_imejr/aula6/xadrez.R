@@ -81,7 +81,7 @@ set.seed(19880923)
 
 xadrez_ggpairs <- xadrez %>% 
   sample_n(500) %>% 
-  select(-original, -apenas_azul, -id) %>% 
+  dplyr::select(-original, -apenas_azul, -id) %>% 
   ggpairs
 
 xadrez_ggpairs
@@ -192,3 +192,4 @@ xadrez_azuis_preditos <- xadrez_teste_com_predicoes_para_grafico %>%
   theme_bw() 
 
 xadrez_azuis_preditos
+

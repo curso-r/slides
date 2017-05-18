@@ -34,9 +34,9 @@ Hoje:
 ## Configurações
 
 ```{r a, eval = FALSE}
-# install.packages("GGally")
-# install.packages("jpeg")
-# install.packages("rpart.plot")
+install.packages("GGally")
+install.packages("jpeg")
+install.packages("rpart.plot")
 ```
 
 ## Cross-validation

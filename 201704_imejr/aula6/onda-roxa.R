@@ -115,7 +115,7 @@ onda_roxa_gam_sem_cv <- mgcv::gam(
   b ~ r + x + s(y) + g + noise1+ noise2 + noise3, 
   data = onda_roxa_treino
 )
-# plot(onda_roxa_gam_sem_cv)
+ plot(onda_roxa_gam_sem_cv)
 
 
 # cenário IV - árvore de decisão COM cross-validation -------------------------
@@ -139,6 +139,7 @@ rpart.plot(onda_roxa_tree_com_cv)
 m_train <- onda_roxa_treino %>% 
   select(r, x, y, g, noise1, noise2, noise3) %>% 
   as.matrix()
+
 m_test <- onda_roxa_teste %>% 
   select(r, x, y, g, noise1, noise2, noise3) %>% 
   as.matrix()
