@@ -310,29 +310,15 @@ Imagine que para cada função `xxOutput('foo', ...)` do `ui.R` você pode coloc
 - O shinyapps.io é um sistema (que envolve tanto pacote do R como uma página web) que permite que o usuário coloque sua aplicação shiny na web sem muito esforço.
 - O serviço foi desenvolvido pela RStudio Inc. e possui contas grátis e pagas.
 
-## APIs com opencpu
-
-```{r eval=FALSE}
-install.packages('opencpu')
-```
+## APIs com plumber
 
 APIs são interfaces que permitem a comunicação entre softwares. Atualmente, APIs são essenciais para levar resultados de um lugar para outro. Por exemplo, usando o R podemos criar uma API para enviar a predição de um modelo a partir de um input de usuário, permitindo que essa predição seja utilizada em outros softwares, como sistemas de um banco ou aplicativos de celular.
 
 Vamos montar um exemplo que disponibiliza uma API para quebra de captchas.
 
-```{r eval=FALSE}
-library(opencpu)
-# opencpu$restart()
-
-# no caso é localhost, mas poderia ser um servidor
-u <- opencpu$url()
-path <- '/library/captchaTJRS/R/predizer/print'
-
-# baixa captcha
-# a <- captchaTJRS::download('captcha.jpg')
-'captcha.jpg' %>% captchaTJRS::ler() %>% captchaTJRS::desenhar()
-
-# poderia ser chamado de qualquer dispositivo
-comando <- sprintf('curl %s%s -F "a=@captcha.jpg"', u, path)
-system(comando, ignore.stderr = TRUE)
+```{r}
+library(plumber)
+r <- plumb('captcha.R')
+r$run(port=8000)
 ```
+
