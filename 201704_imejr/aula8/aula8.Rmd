@@ -1,0 +1,338 @@
+---
+title: "Aula8"
+output: html_document
+---
+
+Na última vez:
+
+- Conectando o R
+    - Leitura de dados
+        - readr e `data.table::fread()` para dados em texto
+        - haven para SAS, SPSS e Stata
+        - readxl, openxlsx
+        - `feather` para python.
+    - SQL, mongodb, spark
+    - tableau, powerBI, QlikView
+    - APIs
+        - Oauth2
+            - Google sheets
+            - Twitter
+        - REST APIs
+            - SPTrans
+- Web scraping
+    - `httr`
+    - `xml2` e `rvest`
+
+-------------------------------------------
+
+Hoje:
+
+- Outros outputs com RMarkdown
+    - Estáticos
+        - ioslides
+        - beamer
+        - rticles
+        - bookdown
+        - thesisdown
+        - rticles
+        - blogdown
+- htmlwidgets
+    - plotly
+    - dygraphs
+    - DT
+    - leaflet
+- shiny
+    - shiny miojo
+- pacotes
+    - pacote miojo
+
+```{r}
+library(tidyverse)
+library(plotly)
+library(dygraphs)
+library(leaflet)
+library(falrec)
+library(xts)
+library(lubridate)
+
+## se nao tiver
+# install.packages('plotly')
+# install.packages('dygraphs')
+# install.packages('leaflet')
+# install.packages('xts')
+# devtools::install_github('jtrecenti/falrec')
+```
+
+# Comunicação
+
+Nas outras aulas pincelamos os elementos de transformação, visualização e modelagem de dados. Para completar nossos trabalhos, precisamos de boas ferramentas de comunicação.
+
+A maior parte dos trabalhos de análise estatística possuem três *outputs* possíveis: i) relatórios analíticos, ii) *dashboards* de visualização e iii) APIs (*Application Programming Interfaces*). Em seguida, vamos discutir brevemente como montar cada um desses *outputs* no R.
+
+## Relatórios
+
+Como já vimos durante as aulas, atualmente a melhor maneira de documentar e relatar análises estatísticas é através do RMarkdown. O formato é aberto e descomplicado, permitindo reprodutibilidade e transformação do documento em diversos formatos possíveis (Word, $\LaTeX$, HTML etc).
+
+Nos textos que seguem, focaremos em relatórios no formato HTML. Atualmente, a web é o melhor espaço para compartilhar e desenvolver análises, sendo também o lugar onde as reais inovações na produção de relatórios ocorrem. Infelizmente, nem todas as empresas e universidades se adaptaram para essa nova era, mas isso é apenas uma questão de tempo.
+
+Para a produção de relatórios customizados, precisamos nos aprofundar um pouco mais em técnicas de formatação. Todas as opções de formatação de um documento RMarkdown estão contidas no YAML (Yet Another Markup Language), que fica usualmente no início do documento.
+
+O YAML de um documento controla os outputs e os parâmetros usados para esses outputs. Por exemplo, o YAML abaixo informa que no momento de compilar o arquivo .Rmd, rodaremos a função `rmarkdown::html_document` com os parâmetros `toc` (*table of contents*) e `toc_float`.
+
+```
+---
+output:
+  html_document:
+    toc: true
+    toc_float: true
+  pdf_document: default
+---
+```
+
+Para obter todas as opções do YAML, veja `?rmarkdown::html_document`. 
+
+- [Neste link](https://github.com/yixuan/prettydoc/) você pode ver alguns formatos interessantes usando RMarkdown. 
+- [Neste link](https://github.com/jimhester/knitrBootstrap), temos formatos em *bootstrap*, uma biblioteca para elaboração de documentos bonitos. 
+- [Neste link](https://github.com/rstudio/rticles) temos alguns formatos apropriados para geração de artigos usando RMarkdown.
+
+## Gráficos dinâmicos
+
+Gráficos dinâmicos, quando bem usados, podem aumentar a experiência do usuário ao analisar um gráfico estatístico. Em seguida, daremos três exemplos que podem ser úteis e que são fáceis de utilizar.
+
+Veremos dois tipos de gráficos dinâmicos. O primeiro é o `plotly`, ferramenta fornecida por uma empresa de mesmo nome que tem o objetivo de unificar a visualização de dados de várias linguagens de programação. O segundo são bibiotecas baseadas no `htmlwidgets`, que por sua vez é um pacote do R que permite a adaptação de ferramentas gráficas programadas em javascript em funções do R.
+
+### Plotly
+
+A biblioteca `plotly` é atualmente a melhor ferramenta para produção de gráficos na web. Aqui, vamos focar em gráficos do tipo `ggplotly`, que são gráficos baseados no `ggplot2`, mas com possibilidade de renderização em HTML.
+
+Com isso, você pode produzir uma versão dinâmica de praticamente qualquer gráfico do `ggplot2`. Note, no entanto, que a formatação é limitada. Nesse exemplo, temos um dos gráficos dos inscritos usando `ggplot` e `ggplotly`:
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width=9, fig.height=4}
+p <- mtcars %>% 
+  ggplot(aes(disp, mpg, colour = as.factor(am))) +
+  geom_point()
+p
+```
+
+E aqui...
+
+```{r}
+ggplotly(p, height = 400)
+```
+
+```{r message=FALSE, warning=FALSE}
+set.seed(3)
+n <- 100
+x <- rnorm(n)
+eps <- rnorm(n, 0, 5)
+y <- pi + exp(1) * x + eps
+```
+
+```{r}
+L_reg <- function(alpha, beta, sigma) {
+  prod(dnorm(y, alpha + beta * x, sigma))
+}
+
+alphas <- betas <- seq(0, 5, length.out = 30)
+cross_df(list(alpha = alphas, beta = betas)) %>% 
+  mutate(L = map2_dbl(alpha, beta, ~L_reg(.x, .y, 5))) %>% {
+    l <- list(alpha = .$alpha, beta = .$beta,
+         L = spread(., beta, L) %>% select(-alpha) %>% 
+           as.matrix() %>% unname())
+    plot_ly(x = unique(l$beta), y = unique(l$alpha), z = l$L) %>% 
+      add_surface()
+  }
+
+```
+
+```{r}
+L_reg_log <- function(alpha, beta, sigma) {
+  sum(dnorm(y, alpha + beta * x, sigma, log = TRUE))
+}
+
+alphas <- betas <- seq(0.1, 5, length.out = 30)
+d <- cross_df(list(alpha = alphas, beta = betas, sigma = 1:5)) %>% 
+  mutate(L = pmap_dbl(
+    list(alpha, beta, sigma), L_reg_log)
+  ) %>% {
+    dd <- .
+    l <- list(alpha = unique(.$alpha), 
+              beta = unique(.$beta),
+         L = map(unique(.$sigma), ~{
+           filter(dd, sigma == .x) %>% 
+             select(-sigma) %>% 
+             spread(., beta, L) %>% 
+             select(-alpha) %>% 
+             as.matrix() %>% 
+             unname()
+         }))
+    l
+  }
+plot_ly(x = d$alpha, y = d$beta) %>% 
+  add_surface(z = d$L[[3]]) %>% 
+  add_surface(z = d$L[[5]])
+```
+
+### Html Widgets
+
+Para acessar uma lista (não exaustiva) de pacotes produzidos com o `htmlwidgets`, [veja essa página](http://www.htmlwidgets.org/showcase_leaflet.html). Aqui, vamos focar em três: `dygraphs` para séries temporais, `DT` para tabelas e`leaflet` para mapas
+
+### Dygraphs
+
+[`dygraphs`](https://rstudio.github.io/dygraphs/) é originalmente uma biblioteca em javascript para visualização de séries temporais na web.
+
+```{r}
+# d_falrec <- ler_dados()
+# saveRDS(d_falrec, 'input/d_falrec.rds')
+d_falrec <- readRDS('input/d_falrec.rds')
+
+ts <- d_falrec %>% 
+  filter(tipo == 'rec_req', 
+         data >= as.Date('2005-01-01'), 
+         data <= as.Date(today())) %>%
+  spread(porte, valor) %>%
+  select(data, grande:total) %>%
+  mutate(data = ymd(data)) %>% 
+  {xts::xts(select(., -data), .$data)}
+
+dygraph(ts) %>%
+  dyRoller(rollPeriod = 12)
+```
+
+### DT
+
+[`DT`](https://rstudio.github.io/DT/) é originalmente uma biblioteca em javascript para visualização de `tibbles` na web.
+
+```{r}
+# install.packages('DT')
+DT::datatable(mtcars)
+```
+
+```{r}
+DT::datatable(iris, class = 'cell-border stripe')
+```
+
+### Leaflet
+
+[`leaflet`](http://rstudio.github.io/leaflet/) é originalmente uma biblioteca em javascript para produção de mapas
+
+**Exemplo**: IDH dos municípios do Brasil em 2010.
+
+```{r}
+library(cea20160329)
+library(leaflet)
+dados <- as_tibble(abjutils::pnud_min)
+lab <- 'Municipio: %s<br/>IDHM-Educação: %f<br/>IDHM-Renda: %f<br/>IDHM-Longevidade: %f'
+dados %>%
+  filter(ano == 2010) %>% 
+  mutate(label = sprintf(lab, municipio, idhm_e, idhm_r, idhm_l)) %>%
+  leaflet() %>%
+  setView(lng = -50, lat = -17, zoom = 4) %>% 
+  addTiles() %>%
+  addMarkers(lng = ~lon, lat = ~lat, popup = ~label,
+             clusterOptions = markerClusterOptions())
+```
+
+**Exemplo**: pacote `sptrans`, desenha a posição dos ônibus em tempo real.
+
+```{r}
+draw_bus2 <- function (.data, map = NULL) {
+  if (is.null(map)) {
+      map <- leaflet::leaflet() %>% leaflet::addTiles()
+  }
+  trips <- unique(.data$trip_id)
+  for (i in seq_along(trips)) {
+      d <- dplyr::filter(.data, trip_id == trips[i])
+      map <- map %>% leaflet::addMarkers(~px, ~py, data = d)
+  }
+  map
+}
+# devtools::install_github('jtrecenti/sptrans')
+library(leaflet)
+library(sptrans)
+trips <- spgtfs::gtfs$data[[10]]
+olhovivo_pat <- '233f343e2ad2a3bf483eae00c316cfdd516c3bbbd21b6a3e916645877e137b6f'
+trips %>% 
+  filter(str_detect(trip_id, '477P'), direction_id == 0) %>% 
+  collect_bus(trip_id, 'trip') %>%
+  draw_bus2()
+```
+
+## Shiny
+
+O Shiny é um sistema para desenvolvimento de aplicações web usando o R, um pacote do R (`shiny`) e um servidor web (`shiny server`). O Shiny não é uma página web não é um substituto para sistemas mais gerais, como Ruby on Rails e Django e não é uma ferramenta gerencial, como o Tableau.
+
+Para entender sobre Shiny, é necessário entender primeiro o que é [server side e user side](http://programmers.stackexchange.com/a/171210 "diferencas"). Quando surfamos na web, nos _comunicamos_ com servidores do mundo inteiro, geralmente através do protocolo HTTP.
+
+No server side, processamos requisições e dados do cliente, estrutura e envia páginas web, interage com banco de dados, etc. Linguagens server side comuns são PHP, C#, Java, R etc (virtualmente qualquer linguagem de programação).
+
+No user side, criamos interfaces gráficas a partir dos códigos recebidos pelo servidor, envia e recebe informações do servidor etc. As "linguagens" mais usuais nesse caso são HTML, CSS e JavaScript.
+
+Mas onde está o Shiny nisso tudo? O código de uma aplicação shiny fica no _server side_. O shiny permite que um computador (servidor) envie páginas web, receba informações do usuário e processe dados, utilizando apenas o R. 
+
+Para rodar aplicativos shiny, geralmente estruturamos a parte relacionada ao HTML, JavaScript e CSS no arquivo `ui.R`, e a parte relacionada com processamento de dados e geração de gráficos e análises no arquivo `server.R`. 
+
+Os arquivos `ui.R` e `server.R` ficam no servidor! Atualmente é possível construir [aplicativos em um arquivo só](http://shiny.rstudio.com/articles/single-file.html), no `app.R`.
+
+O pacote `shiny` do R possui internamente um servidor web básico, geralmente utilizado para aplicações locais, permitindo somente uma aplicação por vez. O `shiny server` é um programa que roda somente em Linux que permite o acesso a múltiplas aplicações simultaneamente.
+
+### Começando com um exemplo
+
+```{r eval=FALSE}
+shiny::runGitHub('rstudio/shiny-examples',
+                 subdir = '001-hello',
+                 display.mode = 'showcase')
+```
+
+O Shiny utiliza como padrão o [bootstrap css](http://getbootstrap.com/css/) do [Twitter](https://twitter.com), que é bonito e responsivo (lida bem com várias plataformas, como notebook e mobile). Note que criamos páginas básicas com `pageWithSidebar`. Páginas mais trabalhadas são criadas com `fluidPage`, `fluidRow`, `column`. Pesquise outros tipos de layouts no shiny. É possível criar páginas web customizadas direto no HTML.
+
+Para estudar os *widgets* (entradas de dados para o usuário), acesse [este link](http://shiny.rstudio.com/gallery/widget-gallery.html 'widgets') ou rode
+
+```{r eval=FALSE}
+shiny::runGitHub('garrettgman/shinyWidgets')
+```
+
+### Criando outputs
+
+Imagine que para cada função `xxOutput('foo', ...)` do `ui.R` você pode colocar um código do tipo `output$foo <- renderXX(...)` no `server.R`. A função no arquivo `ui.R` determina a localização e identificação do elemento. Crie gráficos com `plotOutput` e `renderPlot` e exiba dados com `dataTableOutput` e `renderDataTable`.
+
+## Fazendo mais com o shiny
+
+### Shiny Server Pro
+
+- Licença comercial do Shiny-server
+- Possui algumas características a mais, como autenticação e suporte.
+
+### shinyapps.io
+
+- Para compartilhar um aplicativo shiny, geralmente precisamos ter um servidor Linux (geralmente utilizando algum serviço na cloud como AWS ou DigitalOcean) com o shiny server instalado.
+- Isso pode ser doloroso.
+- O shinyapps.io é um sistema (que envolve tanto pacote do R como uma página web) que permite que o usuário coloque sua aplicação shiny na web sem muito esforço.
+- O serviço foi desenvolvido pela RStudio Inc. e possui contas grátis e pagas.
+
+## APIs com opencpu
+
+```{r eval=FALSE}
+install.packages('opencpu')
+```
+
+APIs são interfaces que permitem a comunicação entre softwares. Atualmente, APIs são essenciais para levar resultados de um lugar para outro. Por exemplo, usando o R podemos criar uma API para enviar a predição de um modelo a partir de um input de usuário, permitindo que essa predição seja utilizada em outros softwares, como sistemas de um banco ou aplicativos de celular.
+
+Vamos montar um exemplo que disponibiliza uma API para quebra de captchas.
+
+```{r eval=FALSE}
+library(opencpu)
+# opencpu$restart()
+
+# no caso é localhost, mas poderia ser um servidor
+u <- opencpu$url()
+path <- '/library/captchaTJRS/R/predizer/print'
+
+# baixa captcha
+# a <- captchaTJRS::download('captcha.jpg')
+'captcha.jpg' %>% captchaTJRS::ler() %>% captchaTJRS::desenhar()
+
+# poderia ser chamado de qualquer dispositivo
+comando <- sprintf('curl %s%s -F "a=@captcha.jpg"', u, path)
+system(comando, ignore.stderr = TRUE)
+```

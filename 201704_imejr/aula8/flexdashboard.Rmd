@@ -1,0 +1,47 @@
+---
+title: "Untitled"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(leaflet)
+library(dygraphs)
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r}
+p <- mtcars %>% 
+  ggplot(aes(x = mpg, y = disp)) +
+  geom_point()
+plotly::ggplotly(p)
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r}
+lungDeaths <- cbind(mdeaths, fdeaths)
+dygraph(lungDeaths)
+```
+
+### Chart C
+
+```{r}
+leaflet() %>% 
+  addTiles() %>% 
+  setView(lng = -46.7, lat = -23.6, zoom = 13) %>% 
+  addCircles(lng = -46.7, lat = -23.6, 
+             radius = 3000, popup = 'Olá!')
+```
+
