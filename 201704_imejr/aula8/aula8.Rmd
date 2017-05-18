@@ -43,8 +43,9 @@ Hoje:
     - leaflet
 - shiny
     - shiny miojo
-- pacotes
+- pacotes (se der tempo)
     - pacote miojo
+- feedback
 
 ```{r}
 library(tidyverse)
