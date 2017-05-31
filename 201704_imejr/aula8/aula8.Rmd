@@ -1,5 +1,7 @@
 ---
 title: "Aula8"
+author: 'jtrecenti'
+date: '18/05'
 output: html_document
 ---
 
@@ -23,6 +25,7 @@ Na última vez:
     - `httr`
     - `xml2` e `rvest`
 
+
 -------------------------------------------
 
 Hoje:
@@ -34,7 +37,6 @@ Hoje:
         - rticles
         - bookdown
         - thesisdown
-        - rticles
         - blogdown
 - htmlwidgets
     - plotly
@@ -43,12 +45,17 @@ Hoje:
     - leaflet
 - shiny
     - shiny miojo
+- plumber
+
+
+
+
 - pacotes (se der tempo)
     - pacote miojo
 - feedback
 
 ```{r}
-library(tidyverse)
+library(tidyverse) # carrega o tidiverse
 library(plotly)
 library(dygraphs)
 library(leaflet)
@@ -57,11 +64,11 @@ library(xts)
 library(lubridate)
 
 ## se nao tiver
-# install.packages('plotly')
-# install.packages('dygraphs')
-# install.packages('leaflet')
-# install.packages('xts')
-# devtools::install_github('jtrecenti/falrec')
+install.packages('plotly')
+install.packages('dygraphs')
+install.packages('leaflet')
+install.packages('xts')
+devtools::install_github('jtrecenti/falrec')
 ```
 
 # Comunicação
@@ -128,6 +135,10 @@ x <- rnorm(n)
 eps <- rnorm(n, 0, 5)
 y <- pi + exp(1) * x + eps
 ```
+
+$$
+y - ax - b =  e\sim\mathcal N(0, \sigma^2)
+$$
 
 ```{r}
 L_reg <- function(alpha, beta, sigma) {
@@ -220,18 +231,37 @@ DT::datatable(iris, class = 'cell-border stripe')
 **Exemplo**: IDH dos municípios do Brasil em 2010.
 
 ```{r}
-library(cea20160329)
+# library(cea20160329)
+devtools::install_github('abjur/abjData')
+
 library(leaflet)
-dados <- as_tibble(abjutils::pnud_min)
+dados <- as_tibble(abjData::pnud_min)
 lab <- 'Municipio: %s<br/>IDHM-Educação: %f<br/>IDHM-Renda: %f<br/>IDHM-Longevidade: %f'
 dados %>%
   filter(ano == 2010) %>% 
-  mutate(label = sprintf(lab, municipio, idhm_e, idhm_r, idhm_l)) %>%
+  mutate(label = sprintf(lab, muni, idhm_e, idhm_r, idhm_l)) %>%
   leaflet() %>%
   setView(lng = -50, lat = -17, zoom = 4) %>% 
   addTiles() %>%
   addMarkers(lng = ~lon, lat = ~lat, popup = ~label,
              clusterOptions = markerClusterOptions())
+
+####################################
+# comentar os codigos
+# exercicios pra casa -> 
+#    mostrar resultados dos exercicios na proxima
+# modelagem -> um exemplo mais simples
+####################################
+# mesmas bases -> fio condutor
+#   - relatorio
+####################################
+# nos exercicios
+#   - pode colocar bases diferentes
+####################################
+# aumentar carga horaria
+#    - para colocar exercicios
+####################################
+
 ```
 
 **Exemplo**: pacote `sptrans`, desenha a posição dos ônibus em tempo real.
@@ -277,12 +307,18 @@ Os arquivos `ui.R` e `server.R` ficam no servidor! Atualmente é possível const
 
 O pacote `shiny` do R possui internamente um servidor web básico, geralmente utilizado para aplicações locais, permitindo somente uma aplicação por vez. O `shiny server` é um programa que roda somente em Linux que permite o acesso a múltiplas aplicações simultaneamente.
 
+
+
 ### Começando com um exemplo
 
 ```{r eval=FALSE}
 shiny::runGitHub('rstudio/shiny-examples',
                  subdir = '001-hello',
                  display.mode = 'showcase')
+
+shiny::runApp('app/app.R', 
+              display.mode = 'showcase')
+
 ```
 
 O Shiny utiliza como padrão o [bootstrap css](http://getbootstrap.com/css/) do [Twitter](https://twitter.com), que é bonito e responsivo (lida bem com várias plataformas, como notebook e mobile). Note que criamos páginas básicas com `pageWithSidebar`. Páginas mais trabalhadas são criadas com `fluidPage`, `fluidRow`, `column`. Pesquise outros tipos de layouts no shiny. É possível criar páginas web customizadas direto no HTML.

@@ -12,6 +12,7 @@ ui <- fluidPage(
                      max = 50,
                      value = 30)
       ),
+      
       mainPanel(
          plotlyOutput("distPlot")
       )
@@ -21,12 +22,14 @@ ui <- fluidPage(
 server <- function(input, output) {
   
    output$distPlot <- renderPlotly({
+     
       p <- ggplot(faithful) +
         geom_histogram(aes(x = waiting),
                        bins = input$bins,
                        fill = 'white', 
                        colour = 'black')
       ggplotly(p)
+      
    })
 }
 

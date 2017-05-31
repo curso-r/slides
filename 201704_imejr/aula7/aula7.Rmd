@@ -48,13 +48,36 @@ library(tidyverse)
 ### readr e data.table::fread
 
 ```{r}
-arq_mtcars <- readr_example("mtcars.csv")
+arq_mtcars <- readr_example(
+  "mtcars.csv")
 
-mtcars1 <- read_csv(arq_mtcars)
+locale()
+
+mtcars1 <- read_csv(
+  arq_mtcars, 
+  col_types = cols(
+  mpg = col_double(),
+  cyl = col_integer(),
+  disp = col_double(),
+  hp = col_integer(),
+  drat = col_double(),
+  wt = col_double(),
+  qsec = col_double(),
+  vs = col_integer(),
+  am = col_character(),
+  gear = col_integer(),
+  carb = col_integer()
+))
+
+
+write_csv(mtcars, 'input/mtcars.csv')
+
 mtcars2 <- data.table::fread(arq_mtcars)
+
 ```
 
 ### Haven
+
 
 ```{r}
 library(haven)
@@ -70,8 +93,11 @@ read_stata("input/mtcars.dta")
 
 ```{r}
 # openxlsx::write.xlsx(mtcars, 'input/mtcars.xlsx')
+install.packages('openxlsx')
+
 openxlsx::read.xlsx('input/mtcars.xlsx')
 readxl::read_excel('input/mtcars.xlsx')
+
 ```
 
 ### feather
@@ -79,6 +105,12 @@ readxl::read_excel('input/mtcars.xlsx')
 ```{r}
 # feather::write_feather(mtcars, 'input/mtcars.feather')
 feather::read_feather('input/mtcars.feather')
+
+```
+
+```{r engine="python"}
+import feather
+read_feather()
 ```
 
 ## SQL, mongodb, spark
@@ -86,6 +118,11 @@ feather::read_feather('input/mtcars.feather')
 ### SQL
 
 https://cran.r-project.org/web/packages/dplyr/vignettes/databases.html
+
+```{r}
+install.packages('nycflights13')
+install.packages('RSQLite')
+```
 
 ```{r}
 library(nycflights13)
@@ -98,7 +135,6 @@ my_db <- src_sqlite("input/my_db.sqlite3", create = TRUE)
 
 flights_sqlite <- copy_to(my_db, flights, 
                           temporary = FALSE, 
-                          overwrite = TRUE,
                           indexes = list(c("year", "month", "day"), "carrier", "tailnum"))
 
 flights_sqlite <- tbl(my_db, "flights")
@@ -151,8 +187,10 @@ collect(x)
 ## tableau, powerBI, QlikView, Excel
 
 - Tableau: https://onlinehelp.tableau.com/current/pro/desktop/en-us/r_connection_manage.html
+
 - PowerBI: https://powerbi.microsoft.com/en-us/documentation/powerbi-desktop-r-scripts/ 
 - Excel: https://bert-toolkit.com/
+
 - Qlikview: https://community.qlik.com/docs/DOC-6542 
 
 ----------------------------------------------------------
@@ -176,6 +214,7 @@ Um exemplo de pacote que utiliza API usando esse tutorial melhores práticas pod
 library(tidyverse)
 # devtools::install_github('jennybc/googlesheets')
 library(googlesheets)
+
 gs_auth()
 
 d_gs <- 'questionario_' %>% 
@@ -185,16 +224,18 @@ d_gs <- 'questionario_' %>%
 
 # nao vai funcionar
 d_quest <- gs_read(d_gs, verbose = FALSE, ws = 1)
+
+d_quest
 ```
 
 #### Twitter
 
 ```{r}
 library(twitteR)
-consumer_key <- "<>"
-consumer_secret <- "<>"
-access_token <- "<>"
-access_secret <- "<>"
+consumer_key <- "x252c433YSL4TkgAB7x4QNwLH"
+consumer_secret <- "rnGJ2pFqCSAach9NsGgFhJNx9gl5swC384nJZZCAsimQP1Hwo8"
+access_token <- "101800957-rQAbKLO9VpplIJRN11qnQ21u9OLV1MjejbbhPINb"
+access_secret <- "XnKHWfGMy4XvTAazyHaRTO51ynXNr1S6nY5lErnPSz9J1"
 
 setup_twitter_oauth(consumer_key, consumer_secret, 
                     access_token, access_secret)
@@ -204,8 +245,9 @@ userTimeline('hadleywickham', n = 20)
 ### REST
 
 ```{r}
-# devtools::install_github('jtrecenti/spgtfs')
-# devtools::install_github('jtrecenti/sptrans')
+devtools::install_github('jtrecenti/spgtfs')
+devtools::install_github('jtrecenti/sptrans')
+
 library(spgtfs)
 library(sptrans)
 library(leaflet)
