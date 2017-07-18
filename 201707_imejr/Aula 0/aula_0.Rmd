@@ -19,8 +19,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Curso-R
 
-```{r, echo=FALSE}
-knitr::include_graphics("foto_curso_r.jpg")
+```{r, echo=FALSE, fig.align='center'}
+knitr::include_graphics("foto_curso_r.jpg", dpi = 250)
 ```
 
 
@@ -57,11 +57,18 @@ modelo <- keras_model(input = 1)
 ## Nosso curso
 
 18/07 - Introdução + R base - Athos
+
 19/07 - R base (cont) - Athos
+
 20/07 - Stringr + lubridate - Fernando
+
 25/07 - Importação + %>% - Fernando
+
 26/07 - dplyr - Willy
+
 27/07 - ggplot2 - Willy
+
+
 
 ## Nosso curso
 
@@ -122,25 +129,14 @@ http://curso-r.com/blog/
 
 ## Não vamos falar de
 
-- Programação eficiente com R. Para isso, veja esse livro: 
-
-https://bookdown.org/csgillespie/efficientR/
-
-Ele aborda temas importantíssimos como *profiling*, paralelização, `Rcpp`.
-
-- Não vamos nos aprofundar em "big data". Para isso estude sobre
-
-sparklyr: http://spark.rstudio.com/ 
-tensorflow: https://rstudio.github.io/tensorflow/ 
-mongodb: https://gist.github.com/Btibert3/7751989
-
-
-## Não vamos falar de
-
 - Modelagem estatística (regressões, testes estatísticos, clustering, componentes principais)
+
 - Gráficos dinâmicos e dashboards (Shiny, htmlwidgets)
+
 - Programação eficiente com R (paralelização, *profiling*, `Rcpp`)
+
 - Não vamos nos aprofundar em "big data" (Spark, Hadoop, MongoDB, TensorFlow)
+
 
 
 
@@ -158,10 +154,11 @@ Na prática, temos que
 
 - C é compilável, R é uma linguagem script.
 - R é uma linguagem funcional. Por exemplo, `(`, `&` e `+` são funções do R.
-- R é vetorizado. Observe:
 
 
 ## Diferenças entre C/C++ e R
+
+- R é vetorizado. Observe:
 
 ```{r}
 a <- c(1, 2, 3)
@@ -208,14 +205,14 @@ knitr::include_graphics("https://pbs.twimg.com/media/CvzEQcfWIAAIs-N.jpg")
 
 - *Aparato mnemônico*. Pacotes baseados em teoria e API consistentes.
 
-- *Minimalidade e funções puras*. Funções sem efeitos colaterais. Interagem com o mundo através de inputs e outputs. Encaixa perfeitamente com o princípio do pipe (%>%).
+- *Minimalidade e funções puras*. Funções sem efeitos colaterais. Inputs e Outputs consistentes. Encaixa perfeitamente com o uso do pipe (%>%).
 
 - *procedimentos* para ciência de dados.
 
 ## GitHub
 
 - Maior plataforma online para compartilhar códigos. 
-- Utiliza o `git`, a melhor ferramenta de versionamento de software.
+- Utiliza o **Git**, a melhor ferramenta de versionamento de software.
 
 *Vantagens*:
 
@@ -232,3 +229,13 @@ Um tutorial para começar a [usar Github no RStudio rapidamente](http://curso-r.
 
 Para detalhes, faça o [data science toolbox](https://www.coursera.org/learn/data-scientists-tools)
 
+
+
+## Exercício da aula zero
+
+Anotar em uma folha de papel ou virtual:
+
+- http://material.curso-r.com/
+- Tidyverse
+- pipe (%>%)
+- Github

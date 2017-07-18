@@ -47,6 +47,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 
+
+
+
+
+
 <!------------------------------------------------------------------>
 ## RStudio
 
@@ -57,8 +62,6 @@ knitr::opts_chunk$set(echo = TRUE)
  - RMarkdown
  
  Ao RStudio...
- 
- 
  
  
  
@@ -113,12 +116,13 @@ project/
 
 
 
+
 <!------------------------------------------------------------------>
 ## Pedindo ajuda 
 
 No R, há quatro principais entidades para se pedir ajuda:
 
-- Help/documentação do R (comandos `help(nome_da_funcao)` ou `?nome_da_funcao`)
+- Help/documentação do R 
 - Google
 - Stack Overflow
 - Colega
@@ -132,8 +136,6 @@ A documentação do R serve para você aprender a usar uma determinada função.
 ```{r, eval=FALSE}
 ?mean
 help(mean)
-
-mean(c(1, 2, pi))
 ```
 
 ## Pedindo ajuda 
@@ -166,6 +168,11 @@ No site tem um tutorial com uma lista de boas práticas, [que se encontra aqui](
 - Ser específico
 - Ter mente aberta
 - Ser gentil
+
+
+
+
+ 
 
 
 
@@ -215,10 +222,15 @@ install.packages("C:/caminho/para/o/arquivo/zipapo/pacote.zip",
 ```
 
 
+
+
+
+
+
 <!------------------------------------------------------------------>
 ## R como calculadora
 
-Melhor ir ao RStudio!
+Ao RStudio...
 
 ## R como calculadora
 
@@ -502,11 +514,39 @@ p <- m * m     # Multiplicação elemento a elemento
 p
 
 solve(p)  # matriz inversa
+p %*% solve(p)
+round(p %*% solve(p))
+
 ```
 
 
+<!------------------------------------------------------------------>
+## Resumão Aula 1
+
+- Quatro quadrantes do RStudio
+- Quatro - 1 sugestões de disposição de pastas
+- Quatro maneiras de pedir ajuda
+- Quatro maneiras de instalar pacotes
+- Quatro operadores aritméticos
+- RMarkdown
+- Operadores lógicos
+- Operações com Vetor
+- Objetos - Atomic
+- Objetos - Vetor
+- Objetos - Matriz
 
 
+<!------------------------------------------------------------------>
+## Exercícios Aula 1
+
+Resolvam em RMarkdown os 11 exercícios em:
+
+http://material.curso-r.com/rbase/#exercícios
+
+Enviar para cursor2017@gmail.com 
+Assunto: [imejr] aula1
+
+Até amanhã!
 
 
 <!------------------------------------------------------------------>
