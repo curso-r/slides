@@ -170,7 +170,7 @@ No site tem um tutorial com uma lista de boas práticas, [que se encontra aqui](
 - Ser gentil
 
 
-
+## Colega
 
  
 
@@ -192,10 +192,13 @@ Quatro maneiras de instalar pacotes:
 **via R**
 
 ```{r eval = FALSE}
+install.packages("xts")
+install.packages("tidyverse")
 install.packages("magrittr")
 
 # e daí em diante, só carregar quando precisar
-library(magrittr)
+library(xts)
+ggplot()
 ```
 
 
@@ -208,8 +211,17 @@ library(magrittr)
 ```{r, eval=FALSE}
 if (!require("devtools"))
   install.packages("devtools")
-devtools::install_github("rstudio/shiny")
+
+
+
+
+
+
+devtools::install_github("rstudio/magrittr")
+install.packages("magrittr")
 ```
+
+
 
 
 ## instalar pacotes
@@ -220,6 +232,7 @@ devtools::install_github("rstudio/shiny")
 install.packages("C:/caminho/para/o/arquivo/zipapo/pacote.zip", 
                  repos = NULL)
 ```
+
 
 
 
@@ -243,6 +256,7 @@ Ao RStudio...
 # Operadores aritméticos
 
 2*2 + 3    # Pressione Ctrl+Enter para rodar o código de uma linha
+
 5/3 - 1
 
 (2 - 1/pi) * 4   # Cuidado com as precedências. Elas funcionam como na
@@ -255,31 +269,39 @@ Ao RStudio...
 1 != 1
 1 < 2
 1 <= 2
-1 > 2
-1 >= 2
+2 > 2
+2 >= 2
 
+x <- 2
+x_eh_par <- TRUE
 
-.99999999999999999999  == 1     # O R, como qualquer programa,
+!(1 < 2)   # negativa
+
+.999999999999999999990  == 1    # O R, como qualquer programa,
 .99999999999999 ==  1           # não tem precisão infinita.
 
-!1 < 2   # negativa
 
 c(1, 2, 3) * 10
--c(10, 20, 30)
+vetor_de_n_negativos <- -c(10, 20, 30)
+
+vetor_de_n_negativos <- letters
 ```
 
 Exercício relâmpago:
 
 ```{r, echo=FALSE, eval=FALSE}
-# Calcule o valor de zero dividido por zero.
-# Teste se o valor de zero elevado a zero é igual a 1.
+0/0 # Calcule o valor de zero dividido por zero.
+
+0^0 == 1 # Teste se o valor de zero elevado a zero é igual a 1.
+
+-1/0
 ```
 
 
 Olhe o que acontece se você digitar um comando incompleto.
 
 ```{r, echo=FALSE, eval=FALSE}
-5 -
+
 ```
 
 Termine o seu comando ou aperte Esc para recomeçar.
@@ -297,7 +319,7 @@ Para criar objetos, utilizamos o operador `<-`.
 
 ```{r, echo=FALSE, eval=FALSE}
 a <- 1
-a
+a  = 1
 ```
 
 *ATENÇÃO*: o R diferencia maiúsculas e minúsculas.
@@ -336,6 +358,7 @@ Existem cinco classes básicas ou "atômicas" no R:
 # characters (caracteres, palavras, frases...)
 
 "a"
+'a'
 "1"
 "positivo"
 "Error: objeto x não encontrado"
@@ -356,6 +379,7 @@ pi
 # complex (raramente utilizado para análise de dados)
 
 2 + 5i
+0 - 0i
 
 # logical
 
@@ -384,8 +408,32 @@ class(z)
 
 Exercício relâmpago:
 
+
+
 ```{r, echo=FALSE, eval=FALSE}
-# Calcule o valor de x + y
+x + y # Calcule o valor de x + y
+```
+
+
+
+## Objetos - Vetores
+
+Misturando classes diferentes
+
+```{r, echo=FALSE, eval=FALSE}
+y <- c(1.7, "a")  ## character
+y <- c(TRUE, 2)   ## numeric
+y <- c(TRUE, "a") ## character
+y <- c(TRUE, FALSE, 10)
+```
+
+**DOMINANTE** `character > complex > numeric > integer > logical` **RECESSIVO**
+
+```{r}
+TRUE + 1L + 1.1
+
+as.numeric(TRUE)
+as.numeric(FALSE)
 ```
 
 
@@ -413,12 +461,21 @@ Misturando classes diferentes
 
 ```{r, echo=FALSE, eval=FALSE}
 y <- c(1.7, "a")  ## character
-y <- c(TRUE, 2)   ## numeric
+class(y)
+y <- c(TRUE, 2L)   ## numeric
+class(y)
+
 y <- c(TRUE, "a") ## character
+class(y)
+
 y <- c(TRUE, FALSE, 10)
 ```
 
 **DOMINANTE** `character > complex > numeric > integer > logical` **RECESSIVO**
+
+
+
+
 
 
 ## Objetos - Vetores
@@ -430,13 +487,18 @@ x
 
 length(x)
 
-x[1]                 # Seleciona o primeiro elemento.
+vetor_de_n_negativos[1]                # Seleciona o primeiro elemento.
 
 x[4]                 # Seleciona o quarto elemento.
 
-x[c(1, 3, 1, 1)]     # Você pode selecionar o mesmo elemento mais de uma vez.
+vetor_de_n_negativos[c(1, 3, 1, 1)]     # Você pode selecionar o mesmo elemento mais de uma vez.
+x < 5
+x
 
-x[x < 5]             # Seleciona todos os elementos que devolverem TRUE para
+x < 5
+x[x < 5] 
+x[c(T, F, T, T, F, T, T, F)]
+# Seleciona todos os elementos que devolverem TRUE para
 x < 3                # o teste lógico.
 ```
 
@@ -533,7 +595,7 @@ round(p %*% solve(p))
 - Operações com Vetor
 - Objetos - Atomic
 - Objetos - Vetor
-- Objetos - Matriz
+- Objetos - Matriz (mentira)
 
 
 <!------------------------------------------------------------------>
