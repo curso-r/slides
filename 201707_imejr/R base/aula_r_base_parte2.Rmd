@@ -1,0 +1,580 @@
+---
+title: "R Base (parte 2)"
+author: "Curso-R"
+date: "19 de julho de 2017"
+output: html_document
+---
+
+
+<!------------------------------------------------------------------>
+## Resumão Aula 1 (RETOMANDO)
+
+- Quatro quadrantes do RStudio
+- Quatro - 1 sugestões de disposição de pastas
+- Quatro maneiras de pedir ajuda
+- Quatro maneiras de instalar pacotes
+- Quatro operadores aritméticos
+- RMarkdown
+- Operadores lógicos
+- Operações com Vetor
+- Objetos - Atomic
+- Objetos - Vetor
+- Objetos - Matriz (mentira)
+
+
+
+<!------------------------------------------------------------------>
+## Exercícios Aula 1
+
+Resolvam em RMarkdown os 11 exercícios em:
+
+http://material.curso-r.com/rbase/#exercícios
+
+Enviar para cursor2017@gmail.com 
+Assunto: [imejr] aula1
+
+Ainda dá tempo!
+
+
+
+
+
+<!------------------------------------------------------------------>
+## Agenda Dia 2
+
+- Matrizes
+- Funções
+- Listas
+- Valores especiais
+- Fatores 
+- data.frame
+- fórmulas
+- Controles de Fluxo
+- Gráficos (base)
+
+
+
+<!------------------------------------------------------------------>
+## Funções
+
+```{r}
+round(5.634)
+```
+
+```{r}
+dado <- 1:6
+round(mean(dado))      # Você pode usar funções como argumentos de outras funções.
+```
+
+
+## Funções
+
+```{r}
+soma <- function(x, y = 10) {          # Essa é a sintaxe para criar a 
+  resposta <- x + y        
+  return(f)
+}
+```
+
+A função acima tem 
+
+- o nome `soma`
+- os argumentos `x` e `y`
+- o corpo `resposta <- x + y`
+- o valor padrão `0` para o argumento `y` (`y = 0`)
+
+Use-a como qualquer outra função:
+
+```{r, echo=FALSE, eval=FALSE}
+soma(2, 1) # soma de 2 + 1
+soma(2) # soma de 2 + 0
+```
+
+Exercício relâmpago:
+
+```{r, echo=FALSE, eval=FALSE}
+# O coeficiente de variação é a razão entre o desvio padrão e a média de um conjunto de dados. Construa uma função que calcule o cv de um vetor numérico.
+
+cv <- function() {
+
+}
+
+# calcule o cv do vetor de 1 a 100.
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!------------------------------------------------------------------>
+## Listas
+
+```{r, echo=FALSE, eval=FALSE}
+x <- list(1:5, "Z", TRUE, c("a", "b"))
+x
+```
+
+```{r, echo=FALSE, eval=FALSE}
+pedido <- list(pedido_id = 8001406,
+               pedido_registro = as.Date("2016-12-12"),
+               nome = "Athos", 
+               sobrenome = "Petri Damiani", 
+               cpf = "12345678900", 
+               email = "athos.damiani@gmail.com", 
+               qualidades = c("incrível", "impressionante"),
+               itens = list(
+                 list(descricao = "Ferrari", 
+                      frete = 0, 
+                      valor = 500000),
+                 list(descricao = "Dolly", 
+                      frete = 1.5, 
+                      valor = 3.90)
+               ), 
+               endereco = list(entrega = list(logradouro = "Rua da Glória", 
+                                              numero = "123",
+                                              complemento = "apto 71"),
+                               cobranca = list(logradouro = "Rua Jose de Oliveira Coutinho",
+                                               numero = "151",
+                                               complemento = "5o andar")
+               )
+)
+```
+
+**Operações úteis**
+
+```{r, echo=FALSE, eval=FALSE}
+pedido$cpf     # elemento chamado 'cpf'
+pedido[1]      # nova lista com apenas o primeiro elemento
+pedido[[2]]    # segundo elemento
+pedido["nome"] # nova lista com apenas o elemento chamado 'nome'
+```
+
+
+Exercício relâmpago:
+
+```{r, echo=FALSE, eval=FALSE}
+# construa uma lista com dois vetores de tamanhos e classes diferentes.
+
+# acesse o último elemento do segundo vetor da lista que você acabou de fazer.
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!------------------------------------------------------------------>
+## Valores especiais
+
+Existem valores reservados para representar dados faltantes, infinitos, e indefiniçőes matemáticas.
+
+- **NA** (Not Available) significa dado faltante/indisponível. 
+- **NaN** (Not a Number) representa indefinições matemáticas, como `0/0` e `log(-1)`. Um `NaN` é um `NA`, mas a recíproca não é verdadeira.
+- **Inf** 
+- **NULL** 
+- Use as funções `is.na()`, `is.nan()`, `is.infinite()` e `is.null()` para testar se um objeto é um desses valores.
+
+```{r, echo=FALSE, eval=FALSE}
+x <- c(NaN, Inf, 1, 2, 3, NA)
+
+# data.frame é novidade!! logo mais falaremos...
+data.frame(x = x, 
+           is_na = is.na(x),
+           is_nan = is.nan(x))
+```
+
+Exercício Relâmpago:
+
+```{r}
+# guarde um vetor com todos os valores especiais listados acima em um objeto e averigue se o que você pediu para guardar é igual ao que está guardado.
+vetor_carat_especiais <- c()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!------------------------------------------------------------------>
+## Fatores
+
+```{r, echo=FALSE, eval=FALSE}
+salario <- c("Alto", "Alto", "Médio", "Alto", "Médio", "Baixo", "Alto", "Médio")
+fator <- as.factor(salario)
+fator
+```
+
+```{r, echo=FALSE, eval=FALSE}
+as.numeric(fator)
+levels(fator)
+
+# alterar a ordem do fator (pacote forcats)
+library(forcats)
+fator <- fct_relevel(fator, c("Baixo", "Médio", "Alto"))
+levels(fator)
+```
+
+[post sobre o pacote forcats](http://curso-r.com/blog/2017/07/01/2017-07-01-forcats/)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!------------------------------------------------------------------>
+## data.frame
+
+Algumas funções úteis:
+
+
+```{r, echo=FALSE, eval=FALSE}
+minha_lista <- list(x = c(1, 2, 3), y = c("a", "b"))
+as.data.frame(minha_lista)
+```
+
+```{r}
+minha_lista <- list(x = c(1, 2, 3), y = c("a", "b", "c"))
+as.data.frame(minha_lista)
+```
+
+- `head()`: mostra as primeiras 6 linhas.
+- `tail()`: mostra as últimas 6 linhas.
+- `dim()`: número de linhas e de colunas.
+- `names()`: os nomes das colunas (variáveis).
+- `str()`: estrutura do data.frame. Mostra, entre outras coisas, as classes de cada coluna.
+- `cbind()`: acopla duas tabelas lado a lado.
+- `rbind()`: empilha duas tabelas.
+
+```{r, echo=FALSE, eval=FALSE}
+head(iris)  
+str(iris)
+```
+
+Exercício relâmpago:
+```{r}
+# construa uma lista com dois vetores de tamanhos iguais.
+lista <- list()
+
+# transforme a lista em um data.frame usando a função as.data.frame()
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!------------------------------------------------------------------>
+## Fórmulas
+
+```{r, echo=FALSE, eval=FALSE}
+formula <- y ~ x1 + x2
+class(formula)
+```
+
+A função `lm()` é a que ajusta um modelo linear no R, e `lm(y ~ x)` lê-se “regressão linear de y explicada por x”.
+
+No ggplot2 `facet_grid(x ~ y)` significa montar uma matriz de gráficos com as linhas definidas pelas categorias de `x` e as colunas pelas categorias de `y`.
+
+
+
+
+
+
+<!------------------------------------------------------------------>
+## Controles de Fluxo
+
+ - if, else
+ - for
+ - while
+ 
+
+<!------------------------------------------------------------------>
+## if else
+
+```{r}
+x <- 2
+
+if(x == 1) {         
+  Sys.time()      # Devolve a data/hora no momento da execução.
+}
+```
+
+```{r}
+x <- 1
+
+if(x == 1) {         
+  Sys.time()      # Devolve a data/hora no momento da execução.
+}
+```
+ 
+## if else
+
+```{r}
+if(x < 0) {
+  
+  sinal <- "negativo"
+  
+} else if(x == 0) {
+  
+  sinal <- "neutro"
+  
+} else if(x > 0) {
+  
+  sinal <- "positivo"
+}
+
+sinal
+```
+
+ 
+## for
+
+```{r}
+for(contador in 1:5){
+  # várias coisas...
+  resultado <- contador^3
+  print(resultado)
+}
+```
+
+## for
+
+```{r}
+for(i in c("a", "b", "c")) {
+  print(i)
+}
+```
+
+
+## while
+
+```{r}
+set.seed(1)
+jogadas <- 0
+coroa <- FALSE               # Número de jogadas até uma coroa (ou cara).
+
+while(!coroa) {
+  coroa <- runif(1) > 0.5
+  jogadas <- jogadas + 1
+}
+
+jogadas
+```
+
+
+<!------------------------------------------------------------------>
+## ifelse
+
+```{r}
+x <- letters
+ifelse(x %in% c("a", "e", "i", "o", "u"), "vogal", "consoante")
+```
+
+Exercício relâmpago (DIFÍCIL):
+```{r}
+# Brincadeira do 'PI'
+# faça um vetor que contenha 'PI' no lugar dos números divisíveis por 3
+x <- 1:30
+ifelse()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!------------------------------------------------------------------>
+## Gráficos (base)
+
+O R já vem com funções básicas que fazem gráficos estatísticos de todas as naturezas.
+
+    Vantagens: são rápidas e simples.
+    Desvantagens: são feias e difíceis para gerar gráficos complexos.
+
+Nesta seção, mostraremos como construir alguns tipos de gráficos usando as funções base do R, mas o nosso foco em visualização de dados está nas funções do pacote ggplot2.
+
+
+## Gráfico de dispersão
+
+- x, y: vetores para representarem os eixos x e y.
+- type : tipo de gráfico. Pode ser pontos, linhas, escada, entre outros.
+
+```{r, fig.height=3}
+n <- 100
+x <- 1:n
+y <- 5 + 2 * x + rnorm(n, sd = 30)
+plot(x, y)
+```
+
+```{r}
+plot(x, y, type = "l")
+```
+
+
+<!------------------------------------------------------------------>
+## Histogramas
+
+- x: o vetor numérico para o qual o histograma será construído.
+- breaks: o número (aproximado) de retângulos.
+
+
+```{r}
+hist(rnorm(1000))   # A função rnorm() sorteia valores de uma dist. Normal.
+```
+
+## Histogramas
+
+```{r}
+hist(rnorm(1000), breaks = 6)
+```
+
+
+<!------------------------------------------------------------------>
+## Boxplot
+
+- x: vetor numérico para o qual o boxplot será construído.
+
+```{r}
+boxplot(InsectSprays$count, col = "lightgray")
+```
+
+## Boxplot
+
+```{r}
+boxplot(count ~ spray, data = InsectSprays, col = "lightgray")
+```
+
+
+c
+## Gráfico de barras
+
+- Precisamos criar uma tabela de frequências com a função `table()`.
+- A função `data()` carrega bases de dados de pacotes instalados.
+
+```{r, fig.height=3}
+data(diamonds, package = "ggplot2")
+tabela <- table(diamonds$color)
+barplot(tabela)
+```
+
+## Gráfico de barras
+```{r, echo=FALSE}
+VADeaths
+```
+
+```{r, fig.height=2.5}
+barplot(VADeaths)  # Usando agora uma tabela de dupla entrada
+```
+
+
+
+
+
+
+
+
+<!------------------------------------------------------------------>
+## Resumão Aula 2
+
+- Matrizes: são vetores de duas dimensões
+- Funções: prontas e personalizadas
+- Listas: aceita de tudo
+- Valores especiais: reservado para o R usar
+- Fatores: characters com níveis bem definidos
+- data.frame: listas com vetores de tamanhos iguais
+- fórmulas: usos específicos em diferentes contextos 
+- Controles de Fluxo: clássico nas linguagens de programação
+- Gráficos (base): feios, porém práticos
+
+
+
+
+
+
+
+
+
+
+
