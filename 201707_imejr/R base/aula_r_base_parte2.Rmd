@@ -54,6 +54,50 @@ Ainda dá tempo!
 
 
 
+
+
+
+
+
+<!------------------------------------------------------------------>
+## Objetos - Matrizes
+
+Matrizes aceitam uma, e apenas uma, classe de objetos atômicos.
+
+```{r, echo=FALSE, eval=FALSE}
+m <- matrix(1:9, nrow = 3, ncol = 3)
+m
+
+dim(m)    # A funçăo dim() retorna a dimensăo do objeto.
+```
+
+```{r, echo=FALSE, eval=FALSE}
+m[2,  ]   # Seleciona a segunda linha.
+m[ , 3]   # Seleciona a terceira coluna.
+m[1, 2]   # Seleciona o primeiro elemento da segunda coluna.
+t(m)      # Devolve a matriz transposta.
+
+n <- t(m)
+m %*% n   # Multiplicação matricial
+
+p <- m * m     # Multiplicação elemento a elemento
+p
+
+solve(p)  # matriz inversa
+p %*% solve(p)
+round(p %*% solve(p))
+
+```
+
+
+
+
+
+
+
+
+
+
 <!------------------------------------------------------------------>
 ## Funções
 
