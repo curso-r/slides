@@ -1,0 +1,68 @@
+---
+title: "Relatório para o cliente"
+author: "Athos"
+date: "18 de julho de 2017"
+output: html_document
+---
+
+## Introdução
+
+O meu trabalho é muito interessante.
+
+## Metodologia
+
+```{r}
+x <- 2+2
+```
+
+Descobri que é igual a `r x`.
+
+
+extensao relatorio.Rmd
+
+RMarkdown
+
+# Título Grandao
+## titulo menor
+### menor ainda
+#### quase nao da pra perceber que é titulo
+#####
+
+
+
+- item 1
+- item 2
+- item 3
+
+1. a
+2. b
+3. c
+
+```{r, eval=FALSE, }
+sin(3)
+```
+
+
+```{r}
+
+
+
+
+x <- 6
+
+```
+
+
+
+A `r x` B.
+
+C `install.packages()` D.
+
+
+
+
+
+
+
+
+

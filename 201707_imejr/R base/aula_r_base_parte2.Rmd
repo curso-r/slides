@@ -65,7 +65,7 @@ Ainda dá tempo!
 Matrizes aceitam uma, e apenas uma, classe de objetos atômicos.
 
 ```{r, echo=FALSE, eval=FALSE}
-m <- matrix(1:9, nrow = 3, ncol = 3)
+m <- matrix(1:9, nrow = 3, ncol = 3, byrow = TRUE)
 m
 
 dim(m)    # A funçăo dim() retorna a dimensăo do objeto.
@@ -86,6 +86,8 @@ p
 solve(p)  # matriz inversa
 p %*% solve(p)
 round(p %*% solve(p))
+
+m + m
 
 ```
 
@@ -114,9 +116,9 @@ round(mean(dado))      # Você pode usar funções como argumentos de outras fun
 ## Funções
 
 ```{r}
-soma <- function(x, y = 10) {          # Essa é a sintaxe para criar a 
+soma <- function(x, y = 10) {          
   resposta <- x + y        
-  return(f)
+  return(resposta)
 }
 ```
 
@@ -131,7 +133,7 @@ Use-a como qualquer outra função:
 
 ```{r, echo=FALSE, eval=FALSE}
 soma(2, 1) # soma de 2 + 1
-soma(2) # soma de 2 + 0
+soma(2) # soma de 2 + 10
 ```
 
 Exercício relâmpago:
@@ -139,7 +141,11 @@ Exercício relâmpago:
 ```{r, echo=FALSE, eval=FALSE}
 # O coeficiente de variação é a razão entre o desvio padrão e a média de um conjunto de dados. Construa uma função que calcule o cv de um vetor numérico.
 
+x <- 1:100
+
 cv <- function() {
+  
+  
 
 }
 
