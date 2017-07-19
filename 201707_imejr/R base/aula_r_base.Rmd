@@ -647,7 +647,18 @@ soma(2, 1) # soma de 2 + 1
 soma(2) # soma de 2 + 0
 ```
 
+Exercício relâmpago:
 
+```{r, echo=FALSE, eval=FALSE}
+# O coeficiente de variação é a razão entre o desvio padrão e a média de um conjunto de dados. Construa uma função que calcule o cv de um vetor numérico.
+
+cv <- function() {
+
+}
+
+# calcule o cv do vetor de 1 a 100.
+
+```
 
 
 
@@ -695,6 +706,14 @@ pedido["nome"] # nova lista com apenas o elemento chamado 'nome'
 ```
 
 
+Exercício relâmpago:
+
+```{r, echo=FALSE, eval=FALSE}
+# construa uma lista com dois vetores de tamanhos e classes diferentes.
+
+# acesse o último elemento do segundo vetor da lista que você acabou de fazer.
+```
+
 
 
 
@@ -711,10 +730,19 @@ Existem valores reservados para representar dados faltantes, infinitos, e indefi
 
 ```{r, echo=FALSE, eval=FALSE}
 x <- c(NaN, Inf, 1, 2, 3, NA)
-is.na(x)
-is.nan(x)
+
+# data.frame é novidade!! logo mais falaremos...
+data.frame(x = x, 
+           is_na = is.na(x),
+           is_nan = is.nan(x))
 ```
 
+Exercício Relâmpago:
+
+```{r}
+# guarde um vetor com todos os valores especiais listados acima em um objeto e averigue se o que você pediu para guardar é igual ao que está guardado.
+vetor_carat_especiais <- c()
+```
 
 
 
@@ -723,15 +751,22 @@ is.nan(x)
 ## Fatores
 
 ```{r, echo=FALSE, eval=FALSE}
-sexo <- c("M", "H", "H", "H", "M", "M", "H")
-fator <- as.factor(sexo)
+salario <- c("Alto", "Alto", "Médio", "Alto", "Médio", "Baixo", "Alto", "Médio")
+fator <- as.factor(salario)
 fator
 ```
 
 ```{r, echo=FALSE, eval=FALSE}
 as.numeric(fator)
-# levels(fator)
+levels(fator)
+
+# alterar a ordem do fator (pacote forcats)
+library(forcats)
+fator <- fct_relevel(fator, c("Baixo", "Médio", "Alto"))
+levels(fator)
 ```
+
+[post sobre o pacote forcats](http://curso-r.com/blog/2017/07/01/2017-07-01-forcats/)
 
 
 
@@ -765,6 +800,14 @@ head(iris)
 str(iris)
 ```
 
+Exercício relâmpago:
+```{r}
+# construa uma lista com dois vetores de tamanhos iguais.
+lista <- list()
+
+# transforme a lista em um data.frame usando a função as.data.frame()
+
+```
 
 
 
@@ -779,6 +822,10 @@ class(formula)
 A função `lm()` é a que ajusta um modelo linear no R, e `lm(y ~ x)` lê-se “regressão linear de y explicada por x”.
 
 No ggplot2 `facet_grid(x ~ y)` significa montar uma matriz de gráficos com as linhas definidas pelas categorias de `x` e as colunas pelas categorias de `y`.
+
+
+
+
 
 
 ## Controles de Fluxo
@@ -860,7 +907,20 @@ while(!coroa) {
 jogadas
 ```
 
+## ifelse
 
+```{r}
+x <- letters
+ifelse(x %in% c("a", "e", "i", "o", "u"), "vogal", "consoante")
+```
+
+Exercício relâmpago (DIFÍCIL):
+```{r}
+# Brincadeira do 'PI'
+# faça um vetor que contenha 'PI' no lugar dos números divisíveis por 3
+x <- 1:30
+ifelse()
+```
 
 
 ## Gráficos (base)
