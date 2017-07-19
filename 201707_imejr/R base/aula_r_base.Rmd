@@ -1001,3 +1001,40 @@ VADeaths
 barplot(VADeaths)  # Usando agora uma tabela de dupla entrada
 ```
 
+
+
+
+
+## Exercícios
+
+Use a base `mtcars` para os exercícios:
+
+1) Calcule o coeficiente de variação da variávei `disp`
+```{r}
+
+```
+
+
+2) Filtre as linhas em que `cyl` seja 8 ou 4.
+```{r}
+
+```
+
+
+3) Filtre as linhas em que `wt` seja maior que 16.
+```{r}
+
+```
+
+
+4) Filtre as linhas em que `cyl` seja 8 ou 4 E  `wt` seja maior que 16
+```{r}
+
+```
+
+
+5) Com o ifelse() construa um variável `carb_flag` em que indique se `carb` é maior que 3.
+```{r}
+mtcars$carb_flag <- 
+```
+
