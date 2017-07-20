@@ -143,18 +143,29 @@ Exercício relâmpago:
 
 x <- 1:100
 
-cv <- function() {
+cv <- function(x) {
   
-  
-
+  coef <- sd(x)/mean(x)
+  return(coef)
 }
+
+cv <- function(x) {
+  
+  a <- "a"
+  1+1
+  
+  sd(x)/mean(x)
+  
+}
+
+cv(x)
 
 # calcule o cv do vetor de 1 a 100.
 
 ```
 
 
-
+https://github.com/curso-r/slides
 
 
 
@@ -171,6 +182,12 @@ cv <- function() {
 ```{r, echo=FALSE, eval=FALSE}
 x <- list(1:5, "Z", TRUE, c("a", "b"))
 x
+
+dim(x)
+
+a <- list(1:10)
+length(a)
+length(1:10)
 ```
 
 ```{r, echo=FALSE, eval=FALSE}
@@ -197,6 +214,8 @@ pedido <- list(pedido_id = 8001406,
                                                complemento = "5o andar")
                )
 )
+
+pedido
 ```
 
 **Operações úteis**
@@ -204,8 +223,21 @@ pedido <- list(pedido_id = 8001406,
 ```{r, echo=FALSE, eval=FALSE}
 pedido$cpf     # elemento chamado 'cpf'
 pedido[1]      # nova lista com apenas o primeiro elemento
-pedido[[2]]    # segundo elemento
-pedido["nome"] # nova lista com apenas o elemento chamado 'nome'
+pedido[[1]]    # segundo elemento
+pedido["cpf"] # nova lista com apenas o elemento chamado 'nome'
+
+l <- list(1:10, c("a", "b", "c"))
+l
+
+l[1]
+l[[1]]
+
+class(l[1])
+class(l[[1]])
+
+class(l[2])
+class(l[[2]])
+
 ```
 
 
@@ -213,8 +245,69 @@ Exercício relâmpago:
 
 ```{r, echo=FALSE, eval=FALSE}
 # construa uma lista com dois vetores de tamanhos e classes diferentes.
+l <- list(1:10, c("a", "b", "c"))
+l
 
 # acesse o último elemento do segundo vetor da lista que você acabou de fazer.
+
+l[[2]][length(l[[2]])]
+
+```
+
+
+<!------------------------------------------------------------------>
+## data.frame
+
+Algumas funções úteis:
+
+
+```{r, echo=FALSE, eval=FALSE}
+minha_lista <- list(x = c(1, 2, 3), y = c("a", "b"))
+as.data.frame(minha_lista)
+```
+
+```{r}
+minha_lista <- list(x = c(1, 2, 3), y = c("a", "b", "c"))
+df <- as.data.frame(minha_lista)
+df2 <- data.frame(z = 4:6, w = c(T, T, F))
+
+
+mtcars
+
+head(mtcars)
+tail(mtcars)
+dim(mtcars)
+names(mtcars)
+
+str(mtcars[1,])
+mtcars[1,]
+mtcars[,1]
+
+rbind(df, df)
+df3 <- cbind(df, df2)
+df3$w
+```
+
+- `head()`: mostra as primeiras 6 linhas.
+- `tail()`: mostra as últimas 6 linhas.
+- `dim()`: número de linhas e de colunas.
+- `names()`: os nomes das colunas (variáveis).
+- `str()`: estrutura do data.frame. Mostra, entre outras coisas, as classes de cada coluna.
+- `cbind()`: acopla duas tabelas lado a lado.
+- `rbind()`: empilha duas tabelas.
+
+```{r, echo=FALSE, eval=FALSE}
+head(iris)  
+str(iris)
+```
+
+Exercício relâmpago:
+```{r}
+# construa uma lista com dois vetores de tamanhos iguais.
+lista <- list()
+
+# transforme a lista em um data.frame usando a função as.data.frame()
+
 ```
 
 
@@ -222,9 +315,14 @@ Exercício relâmpago:
 
 
 
+```{r}
+`+` <- function(a, b) {
+  a-b
+}
 
-
-
+1+1
+  
+```
 
 
 
@@ -255,14 +353,39 @@ data.frame(x = x,
            is_nan = is.nan(x))
 ```
 
+```{r}
+grafico <- function(x, y, color = NULL) {
+  
+  if(is.null(color))
+  
+}
+```
+
+
 Exercício Relâmpago:
 
 ```{r}
 # guarde um vetor com todos os valores especiais listados acima em um objeto e averigue se o que você pediu para guardar é igual ao que está guardado.
-vetor_carat_especiais <- c()
+vetor_carat_especiais <- c(NA, NaN, Inf, NULL)
+
+a <- NULL
+
+is.na(vetor_carat_especiais)
+is.null(c(1, 2, 3)[5])
+is.nan(vetor_carat_especiais)
+is.infinite(vetor_carat_especiais)
+
+mean(c(1, 2, 3, 4, 5, NA), na.rm = TRUE)
+
+
 ```
 
 
+```{r}
+fit <- lm(mpg ~ cyl + disp + as.factor(gear), data = mtcars)
+
+summary(fit)
+```
 
 
 
@@ -288,13 +411,25 @@ vetor_carat_especiais <- c()
 
 ```{r, echo=FALSE, eval=FALSE}
 salario <- c("Alto", "Alto", "Médio", "Alto", "Médio", "Baixo", "Alto", "Médio")
+
+class(salario)
+
 fator <- as.factor(salario)
+
+class(fator)
+
 fator
 ```
 
 ```{r, echo=FALSE, eval=FALSE}
 as.numeric(fator)
 levels(fator)
+
+factor(1:5)
+
+var <- c(1, 2, 3, 2, 1, 3, 1, 2)
+
+lm(y ~ as.factor(var))
 
 # alterar a ordem do fator (pacote forcats)
 library(forcats)
@@ -322,43 +457,7 @@ levels(fator)
 
 
 
-<!------------------------------------------------------------------>
-## data.frame
 
-Algumas funções úteis:
-
-
-```{r, echo=FALSE, eval=FALSE}
-minha_lista <- list(x = c(1, 2, 3), y = c("a", "b"))
-as.data.frame(minha_lista)
-```
-
-```{r}
-minha_lista <- list(x = c(1, 2, 3), y = c("a", "b", "c"))
-as.data.frame(minha_lista)
-```
-
-- `head()`: mostra as primeiras 6 linhas.
-- `tail()`: mostra as últimas 6 linhas.
-- `dim()`: número de linhas e de colunas.
-- `names()`: os nomes das colunas (variáveis).
-- `str()`: estrutura do data.frame. Mostra, entre outras coisas, as classes de cada coluna.
-- `cbind()`: acopla duas tabelas lado a lado.
-- `rbind()`: empilha duas tabelas.
-
-```{r, echo=FALSE, eval=FALSE}
-head(iris)  
-str(iris)
-```
-
-Exercício relâmpago:
-```{r}
-# construa uma lista com dois vetores de tamanhos iguais.
-lista <- list()
-
-# transforme a lista em um data.frame usando a função as.data.frame()
-
-```
 
 
 
@@ -382,7 +481,14 @@ lista <- list()
 ## Fórmulas
 
 ```{r, echo=FALSE, eval=FALSE}
-formula <- y ~ x1 + x2
+formula <- y ~ x1 + x2 
+class(formula)
+
+a <- "y ~ x1 + x2"
+class(a)
+
+formula <- as.formula(a)
+formula
 class(formula)
 ```
 
@@ -398,10 +504,9 @@ No ggplot2 `facet_grid(x ~ y)` significa montar uma matriz de gráficos com as l
 <!------------------------------------------------------------------>
 ## Controles de Fluxo
 
- - if, else
+ - if, else (ifelse)
  - for
  - while
- 
 
 <!------------------------------------------------------------------>
 ## if else
@@ -414,10 +519,12 @@ if(x == 1) {
 }
 ```
 
+
+
 ```{r}
 x <- 1
 
-if(x == 1) {         
+if(x != 1) {         
   Sys.time()      # Devolve a data/hora no momento da execução.
 }
 ```
@@ -427,15 +534,15 @@ if(x == 1) {
 ```{r}
 if(x < 0) {
   
-  sinal <- "negativo"
+  "negativo"
   
 } else if(x == 0) {
   
-  sinal <- "neutro"
+  "neutro"
   
 } else if(x > 0) {
   
-  sinal <- "positivo"
+  "positivo"
 }
 
 sinal
@@ -445,11 +552,14 @@ sinal
 ## for
 
 ```{r}
-for(contador in 1:5){
+for(i in 1:5){
   # várias coisas...
-  resultado <- contador^3
+  resultado <- i^3
   print(resultado)
 }
+
+i
+contador
 ```
 
 ## for
@@ -464,7 +574,7 @@ for(i in c("a", "b", "c")) {
 ## while
 
 ```{r}
-set.seed(1)
+set.seed(2)
 jogadas <- 0
 coroa <- FALSE               # Número de jogadas até uma coroa (ou cara).
 
@@ -476,7 +586,6 @@ while(!coroa) {
 jogadas
 ```
 
-
 <!------------------------------------------------------------------>
 ## ifelse
 
@@ -485,23 +594,20 @@ x <- letters
 ifelse(x %in% c("a", "e", "i", "o", "u"), "vogal", "consoante")
 ```
 
+
 Exercício relâmpago (DIFÍCIL):
 ```{r}
 # Brincadeira do 'PI'
 # faça um vetor que contenha 'PI' no lugar dos números divisíveis por 3
+
+df <- data.frame(x = x, y = 2:31)
+df
 x <- 1:30
-ifelse()
+ifelse(df$x > 15, "maior que 15", "menor que 15")
+
+%% # resto da divisão
+
 ```
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -539,7 +645,7 @@ plot(x, y)
 ```
 
 ```{r}
-plot(x, y, type = "l")
+plot(x, y, type = "s")
 ```
 
 
@@ -585,6 +691,9 @@ c
 
 ```{r, fig.height=3}
 data(diamonds, package = "ggplot2")
+
+diamonds
+
 tabela <- table(diamonds$color)
 barplot(tabela)
 ```
