@@ -23,7 +23,6 @@ Hoje:
     - stringr
     - expressões regulares
     - lubridate
-    - forcats
 
 
 ----------------------------------------------------------------------
@@ -507,51 +506,10 @@ O pacote `forcats` (`for` - para, `cats` - categóricas, não gatos) serve justa
 
 
 
-```{r}
-library(forcats)
-```
-
-Por exemplo, considere o seguinte gráfico de barras (veremos sobre o ggplot na próxima vez).
-
-```{r, out.width = '50%', fig.align='center'}
-set.seed(123)
-labs <- c('banana', 'maçã', 'laranja', 'limão', 'pêssego')[rbinom(1000, 4, .2) + 1]
-labs %>% ggplot2::qplot()
-```
-
-Note que o eixo `x` está ordenado alfabeticamente. Como a ordem das frutas não importa (pois é uma variável nominal), faz mais sentido ordenarmos as barras de acordo com a quantidade de frutas. Isso é feito com a função `fct_infreq`:
-
-```{r, out.width = '50%', fig.align='center'}
-labs %>% fct_infreq() %>% ggplot2::qplot()
-```
 
 
 
 
-
-Outra importante função do `forcats` possibilita agrupar fatores de forma eficiente:
-
-```{r, out.width = '50%', fig.align='center'}
-labs %>% 
-  fct_collapse(cítrica = c('laranja', 'limão')) %>% 
-  fct_infreq() %>% 
-  ggplot2::qplot()
-```
-
-Outra forma comum de agrupar fatores é agrupar em "outros" as categorias que aparecem poucas vezes na base de dados. Para isso, utilizamos `fct_lump`:
-
-```{r, fig.align = "default", out.width = '33%', fig.show='hold'}
-labs %>% fct_count()
-
-# agrupa todas desde que "outro" continue a menor categoria
-labs %>% fct_lump(other_level = 'outros') %>% ggplot2::qplot()
-
-# 10% menores
-labs %>% fct_lump(prop = .10, other_level = 'outros') %>% ggplot2::qplot() 
-
-# mantém os n maiores
-labs %>% fct_lump(n = 1, other_level = 'outros') %>% ggplot2::qplot()
-```
 
 ## Vocabulário
 
