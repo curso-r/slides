@@ -11,31 +11,51 @@ output: html_document
 
 Use a base `mtcars` para os exercícios:
 
-1) Calcule o coeficiente de variação da variávei `disp`
+1) Calcule o coeficiente de variação da variável `disp`
 ```{r}
+cv <- function(x) {
+  media <- mean(x)
+  desv_pad <- sd(x)
+  cv <- desv_pad/media
+  return(cv)
+}
 
+cv <- function(x) sd(x)/mean(x)
+
+cv(mtcars$disp)
 ```
 
 
 2) Filtre as linhas em que `cyl` seja 8 ou 4.
 ```{r}
+mtcars$cyl %in% c(8, 4)
 
+mtcars[ mtcars$cyl %in% c(8, 4), c("mpg", "cyl")]
 ```
 
 
 3) Filtre as linhas em que `wt` seja maior que 16.
 ```{r}
+mtcars
+mtcars[ mtcars$wt > 3 , c("mpg", "cyl", "wt")]
 
+row.names(mtcars)
 ```
 
 
-4) Filtre as linhas em que `cyl` seja 8 ou 4 E  `wt` seja maior que 16
+4) Filtre as linhas em que `cyl` seja 8 ou 4 E  `wt` seja maior que 3
 ```{r}
 
+# eu filtrei parará
+filtro <- mtcars$cyl %in% c(8, 4) & mtcars$wt > 3
+
+mtcars[ filtro, c("mpg", "cyl", "wt")]
 ```
 
 
 5) Com o ifelse() construa um variável `carb_flag` em que indique se `carb` é maior que 3.
 ```{r}
-mtcars$carb_flag <- 
+mtcars$carb_flag <- ifelse(mtcars$carb > 3, "Maior que 3", "Menor ou igual a 3")
+
+mtcars[ , c("carb", "carb_flag")]
 ```

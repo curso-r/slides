@@ -20,9 +20,9 @@ output: html_document
 Hoje:
 
 - pipe
-    - stringr
-    - expressões regulares
-    - lubridate
+- stringr
+- expressões regulares
+- lubridate
 
 
 ----------------------------------------------------------------------
@@ -40,7 +40,7 @@ library(magrittr)
 Considere o seguinte exemplo:
 
 ```{r}
-f <- function(x, y) x + y
+f <- function(x, y) x + y #ou qualquer coisa
 x <- 1
 y <- 2
 ```
@@ -56,7 +56,7 @@ Exercício: calcular raiz quadrada da soma dos valores de 1 a 4.
 
 ```{r}
 x <- c(1, 2, 3, 4)
-
+x %>% mean() %>% round(0)
 ```
 
 Agora escreva esse cálculo na forma usual (sem o pipe):
@@ -73,7 +73,20 @@ Tente entender o que é preciso fazer.
 
 ```{r, eval=FALSE}
 
-esfrie(asse(coloque(bata(acrescente(recipiente(rep("farinha", 2), "água", "fermento", "leite", "óleo"), "farinha", até = "macio"), duração = "3min"), lugar = "forma", tipo = "grande", untada = TRUE), duração = "50min"), "geladeira", "20min")
+esfrie(
+  asse(
+    coloque(
+      bata(
+        acrescente(
+          recipiente(
+            rep("farinha", 2), "água", "fermento", "leite", "óleo")
+          , "farinha", até = "macio"), 
+        duração = "3min"), 
+      lugar = "forma", 
+      tipo = "grande", 
+      untada = TRUE), 
+    duração = "50min"), 
+  "geladeira", "20min")
 
 ```
 
@@ -88,6 +101,7 @@ recipiente(rep("farinha", 2), "água", "fermento", "leite", "óleo") %>%
   asse(duração = "50min") %>%
   esfrie("geladeira", "20min")
 
+
 ```
 
 Agora o código realmente parece uma receita de bolo.
@@ -99,6 +113,7 @@ Para mais informações sobre o `pipe` e exemplos de utilização, visite a pág
 # Strings com `stringr`
 
 ```{r}
+install.packages("stringr")
 library(stringr)
 ```
 
@@ -112,7 +127,24 @@ library(stringr)
 
 ```{r}
 s <- c("olá mundo", "olá universo")
-str_length(s)
+s
+max(str_length(s))
+
+tamanho_das_palavras <- s %>% str_length
+s
+tamanho_das_palavras
+x <- c(9, 12)
+x <- 9 %>% c(12)
+x
+min(x)
+
+letters %>% class
+
+
+
+c(10,2,3) %>% str_length %>% sum
+
+s %>% str_length %>% max
 length(s)
 ```
 
@@ -122,6 +154,8 @@ A função `str_trim` remove os espaços excedetes antes e depois da string.
 
 ```{r}
 s <- '\nessa      string é muito suja       \n'
+s
+
 str_trim(s)
 ```
 
@@ -132,10 +166,14 @@ encontra variáveis com valores da forma:
 
 ```{r}
 s <- c("01-Feminino", "02-Masculino", "03-Indefinido")
+s
 ```
 
 ```{r}
 s %>% str_sub(start = 4) # pegar do quarto até o último caractere
+s_ok <- s %>% str_sub(start = 4)
+s_ok
+
 ```
 
 É possível obter também apenas os números
@@ -156,7 +194,9 @@ s %>% str_sub(start = -2)
 
 ```{r}
 s <- c("__SP__", "__MG__", "__RJ__")
-str_sub(s, 3, 4)
+
+s %>% str_sub(3, 3)
+str_sub(s, 3, 3)
 ```
 
 ### `str_to_upper`, `str_to_lower`, `str_to_title`
@@ -181,9 +221,20 @@ Trabalhar com textos exige um certo conhecimento de expressões regulares (*rege
 identificar conjuntos de caracters, palavras, e outros padrões por meio de uma sintaxe
 concisa. 
 
-Vamos estudar expressões regulares através de exemplos e com a função `str_view()`. 
+```{r}
+s <- c(um monte de palavras)
+
+s[s %in% regex("(matri)*", ignore_case = TRUE) ]
+
+2^str_length("impeachment")
+```
+
+
+Vamos estudar expressões regulares através de exemplos e com a função `str_view()`.
 
 ```{r}
+# $ para o regex significa final da palavra/frase/string
+# 'paulo$' significa "palavras que terminam com 'paulo'"
 str_view("sao paulo", pattern = "paulo$")
 str_view("sao paulo sp", pattern = "paulo$")
 ```
@@ -198,22 +249,38 @@ testes <- c('ban', 'banana', 'abandonado',
 ```{r}
 # reconhece tudo que tenha "ban", mas não ignora case
 str_view(testes, 'ban')
+```
 
+```{r}
 # reconhece tudo que tenha "BAN", mas não ignora case
 str_view(testes, 'BAN')
+```
 
+```{r}
 # reconhece tudo que tenha "ban", ignorando case
 str_view(testes, regex('ban', ignore_case = TRUE))
+```
 
+```{r}
 # reconhece apenas o que termina exatamente em "ban"
 str_view(testes, 'ban$')
+```
 
+```{r}
 # reconhece apenas o que começa exatamente com "ban"
 str_view(testes, '^ban')
+```
 
+```{r}
 # reconhece tudo que tenha "ban", com ou sem espaço entre o "b" e o "a"
 str_view(testes, 'b ?an')
+str_view(testes, 'ban')
+str_view_all(testes, 'an')
+str_view_all(testes, 'a?n')
 ```
+
+- $
+- ?
 
 ### Quantificadores
 
@@ -238,6 +305,7 @@ s %>% str_view('ey*')
 ```{r}
 s <- c('hey', 'heyy', 'a eyyy', 'e', 'y', 'yy')
 s %>% str_view('ey{3}')
+
 ```
 
 - `ey{1,3}` significa "entre uma e três vezes".
@@ -250,10 +318,12 @@ s %>% str_view('ey{1,3}')
 Para aplicar um quantificador a um conjunto de caracteres, use parênteses. Por exemplo, `(ey )+` reconhece `ey ey `.
 
 ```{r}
-s <- 'ey ey'
+s <- 'ey ey t'
+s
 s %>% str_view('(ey)+')
 s %>% str_view('(ey )+')
 s %>% str_view('(ey ?)+')
+s %>% str_view('(ey ?)*')
 ```
 
 
@@ -261,21 +331,32 @@ s %>% str_view('(ey ?)+')
 
 Colocando caracteres dentro de `[]`, reconhecemos quaisquer caracteres desse conjunto. Alguns exemplos práticos:
 
-- `[Cc]asa` para reconhecer "casa" em maiúsculo ou minúsculo.
+- `[0123456789]asa` para reconhecer "casa" em maiúsculo ou minúsculo.
 - `[0-9]` para reconhecer somente números. O mesmo vale para letras `[a-z]`, `[A-Z]`, `[a-zA-Z]` etc.
 - O símbolo `^` dentro do colchete significa negação. Por exemplo, `[^0-9]` significa pegar tudo o que não é número.
 - O símbolo `.` fora do colchete indica "qualquer caractere", mas dentro do colchete é apenas ponto.
 - Use `[[:space:]]+` para reconhecer espaços e `[[:punct:]]+` para reconhecer pontuações.
 
 ```{r}
-s <- 'minha casa é colorida'
-s %>% str_view('[A-Za-z ]+')
+
+regex
+s <- c('minha casa é ! colorida', "sem sinal de mais")
+
+s %>% str_view('[é]+')
+s  %>% str_view('[éA-Za-z ]+')
+s  %>% str_view('\\++')
+str_extract(s, "\\++")
+
+
+s  %>% str_view('[].*')
+
+
 ```
 
 ### Miscelânea
 
 - Use `abjutils::rm_accent()` para retirar os acentos de um texto.
-- Use `|` para opções, por exemplo `desfavor|desprov` reconhece tanto "desfavorável" quanto "desprovido"
+- Use `|` para opções, por exemplo `desfavor|desprov|<>|<>|` reconhece tanto "desfavorável" quanto "desprovido"
 - `\n` pula linha, `\f` é final da página, `\t` é tab. Use `\` para transformar caracteres especiais em literais.
 
 A lista de possibilidades com expressões regulares é extensa. 
@@ -291,6 +372,8 @@ Retorna `TRUE` se a regex é compatível com a string e `FALSE` caso contrário.
 library(stringr)
 str_detect("sao paulo", pattern = "paulo$")
 str_detect("sao paulo sp", pattern = "paulo$")
+str_detect(s, "[:punct:].+")
+s[str_detect(s, "[:punct:].+")]
 ```
 
 
@@ -299,15 +382,28 @@ str_detect("sao paulo sp", pattern = "paulo$")
 Substituem um padrão (ou todos) encontrado para um outro padrão
 
 ```{r}
-frutas <- c("uma maçã", "duas pêras", "três bananas")
+frutas <- c("uma           maçã", "duas pêras", "três bananas")
 str_replace(frutas, "[aeiou]", "-")     # substitui a primeira vogal de cada string por "-"
-str_replace_all(frutas, "[aeiou]", "-") # substitui todas as vogais por "-"
+```
 
-yyyy <- "yyyyy yyyyy ll zz"
-str_replace(yyyy, 'y+', 'x')     # substitui o primeiro 1 ou mais y's por x
-str_replace_all(yyyy, 'y+', 'x') # substitui todos os 1 ou mais y por somente 1 x
-str_replace_all(yyyy, 'y', 'x')  # substitui y por x
+```{r}
+str_replace_all(frutas, " +", "_") # substitui todas as vogais por "-"
+```
 
+```{r}
+s <- "yyyyy yyyyy ll zz"
+str_replace_all(s, 'y', 'x')     # substitui o primeiro 1 ou mais y's por x
+```
+
+```{r}
+str_replace_all(s, 'y+', 'x') # substitui todos os 1 ou mais y por somente 1 x
+```
+
+```{r}
+str_replace_all(s, 'y', 'x')  # substitui y por x
+```
+
+```{r}
 str_replace_all('string     com    muitos espaços', ' +', ' ') # tirar espaços extras
 ```
 
@@ -320,9 +416,14 @@ Extraem padrões de uma string. Por exemplo:
 r_core_group <- c(
   'Douglas Bates', 'John Chambers', 'Peter Dalgaard',
   'Robert Gentleman', 'Kurt Hornik', 'Ross Ihaka', 'Tomas Kalibera',
-  'Michael Lawrence', 'Friedrich Leisch', 'Uwe Ligges', '...'
+  'Michael Lawrence', 'Friedrich Leisch', 'Uwe Ligges', 'Willy'
 )
-sobrenomes <- str_extract(r_core_group, '[:alpha:]+$')
+r_core_group
+
+sobrenomes <- r_core_group %>% 
+  str_extract(' [:alpha:]+$') %>% # extrai último nome
+  str_trim()
+
 sobrenomes
 ```
 
@@ -334,7 +435,12 @@ Separa uma string em várias de acordo com um separador.
 ```{r}
 string <- 'Durante um longo período de tempo o "R" foi escrito "P" como no alfabeto cirílico. O seu nome no alfabeto fenício era "rech". Seu significado era o de uma cabeça, representada pela adaptação do hieróglifo egípcio de uma cabeça. Transformou-se no "rô" dos gregos. Os romanos modificaram o rô acrescentando um pequeno traço para diferenciá-lo do no nosso P.'
 
-str_split(string, fixed('.'))
+string_splited <- str_split(string, fixed('.')) %>% unlist
+string_splited[4]
+
+class(string_splited)
+length(string_splited)
+string_splited
 ```
 
 O `str_split_fixed` faz o mesmo que `str_split()`, mas separa apenas `n` vezes.
