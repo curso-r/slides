@@ -1,0 +1,404 @@
+---
+title: "Manipulando tabelas com o pacote `dplyr`"
+author: "Fernando Corrêa"
+date: "26 de julho de 2017"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = F)
+```
+
+# Manipulando tabelas com o pacote `dplyr`
+
+## Na última vez:
+
+- importaçao de dados
+    - pacote `readr` para dados em texto
+    - pacote `haven` para dados do Stata, SPSS e SAS
+    - pacote `readxl` para dados vindo de planilhas do excel
+    - `openxlsx` para ler e escrever em `.xlsx`
+- datas: pacote `lubridate`
+    - formato padrão do R é `ymd`, mas todas as permutações dessas três letras também funcionam
+    - horas funcionam fazendo `ymd_hms`, ou toda as permutações dos blocos de três letras
+    - extrair informações: `year`,`month`,`wday`
+    - operações aritméticas: 
+        - somar números adicionam a menor unidade
+            - `as.Date('2017-01-01') + 1` somam um dia
+        - somar unidades de tempo: `as.Date('2017-01-01')+years(1)`
+    - arredondar datas `floor_date`
+    - mexer com timezones: `_tz`
+    
+## Hoje:
+
+- Wrangle e Tidy data
+- data.frame
+    - tibble
+- transformação de dados com dplyr
+- exemplos práticos
+
+```{r}
+library(dplyr)
+library(stringr)
+library(lubridate)
+library(readxl)
+```
+
+## Wrangle
+
+```{r transform, echo=F, fig.cap='Transformação no ciclo da ciência de dados.', fig.width=9}
+knitr::include_graphics('data-science-wrangle.png')
+```
+
+
+> "(...) The fact that data science exists as a field is a colossal failure of statistics. To me, what I do is what statistics is all about. It is gaining insight from data using modelling and visualization. Data munging and manipulation is hard and statistics has just said that’s not our domain."
+> 
+> Hadley Wickham
+
+- Tarefa dolorosa e demorada
+- Essencial em qualquer análise de dados
+- Partimos de uma base "crua" e a transforma até obter uma base de dados pronta pra análise. 
+
+----------------------------------------------------------------------
+
+## Tidy data
+
+1. Cada linha da base representa uma observação.
+2. Cada coluna da base representa uma variável.
+3. ~~Cada tabela considera informações de uma unidade amostral.~~
+3. ~~Cada célula contém um dado.~~
+
+----------------------------------------------------------------------
+
+## data.frame
+
+Lista com todos os elementos de mesmo comprimento.
+
+```{r, error=TRUE}
+minha_lista <- list(x = c(1, 2, 3), y = c("a", "b"))
+as.data.frame(minha_lista)
+```
+
+```{r}
+minha_lista <- list(x = c(1, 2, 3), y = c("a", "b", "c"))
+as.data.frame(minha_lista)
+```
+
+- `head()` Mostra as primeiras 6 linhas.
+- `tail()` Mostra as últimas 6 linhas.
+- `dim()` Número de linhas e de colunas.
+- `names()` Os nomes das colunas (variáveis).
+- `str()` Estrutura do data.frame. Mostra, entre outras coisas, as classes de cada coluna.
+
+```{r}
+head(iris)  
+str(iris)
+```
+
+----------------------------------------------------------------------
+
+## Trabalhando com `tibble`s
+
+- Uma `tibble` nada mais é do que um `data.frame`, mas com um método de impressão mais adequado. Outras diferenças podem ser estudadas [neste link](http://r4ds.had.co.nz/tibbles.html).
+
+```{r}
+#só da diferença no console
+as.data.frame(minha_lista)
+
+as.tibble(minha_lista)
+```
+
+## Base IDH-Municipal - PNUD
+
+```{r}
+pnud_min <- readRDS('pnud_min.rds')
+pnud_min
+```
+
+- `ano` ano do Censo.
+- `muni` nome do município. Cada município aparece três vezes, um para cada ano.
+- `uf` Unidade Federativa.
+- `regiao` região brasileira.
+- `idhm` IDH municipal, dividido em
+    - `idhm_e` IDH municipal - educação.
+    - `idhm_l` IDH municipal - longevidade.
+    - `idhm_r` IDH municipal - renda.
+- `espvida` expectativa de vida.
+- `rdpc` renda *per capita*.
+- `gini` coeficiente de gini municipal (mede desigualdade social).
+- `pop` população residente do município.
+- `lat`, `lon` latitude e longitude do município (ponto médio).
+
+
+## Perguntas
+
+1. Qual é a expectativa de vida média em São Paulo?
+1. A diferença entre renda e desigualdade muda de acordo com a região?
+1. O IDH muda de acordo com o tamanho da população?
+1. Renda impacta desigualdade?
+1. A expectativa de vida muda de acordo com a renda? 
+1. Renda per capita e o IDH de renda medem mais ou menos a mesma coisa?
+
+----------------------------------------------------------------------
+
+# Pacote `dplyr`
+
+## Os cinco verbos do `dplyr`
+
+- `filter`: filtrar linhas.
+- `select`: selecionar colunas.
+- `mutate`: criar/modificar colunas.
+- `arrange`: ordenar a base.
+- `summarise`: sumarizar a base em uma linha.
+
+O objetivo é transformar manipulações complexas de bases de dados em listas de tarefas simples.
+
+Quando se faz isso fica fácil traduzir o nosso raciocínio pro programa.
+
+## Exemplo
+
+Qual é a expectativa de vida média dos municípios de São Paulo?
+
+Passos pra responder: 
+
+1. **Filtrar** todos os municípios de São Paulo.
+2. **Sumarizar** a tabela tomando a média da expectativa de vida.
+
+Traduzido pra `dplyr`:
+
+```{r}
+
+pnud_min %>% 
+  dplyr::filter(uf == "SP") %>% 
+  dplyr::summarise(expectativa_de_vida_media = mean(espvida))
+
+```
+
+### Características
+
+- O _input_  é (quase) sempre uma `tibble`, e o _output_  é sempre um `tibble`.
+- No primeiro argumento colocamos o `tibble` (ou `data.frame`, ou `table` etc) , e nos outros argumentos colocamos o que queremos fazer.
+- A utilização é facilitada com o emprego do operador `%>%`.
+- O pacote faz uso de NSE (*non standard evaluation*).
+
+
+## `select`
+
+- Utilizar `starts_with(x)`, `contains(x)`, `matches(x)`, `one_of(x)`, etc.
+- Possível colocar nomes, índices, e intervalos de variáveis com `:`.
+
+```{r}
+pnud_min %>% 
+  select(ano, regiao, muni)
+```
+
+```{r}
+pnud_min %>% 
+  select(ano:regiao, rdpc)
+```
+
+```{r}
+pnud_min %>% 
+  select(ano, starts_with('idhm'))
+```
+
+---------------------------------------------------
+
+## `filter`
+
+- Parecido com `subset`.
+
+```{r}
+pnud_min %>% 
+  select(ano, muni, uf) %>% 
+  dplyr::filter(uf == 'AC')
+```
+
+- Condições separadas por vírgulas é o mesmo que separar por `&`.
+- Para fazer várias condições, use os operadores lógicos (`&` e `|`) ou separando filtros entre vírgulas.
+
+```{r}
+pnud_min %>% 
+  select(ano, regiao, uf, idhm) %>% 
+  dplyr::filter(uf %in% c('SP', 'MG') | idhm > .5, ano == 2010)
+  # é igual a
+  # filter((uf %in% c('SP', 'MG') | idhm > .5) & ano == 2010)
+```
+
+```{r}
+pnud_min %>% 
+  select(muni, ano, uf) %>% 
+  dplyr::filter(str_detect(muni, '^[HG]|S$'), 
+         ano == 1991)
+```
+
+## `summarise`
+
+- Retorna um vetor de tamanho `1` a partir de uma conta com as variáveis.
+- Algumas funções importantes: `n()`, `n_distinct()`.
+
+```{r}
+pnud_min %>% 
+  group_by(regiao, uf) %>% 
+  summarise(n = n(), espvida = mean(espvida)) %>% 
+  arrange(regiao, desc(espvida))
+```
+
+## Exercício - Desenvolvimento em dois períodos
+
+Obtenha:
+
+- As médias de expectativa da vida e de renda per capita dos municípios de São Paulo antes e depois de 2010. Elas mudaram?
+- As médias de expectativa de vida e de renda per capita antes e depois de 2005 para o município com o menor IDH relativo a educação. Elas mudaram?
+- A média do índice de Gini para municípios que mencionam algum santo.
+
+Dicas:
+
+1. Primeiro filtre, depois sumarize.
+2. O `filter` aceita coisas como `filter(idade == median(idade))`.
+3. O `filter` aceita coisas como `filter(str_detect(...))`
+
+---------------------------------------------------
+
+## `arrange`
+
+- Simplesmente ordena de acordo com as opções.
+- Utilizar `desc` para ordem decrescente.
+
+```{r}
+pnud_min %>% 
+  dplyr::filter(ano == 2010) %>% 
+  arrange(desc(espvida)) %>% 
+  select(espvida, muni)
+```
+
+- Dá pra ordenar por várias colunas, na ordem em que você quiser. A prioridade é da esquerda pra direita.
+
+```{r}
+pnud_min %>% 
+  arrange(ano, desc(espvida)) %>% 
+  select(ano, espvida)
+```
+
+---------------------------------------------------
+
+## `mutate`
+
+- Cria novas variáveis
+- Novas variáveis devem ter o mesmo `length` que o `nrow` do bd oridinal ou `1`.
+
+```{r}
+pnud_min %>% 
+  select(muni, rdpc, pop, idhm_l, espvida) %>% 
+  mutate(renda = rdpc * pop, 
+         razao = idhm_l / espvida) %>% 
+  select(renda, razao)
+```
+
+---------------------------------------------------
+
+## Exercício - Usando `mutate`
+
+Obtenha: 
+    - A renda total média dos municípios com os 50% menores índices de gini.
+    - Os quantis da diferença entre o IDH do município e a média dos três IDH's específicos.
+    
+Dicas:
+  1. A renda total é dada pelo produto da renda por cabeça e o número de cabeça.
+  2. A mediana de um conjunto de dados é o número obtido quando você ordena os dados até percorrer metade deles.
+  3. O R devolve quantis de um vetor usando a função `quantile`
+
+### `group_by`
+
+- Muitas operações que temos interesse envolvem agrupar a base em pedaços.
+- Usa-se o `group_by` pra ensinar o R a fazer as contas agrupadas por alguma das colunas.
+
+```{r}
+pnud_min %>% 
+  group_by(ano) %>% 
+  summarise(idhm = mean(idhm))
+```
+
+- É possível agrupar por cruzamentos de coisas, também.
+
+```{r}
+pnud_min %>% 
+  group_by(uf, ano) %>% 
+  summarise(idhm = mean(idhm))
+```
+
+- A "função" `n()` representa o número de linhas num grupo.
+
+```{r}
+pnud_min %>% 
+  mutate(populacao_pequena = pop < 10000) %>% 
+  group_by(uf) %>% 
+  summarise(prop_pop_pequena = sum(populacao_pequena)/n())
+```
+
+## Exercício - Agrupamentos
+
+Obtenha: 
+    - As médias de índice de Gini e do IDH de renda por Unidade da Federação.
+    - As proporções de municípios com IDH maior do que 0.8, calculadas por região.
+    - As médias de IDH separadas por faixa de renda total.
+
+Dicas:
+    1. A função `cut` transforma um vetor em faixas de mesmo tamanho. Observa o resultado de `cut(1:10, breaks = 2, labels = F)`
+    
+# Pacote `tidyr`
+
+- Teoricamente serve para ajudar no 'data tidying'
+- Na prática, usamos junto com o `dplyr` como se fossem uma coisa só.
+
+## `gather`
+
+- "Derrete" as colunas de um banco de dados
+
+```{r warning=FALSE, message=FALSE}
+pnud_min %>% 
+  select(uf, muni, ano, starts_with('idhm_')) %>% 
+  gather(tipo_idhm, idhm, starts_with('idhm_')) %>% 
+  arrange(desc(idhm))
+```
+
+- Pra quê isso serve? 
+
+```{r}
+pnud_min %>% 
+  dplyr::filter(regiao %in% c("Sudeste", "Norte")) %>% 
+  select(regiao, uf, muni, ano, starts_with('idhm_')) %>% 
+  gather(tipo_idhm, idhm, starts_with('idhm_')) %>% 
+  group_by(regiao, tipo_idhm) %>% 
+  summarise(media = mean(idhm))
+```
+
+```{r}
+pnud_min %>% 
+  dplyr::filter(regiao %in% c("Sudeste", "Norte")) %>% 
+  select(regiao, uf, muni, ano, starts_with('idhm_')) %>% 
+  group_by(regiao) %>% 
+  summarise(idhm_e_medio = mean(idhm_e),
+            idhm_l_medio = mean(idhm_l),
+            idgm_r_medio = mean(idhm_r))
+```
+
+---------------------------------------------------
+
+## `spread`
+
+- "Joga" uma variável nas colunas
+- É essencialmente a função inversa de `gather`
+
+```{r}
+pnud_min %>% 
+  select(muni, uf, ano, idhm) %>% 
+  spread(ano, idhm)
+```
+
+## Exercício - gather e spread
+
+Produza as seguintes tabelas
+
+- Uma tabela em que cada linha é uma Unidade da Federação, cada coluna é um ano e as células são as rendas totais dos estados
+- Uma tabela em que cada linha é um tipo de idh, cada coluna é uma unidade da federação e o as células são as médias de idh dentro dos estados.
