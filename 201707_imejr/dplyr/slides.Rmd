@@ -38,6 +38,7 @@ knitr::opts_chunk$set(echo = TRUE, message = F)
 - exemplos práticos
 
 ```{r}
+library(tidyverse)
 library(dplyr)
 library(stringr)
 library(lubridate)
@@ -105,7 +106,7 @@ str(iris)
 #só da diferença no console
 as.data.frame(minha_lista)
 
-as.tibble(minha_lista)
+as_tibble(minha_lista)
 ```
 
 ## Base IDH-Municipal - PNUD
@@ -133,10 +134,15 @@ pnud_min
 ## Perguntas
 
 1. Qual é a expectativa de vida média em São Paulo?
+
 1. A diferença entre renda e desigualdade muda de acordo com a região?
+
 1. O IDH muda de acordo com o tamanho da população?
+
 1. Renda impacta desigualdade?
+
 1. A expectativa de vida muda de acordo com a renda? 
+
 1. Renda per capita e o IDH de renda medem mais ou menos a mesma coisa?
 
 ----------------------------------------------------------------------
@@ -153,7 +159,7 @@ pnud_min
 
 O objetivo é transformar manipulações complexas de bases de dados em listas de tarefas simples.
 
-Quando se faz isso fica fácil traduzir o nosso raciocínio pro programa.
+Quando se faz isso, fica fácil traduzir o nosso raciocínio pro programa.
 
 ## Exemplo
 
@@ -163,6 +169,8 @@ Passos pra responder:
 
 1. **Filtrar** todos os municípios de São Paulo.
 2. **Sumarizar** a tabela tomando a média da expectativa de vida.
+
+
 
 Traduzido pra `dplyr`:
 
@@ -199,7 +207,7 @@ pnud_min %>%
 
 ```{r}
 pnud_min %>% 
-  select(ano, starts_with('idhm'))
+  select(ano, contains('a'))
 ```
 
 ---------------------------------------------------
@@ -239,9 +247,7 @@ pnud_min %>%
 
 ```{r}
 pnud_min %>% 
-  group_by(regiao, uf) %>% 
-  summarise(n = n(), espvida = mean(espvida)) %>% 
-  arrange(regiao, desc(espvida))
+  summarise(n = n(), espvida = mean(espvida))
 ```
 
 ## Exercício - Desenvolvimento em dois períodos
@@ -249,8 +255,49 @@ pnud_min %>%
 Obtenha:
 
 - As médias de expectativa da vida e de renda per capita dos municípios de São Paulo antes e depois de 2010. Elas mudaram?
+
+```{r}
+pnud_min %>% 
+  dplyr::filter(uf == "SP") %>% 
+  dplyr::filter(ano < 2010) %>% 
+  summarise(esp = mean(espvida),
+            rdpc = mean(rdpc))
+```
+
+```{r}
+pnud_min %>% 
+  dplyr::filter(uf == "SP", ano == 2010) %>% 
+  summarise(esp = mean(espvida),
+            rdpc = mean(rdpc))
+```
+
 - As médias de expectativa de vida e de renda per capita antes e depois de 2005 para o município com o menor IDH relativo a educação. Elas mudaram?
+
+```{r}
+pnud_min %>% 
+  dplyr::filter(ano < 2010) %>% 
+  dplyr::filter(idhm_e == min(idhm_e)) %>% 
+  summarise(esp = mean(espvida),
+            rdpc = mean(rdpc))
+```
+
+```{r}
+pnud_min %>% 
+  dplyr::filter(ano == 2010) %>% 
+  dplyr::filter(idhm_e == min(idhm_e)) %>% 
+  summarise(esp = mean(espvida),
+            rdpc = mean(rdpc))
+```
+
 - A média do índice de Gini para municípios que mencionam algum santo.
+
+```{r}
+pnud_min %>% 
+  dplyr::filter(str_detect(str_to_lower(muni),
+               "s[aã]o|sant[oa]")) %>% 
+  summarise(gini_medio = mean(gini))
+```
+
 
 Dicas:
 
@@ -301,10 +348,43 @@ pnud_min %>%
 
 Obtenha: 
     - A renda total média dos municípios com os 50% menores índices de gini.
+    
+```{r}
+
+#solução errada, mas que está ok
+
+pnud_min %>% 
+  dplyr::filter(gini <= median(gini)) %>% 
+  mutate(renda_total = rdpc*pop) %>% 
+  summarise(media_renda_total = mean(renda_total))
+
+#solução exatamente igual ao o que o exercício pede
+
+pnud_min %>% 
+  arrange(gini) %>% 
+  mutate(linha = 1:n(),
+         #variavel que guarda o numero da linha
+         renda_total = rdpc*pop) %>% 
+  dplyr::filter(linha <= max(linha)/2) %>% 
+  summarise(media_renda_total = mean(renda_total))
+ 
+```
+  
     - Os quantis da diferença entre o IDH do município e a média dos três IDH's específicos.
     
+```{r}
+
+#solucao sem mean
+
+tabela_com_diferenca <- pnud_min %>% 
+  mutate(media_idh = (idhm_e + idhm_l + idhm_r)/3,
+         diferenca_idh = idhm-media_idh)
+
+quantile(tabela_com_diferenca$diferenca_idh)
+```
+    
 Dicas:
-  1. A renda total é dada pelo produto da renda por cabeça e o número de cabeça.
+  1. A renda total é dada pelo produto da renda por cabeça e o número de cabeças.
   2. A mediana de um conjunto de dados é o número obtido quando você ordena os dados até percorrer metade deles.
   3. O R devolve quantis de um vetor usando a função `quantile`
 
@@ -318,6 +398,16 @@ pnud_min %>%
   group_by(ano) %>% 
   summarise(idhm = mean(idhm))
 ```
+
+```{r}
+pnud_min %>% 
+  mutate(antes_2010 = ano < 2010) %>% 
+  dplyr::filter(uf == "SP") %>% 
+  group_by(antes_2010) %>% 
+  summarise(esp = mean(espvida),
+            rdpc = mean(rdpc))
+```
+
 
 - É possível agrupar por cruzamentos de coisas, também.
 
@@ -340,11 +430,27 @@ pnud_min %>%
 
 Obtenha: 
     - As médias de índice de Gini e do IDH de renda por Unidade da Federação.
-    - As proporções de municípios com IDH maior do que 0.8, calculadas por região.
-    - As médias de IDH separadas por faixa de renda total.
+  
+```{r}
 
-Dicas:
-    1. A função `cut` transforma um vetor em faixas de mesmo tamanho. Observa o resultado de `cut(1:10, breaks = 2, labels = F)`
+pnud_min %>% 
+  group_by(uf) %>% 
+  summarise(gini = mean(gini),
+            idhm = mean(idhm))
+
+```
+
+
+    - As proporções de municípios com IDH maior do que 0.8, calculadas por região.
+    
+```{r}
+
+pnud_min %>% 
+  group_by(regiao) %>% 
+  summarise(p = mean(idhm > 0.8))
+
+```
+
     
 # Pacote `tidyr`
 
@@ -391,8 +497,8 @@ pnud_min %>%
 - É essencialmente a função inversa de `gather`
 
 ```{r}
-pnud_min %>% 
-  select(muni, uf, ano, idhm) %>% 
+pnud_min %>%
+  select(muni, uf, ano, idhm) %>%
   spread(ano, idhm)
 ```
 
