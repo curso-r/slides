@@ -1,0 +1,632 @@
+---
+title: "aula2"
+output: html_document
+---
+<!------------------------------------------------------------------>
+## Resumão Aula 2
+
+- Matrizes: são vetores de duas dimensões
+- Funções: prontas e personalizadas
+- Listas: aceita de tudo
+- Valores especiais: reservado para o R usar
+- Fatores: characters com níveis bem definidos
+- data.frame: listas com vetores de tamanhos iguais
+- fórmulas: usos específicos em diferentes contextos 
+- Controles de Fluxo: clássico nas linguagens de programação
+- Gráficos (base): feios, porém práticos
+
+----------------------------------------------------------------------
+
+Hoje:
+
+- pipe
+- stringr
+- expressões regulares
+- lubridate
+
+
+----------------------------------------------------------------------
+
+## Pipe `%>%`
+
+```{r}
+library(magrittr)
+```
+
+![](https://github.com/tidyverse/magrittr/raw/master/inst/logo.png)
+
+![](https://upload.wikimedia.org/wikipedia/en/b/b9/MagrittePipe.jpg)
+
+Considere o seguinte exemplo:
+
+```{r}
+f <- function(x, y) x + y #ou qualquer coisa
+x <- 1
+y <- 2
+```
+
+As duas linhas abaixo são equivalentes:
+
+```{r}
+f(x, y)
+x %>% f(y)
+```
+
+Exercício: calcular raiz quadrada da soma dos valores de 1 a 4.
+
+```{r}
+x <- c(1, 2, 3, 4)
+x %>% mean() %>% round(0)
+```
+
+Agora escreva esse cálculo na forma usual (sem o pipe):
+
+```{r}
+sqrt(sum(x))
+```
+
+Exercício mental: imagine 10 funções encaixadas sem o pipe.
+
+### Receita de bolo
+
+Tente entender o que é preciso fazer. 
+
+```{r, eval=FALSE}
+
+esfrie(
+  asse(
+    coloque(
+      bata(
+        acrescente(
+          recipiente(
+            rep("farinha", 2), "água", "fermento", "leite", "óleo")
+          , "farinha", até = "macio"), 
+        duração = "3min"), 
+      lugar = "forma", 
+      tipo = "grande", 
+      untada = TRUE), 
+    duração = "50min"), 
+  "geladeira", "20min")
+
+```
+
+Agora veja como fica escrevendo com o `%>%`:
+
+```{r, eval=FALSE}
+
+recipiente(rep("farinha", 2), "água", "fermento", "leite", "óleo") %>%
+  acrescente("farinha", até = "macio") %>%
+  bata(duraço = "3min") %>%
+  coloque(lugar = "forma", tipo = "grande", untada = TRUE) %>%
+  asse(duração = "50min") %>%
+  esfrie("geladeira", "20min")
+
+
+```
+
+Agora o código realmente parece uma receita de bolo.
+
+Para mais informações sobre o `pipe` e exemplos de utilização, visite a página [Ceci n'est pas un pipe](http://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html).
+
+----------------------------------------------------------------------
+
+# Strings com `stringr`
+
+```{r}
+install.packages("stringr")
+library(stringr)
+```
+
+- Todas as funções do `stringr` começam com o prefixo `str`. 
+- No Rstudio, basta digitar `str_` dentro de um chunk.
+- O primeiro argumento das funções é sempre uma string ou vetor de strings.
+
+## Basicão
+
+### `str_length`
+
+```{r}
+s <- c("olá mundo", "olá universo")
+s
+max(str_length(s))
+
+tamanho_das_palavras <- s %>% str_length
+s
+tamanho_das_palavras
+x <- c(9, 12)
+x <- 9 %>% c(12)
+x
+min(x)
+
+letters %>% class
+
+
+
+c(10,2,3) %>% str_length %>% sum
+
+s %>% str_length %>% max
+length(s)
+```
+
+### `str_trim`
+
+A função `str_trim` remove os espaços excedetes antes e depois da string.
+
+```{r}
+s <- '\nessa      string é muito suja       \n'
+s
+
+str_trim(s)
+```
+
+### `str_sub`
+
+As vezes você precisa obter alguma parte fixa de uma string. Por exemplo, as vezes você 
+encontra variáveis com valores da forma:
+
+```{r}
+s <- c("01-Feminino", "02-Masculino", "03-Indefinido")
+s
+```
+
+```{r}
+s %>% str_sub(start = 4) # pegar do quarto até o último caractere
+s_ok <- s %>% str_sub(start = 4)
+s_ok
+
+```
+
+É possível obter também apenas os números
+
+```{r}
+s %>% str_sub(end = 2) # pegar apenas os dois primeiros caracteres
+```
+
+Em outros casos você precisa obter os últimos 2 caracteres.
+
+```{r}
+s <- c("Feminino-01", "Masculino-02", "Indefinido-03")
+s %>% str_sub(end = -4)
+s %>% str_sub(start = -2)
+```
+
+É possível também usar os argumentos `start` e `end` conjuntamente.
+
+```{r}
+s <- c("__SP__", "__MG__", "__RJ__")
+
+s %>% str_sub(3, 3)
+str_sub(s, 3, 3)
+```
+
+### `str_to_upper`, `str_to_lower`, `str_to_title`
+
+Essas funções servem para modificar a caixa das letras. Por exemplo:
+
+```{r}
+s <- "Olá, tudo bem?"
+str_to_lower(s)
+str_to_upper(s)
+str_to_title(s)
+```
+
+Essas são as funções mais simples do pacote `stringr` e mão exigem nenhum conhecimento
+de regex. Note que nenhuma delas possui o parâmetro `pattern`, você verá como especificar
+esse parâmetros nas próximas sessões.
+
+## **Reg**ular **ex**pressions
+
+Trabalhar com textos exige um certo conhecimento de expressões regulares (*regex*).
+[Expressões regulares](https://pt.wikipedia.org/wiki/Express%C3%A3o_regular) permitem
+identificar conjuntos de caracters, palavras, e outros padrões por meio de uma sintaxe
+concisa. 
+
+```{r}
+s <- c(um monte de palavras)
+
+s[s %in% regex("(matri)*", ignore_case = TRUE) ]
+
+2^str_length("impeachment")
+```
+
+
+Vamos estudar expressões regulares através de exemplos e com a função `str_view()`.
+
+```{r}
+# $ para o regex significa final da palavra/frase/string
+# 'paulo$' significa "palavras que terminam com 'paulo'"
+str_view("sao paulo", pattern = "paulo$")
+str_view("sao paulo sp", pattern = "paulo$")
+```
+
+A regex/pattern "paulo$" indica que o texto deve ser terminado em "paulo". 
+
+```{r, message=FALSE, warning=FALSE, include=FALSE}
+testes <- c('ban', 'banana', 'abandonado', 
+            'pranab anderson', 'BANANA', 'ele levou ban')
+```
+
+```{r}
+# reconhece tudo que tenha "ban", mas não ignora case
+str_view(testes, 'ban')
+```
+
+```{r}
+# reconhece tudo que tenha "BAN", mas não ignora case
+str_view(testes, 'BAN')
+```
+
+```{r}
+# reconhece tudo que tenha "ban", ignorando case
+str_view(testes, regex('ban', ignore_case = TRUE))
+```
+
+```{r}
+# reconhece apenas o que termina exatamente em "ban"
+str_view(testes, 'ban$')
+```
+
+```{r}
+# reconhece apenas o que começa exatamente com "ban"
+str_view(testes, '^ban')
+```
+
+```{r}
+# reconhece tudo que tenha "ban", com ou sem espaço entre o "b" e o "a"
+str_view(testes, 'b ?an')
+str_view(testes, 'ban')
+str_view_all(testes, 'an')
+str_view_all(testes, 'a?n')
+```
+
+- $
+- ?
+
+### Quantificadores
+
+Os caracteres `+`, `*` e `{x,y}` indicam quantas vezes um padrão se repete:
+
+- `ey+` significa `e` e depois `y` "**uma vez** ou mais".
+
+```{r}
+s <- c('hey', 'heyy', 'a eyyy', 'e', 'y', 'yy')
+s %>% str_view('ey+')
+```
+
+- `ey*` significa "**zero vezes** ou mais". 
+
+```{r}
+s <- c('hey', 'heyy', 'a eyyy', 'e', 'y', 'yy')
+s %>% str_view('ey*')
+```
+
+- `ey{3}` significa "exatamente três vezes". 
+
+```{r}
+s <- c('hey', 'heyy', 'a eyyy', 'e', 'y', 'yy')
+s %>% str_view('ey{3}')
+
+```
+
+- `ey{1,3}` significa "entre uma e três vezes".
+
+```{r}
+s <- c('hey', 'heyy', 'a eyyy', 'e', 'y', 'yy')
+s %>% str_view('ey{1,3}')
+```
+
+Para aplicar um quantificador a um conjunto de caracteres, use parênteses. Por exemplo, `(ey )+` reconhece `ey ey `.
+
+```{r}
+s <- 'ey ey t'
+s
+s %>% str_view('(ey)+')
+s %>% str_view('(ey )+')
+s %>% str_view('(ey ?)+')
+s %>% str_view('(ey ?)*')
+```
+
+
+### Conjuntos
+
+Colocando caracteres dentro de `[]`, reconhecemos quaisquer caracteres desse conjunto. Alguns exemplos práticos:
+
+- `[0123456789]asa` para reconhecer "casa" em maiúsculo ou minúsculo.
+- `[0-9]` para reconhecer somente números. O mesmo vale para letras `[a-z]`, `[A-Z]`, `[a-zA-Z]` etc.
+- O símbolo `^` dentro do colchete significa negação. Por exemplo, `[^0-9]` significa pegar tudo o que não é número.
+- O símbolo `.` fora do colchete indica "qualquer caractere", mas dentro do colchete é apenas ponto.
+- Use `[[:space:]]+` para reconhecer espaços e `[[:punct:]]+` para reconhecer pontuações.
+
+```{r}
+
+regex
+s <- c('minha casa é ! colorida', "sem sinal de mais")
+
+s %>% str_view('[é]+')
+s  %>% str_view('[éA-Za-z ]+')
+s  %>% str_view('\\++')
+str_extract(s, "\\++")
+
+
+s  %>% str_view('[].*')
+
+
+```
+
+### Miscelânea
+
+- Use `abjutils::rm_accent()` para retirar os acentos de um texto.
+- Use `|` para opções, por exemplo `desfavor|desprov|<>|<>|` reconhece tanto "desfavorável" quanto "desprovido"
+- `\n` pula linha, `\f` é final da página, `\t` é tab. Use `\` para transformar caracteres especiais em literais.
+
+A lista de possibilidades com expressões regulares é extensa. 
+Um bom lugar para testar o funcionamento de expressões regulares é o [regex101](https://regex101.com/).
+
+## Usando expressões regulares no stringr
+
+### str_detect()` 
+
+Retorna `TRUE` se a regex é compatível com a string e `FALSE` caso contrário.
+
+```{r}
+library(stringr)
+str_detect("sao paulo", pattern = "paulo$")
+str_detect("sao paulo sp", pattern = "paulo$")
+str_detect(s, "[:punct:].+")
+s[str_detect(s, "[:punct:].+")]
+```
+
+
+### str_replace() e str_replace_all() 
+
+Substituem um padrão (ou todos) encontrado para um outro padrão
+
+```{r}
+frutas <- c("uma           maçã", "duas pêras", "três bananas")
+str_replace(frutas, "[aeiou]", "-")     # substitui a primeira vogal de cada string por "-"
+```
+
+```{r}
+str_replace_all(frutas, " +", "_") # substitui todas as vogais por "-"
+```
+
+```{r}
+s <- "yyyyy yyyyy ll zz"
+str_replace_all(s, 'y', 'x')     # substitui o primeiro 1 ou mais y's por x
+```
+
+```{r}
+str_replace_all(s, 'y+', 'x') # substitui todos os 1 ou mais y por somente 1 x
+```
+
+```{r}
+str_replace_all(s, 'y', 'x')  # substitui y por x
+```
+
+```{r}
+str_replace_all('string     com    muitos espaços', ' +', ' ') # tirar espaços extras
+```
+
+
+### str_extract() e str_extract_all()
+
+Extraem padrões de uma string. Por exemplo:
+
+```{r}
+r_core_group <- c(
+  'Douglas Bates', 'John Chambers', 'Peter Dalgaard',
+  'Robert Gentleman', 'Kurt Hornik', 'Ross Ihaka', 'Tomas Kalibera',
+  'Michael Lawrence', 'Friedrich Leisch', 'Uwe Ligges', 'Willy'
+)
+r_core_group
+
+sobrenomes <- r_core_group %>% 
+  str_extract(' [:alpha:]+$') %>% # extrai último nome
+  str_trim()
+
+sobrenomes
+```
+
+
+### str_split() e str_split_fixed()
+
+Separa uma string em várias de acordo com um separador.
+
+```{r}
+string <- 'Durante um longo período de tempo o "R" foi escrito "P" como no alfabeto cirílico. O seu nome no alfabeto fenício era "rech". Seu significado era o de uma cabeça, representada pela adaptação do hieróglifo egípcio de uma cabeça. Transformou-se no "rô" dos gregos. Os romanos modificaram o rô acrescentando um pequeno traço para diferenciá-lo do no nosso P.'
+
+string_splited <- str_split(string, fixed('.')) %>% unlist
+string_splited[4]
+
+class(string_splited)
+length(string_splited)
+string_splited
+```
+
+O `str_split_fixed` faz o mesmo que `str_split()`, mas separa apenas `n` vezes.
+
+```{r}
+str_split_fixed(string, fixed('.'), 3)
+```
+
+
+
+
+### str_subset() 
+
+Retorna somente as strings compatíveis com a regex.
+
+```{r}
+frases <- c('a roupa do rei', 'de roma', 'o rato roeu')
+str_subset(frases, 'd[eo]')
+```
+
+É o mesmo que fazer o subset do R e a função `str_detect`.
+
+```{r}
+frases[str_detect(frases, "d[eo]")]
+```
+
+## Vocabulário
+
+- str_replace e str_replace_all
+- str_extract
+- str_extract_all
+- str_split
+- str_split_fixed
+- str_subset
+
+
+
+
+
+
+
+## Exercício
+
+Imagine que você possui a seguinte string que é a parte final de uma URL:
+
+`/ac/rio-branco/xpto-xyz-1-0-1fds2396-5`
+
+Você precisa transformá-la em 'AC - Rio Branco'.
+
+**Dica**: Use `str_split`, `str_replace_all`, `str_to_upper`, `str_to_title`.
+
+```{r ex="exercicio_02", type="sample-code"}
+s <- '/ac/rio-branco/xpto-xyz-1-0-1fds2396-5'
+```
+
+----------------------------------------------------------------------
+
+
+
+
+
+
+
+# `lubridate` para datas
+
+```{r, warning=FALSE, message=FALSE}
+library(lubridate)
+```
+
+
+
+
+A função mais importante para leitura de dados no `lubridate` é a `ymd`. Essa função serve para ler qualquer data de uma `string` no formato `YYYY-MM-DD`. Essa função é útil pois funciona com qualquer separador entre os elementos da data e também porque temos uma função para cada formato (`mdy`, `dmy`, `dym`, `myd`, `ydm`). 
+
+
+
+
+
+**Exemplo**: dia-ano-mês
+
+```{r, warning=FALSE, message=FALSE}
+d1 <- '04/15/06'
+dym(d1)
+```
+
+
+
+
+
+**Exemplo**: ano-mês-dia
+
+```{r}
+d2 <- '2015-01-02'
+ymd(d2)
+```
+
+
+
+
+
+
+Outras funções importantes
+
+- `ymd_hms`: lê datas e horários, generalizando `ymd`. **Exemplo**:
+
+```{r}
+d3 <- '07022016 10:11:47'
+mdy_hms(d3)
+```
+
+Observe que as classes são diferentes:
+
+```{r}
+d2 %>% ymd() %>% class()
+d3 %>% mdy_hms() %>% class()
+```
+
+
+
+
+
+- `year`, `month`, `day`, `quarter`, `weekday`, `week`: extraem componentes da data.
+- `years`, `months`, `days`: adicionam tempos a uma data, ajudando a criar vetores de datas. Por exemplo
+
+
+```{r, warning=FALSE, message=FALSE}
+ymd('2015-01-01') + months(0:11)
+```
+
+
+
+
+
+- `floor_date` e `ceiling_date`: arredonda datas para uma unidade de interesse. Útil para agregar dados diários por semana, mês, trimestre etc.
+
+
+Mais informações: 
+
+- ver [aqui](https://cran.r-project.org/web/packages/lubridate/vignettes/lubridate.html) e 
+- [aqui](https://www.jstatsoft.org/index.php/jss/article/view/v040i03/v40i03.pdf).
+
+----------------------------------------------------------------------
+
+
+
+
+
+
+
+# Pacote `forcats` para trabalhar com factors
+
+Factors sempre foram uma pedra no sapato para usuários de R. Esses objetos são estranhos pois parecem textos, mas na verdade são inteiros.
+
+```{r}
+x <- factor(c('a', 'b', 'c'))
+x
+typeof(x)
+```
+
+Assim, eles podem levar a erros do tipo:
+
+```{r}
+x <- factor(c('6', '5', '4'))
+as.numeric(x)
+```
+
+O pacote `forcats` (`for` - para, `cats` - categóricas, não gatos) serve justamente para reordenar fatores de diversas formas. Isso é especialmente útil para visualização, pois muitas vezes queremos ordenar coisas de acordo com alguma regra. 
+
+
+
+
+
+
+
+
+
+## Vocabulário
+
+- fct_infreq
+- fct_collapse
+- fct_infreq
+- fct_count
+- fct_lump
+
+
+
+
+
+## 

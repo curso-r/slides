@@ -1,0 +1,460 @@
+---
+title: "Importação"
+author: "Fernando Corrêa"
+date: '2017-07-25'
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Na última aula
+
+- `pipe` 
+- `stringr`
+- Expressões regulares
+
+Deixamos um exercício:
+
+> Transforme a string `/ac/rio-branco/xpto-xyz-1-0-1fds2396-5` em `AC - Rio Branco`
+
+## Solução do exercício - Easy mode
+
+- Soluções que dependem de você saber que o estado é AC e que a cidade é Rio Branco:
+
+```{r}
+library(stringr)
+
+'/ac/rio-branco/xpto-xyz-1-0-1fds2396-5' %>% 
+  str_extract("ac/rio-branco") %>% 
+  str_replace_all("-", " ") %>% 
+  str_replace_all("/"," - ") %>% 
+  str_replace_all("ac", "AC") %>% 
+  str_replace_all("rio branco", "Rio Branco") 
+
+```
+
+## Solução do exercício - Hard Mode
+
+- Soluções que não dependem de saber qual é o estado
+
+```{r}
+library("stringr")
+url <- c("/ac/rio-branco/xpto-xyz-1-0-1fds2396-5")
+estado <- url %>% 
+  str_sub(start=2) %>% 
+  str_split("/",n=2,simplify=TRUE)  %>% 
+  .[1:1] %>% 
+  str_to_upper()
+```
+
+## Solução do exercício - Hard Mode
+
+```{r}
+cidade <-  url %>% 
+  str_sub(start=5) %>% 
+  str_split("/",n=2,simplify=TRUE) %>% 
+  .[1:1] %>% 
+  str_replace("-"," ") %>% 
+  str_to_title()
+
+str_c(estado, cidade, sep = " - ")
+```
+
+## Solução do exercício - Hard Mode
+
+```{r}
+texto_separado <- '/ac/rio-branco/xpto-xyz-1-0-1fds2396-5' %>% 
+  str_extract("[a-z]+/[a-z]+-[a-z]+") %>% 
+  str_split('/', simplify = T) %>% 
+  str_replace_all("-", " ")
+
+texto_final <- str_c(str_to_upper(texto_separado[1]),
+                     #passa tudo pra maiusculo
+                     str_to_title(texto_separado[2]),
+                     #deixa as primeiras letras em maiusculo)
+                     sep = " - ")
+
+texto_final
+```
+
+## Solução do exercício - Hard Mode
+
+```{r}
+texto_separado <- '/ms/campo-grande/xpto-xyz-1-0-1fds2396-5' %>% 
+  str_extract("[a-z]+/[a-z]+-[a-z]+") %>% 
+  str_split('/', simplify = T) %>% 
+  str_replace_all("-", " ")
+
+texto_final <- str_c(str_to_upper(texto_separado[1]),
+                     str_to_title(texto_separado[2]),
+                     sep = " - ")
+
+texto_final
+```
+
+## Nesta aula
+
+- Importação de dados para o R
+- Truques
+- Mexer com datas
+
+## Conceitos sobre importação
+
+- No geral, as informações são armazenadas em quatro formatos:
+
+    1. Textos: fwf, csv e delimitados em geral
+    2. Binários: xls (Excel), dta (Stata), sav (SPSS), sas7bdat (SAS)
+    3. Linguagens de marcação: xlsx, html
+    4. Bases de dados: SQL, Postgree, Spark, MongoDB
+    
+## Textos
+
+- Colunas delimitadas por vírgula:
+
+```{r}
+# mpg,cyl,disp,hp,drat,wt,qsec,vs,am,gear,carb
+# 21,6,160,110,3.9,2.62,16.46,0,1,4,4
+# 21,6,160,110,3.9,2.875,17.02,0,1,4,4
+# 22.8,4,108,93,3.85,2.32,18.61,1,1,4,1
+```
+
+## Textos
+
+- Colunas delimitadas por espaço:
+
+```{r}
+# mpg cyl disp hp drat wt qsec vs am gear carb
+# 21 6 160 110 3.9 2.62 16.46 0 1 4 4
+# 21 6 160 110 3.9 2.875 17.02 0 1 4 4
+# 22.8 4 108 93 3.85 2.32 18.61 1 1 4 1
+```
+
+## Textos
+
+- Colunas com tamanho fixo:
+
+- 4, 1, 3, 3, 4, 5, 5, 1, 1, 1, 1
+
+```{r}
+# 21.061601103.902.62016.460144
+# 21.061601103.902.87517.020144
+# 22.841080933.852.32018.611141
+```
+
+## Lendo textos
+
+- Pacote `readr`
+    - `read_delim` (e suas especializações `read_csv`,`read_csv2`,`read_tsv`)
+    - `read_fwf`
+    
+## Lendo textos - Exemplo
+
+```{r, message=FALSE}
+library(readr)
+
+read_csv(file = "data_imejr_importacao/mtcars.csv")
+```
+
+## Lendo textos - Exemplo
+
+```{r, message=FALSE}
+library(readr)
+
+read_delim(file = "data_imejr_importacao/mtcars.txt", delim = " ")
+```
+
+## Lendo textos - Exemplo
+
+```{r, message = FALSE}
+
+read_fwf(file = "data_imejr_importacao/fwf_example.txt",
+         fwf_widths(
+           c(4, 1, 3, 3, 4, 5, 5, 1, 1, 1, 1),
+           c('mpg','cyl','disp','hp','drat','wt',
+             'qsec','vs','am','gear','carb')
+          )
+         )
+```
+
+## Lendo Textos - Empilhando vários arquivos
+
+```{r, message=FALSE}
+lista_de_arquivos <- "data_imejr_importacao/varios_arquivos/" %>% 
+                      list.files(recursive = T, full.names = T)
+
+arquivos_empilhados <- NULL
+for(arquivo in lista_de_arquivos){
+  aux <- readr::read_csv(arquivo)
+  arquivos_empilhados <- rbind(arquivos_empilhados, aux)
+}
+
+arquivos_empilhados
+```
+
+## Exercício - Misturando vários tipos de arquivo
+
+- Na pasta `exercicio_1`, as subpastas contém arquivos com delimitações diferentes, mas que guardam a mesma informação. Escreva um código que empilha todos eles, lendo do jeito que for mais adequado.
+- Dica:
+    1. Levante os tipos de arquivos que estão disponíveis
+    2. Construa um laço para percorrer todos eles.
+    3. Ensine o computador a ler do jeito correto usando um `if` e funções do `stringr`
+    4. Vá empilhando os arquivos com `rbind`.
+
+## Solução - Inicialização
+
+```{r, message = FALSE}
+lista_de_arquivos <- "data_imejr_importacao/exercicio_1/" %>% 
+                      list.files(recursive = T, full.names = T)
+
+comprimentos_fwf <- c(4, 1, 3, 3, 4, 5, 5, 1, 1, 1, 1)
+nomes_fwf <- c('mpg','cyl','disp','hp','drat','wt',
+               'qsec','vs','am','gear','carb')
+arquivos_empilhados <- NULL
+```
+
+## Solução - Laço de repetição
+
+```{r, message = FALSE, eval = F}
+for(arquivo in lista_de_arquivos){
+  if(str_detect(arquivo, "csv2/")){
+    aux <- readr::read_csv2(arquivo)
+  }
+   if(str_detect(arquivo, "csv/")){
+    aux <- readr::read_csv(arquivo)
+   }
+   if(str_detect(arquivo, "fwf/")){
+    aux <- read_fwf(file = arquivo,
+                    fwf_widths(comprimentos_fwf, nomes_fwf))
+  }
+  arquivos_empilhados <- rbind(arquivos_empilhados, aux)
+}
+
+arquivos_empilhados
+```
+
+## Lendo binários
+
+- Existem binários de vários tipos:
+    - `dta`
+    - `sav`
+    - `sas7bdat`
+    - Binários do R
+    
+## Lendo binários
+
+- Pacote `haven`
+
+```{r}
+
+mtcars_dta <- haven::read_dta('data_imejr_importacao/mtcars.dta')
+mtcars_sas <- haven::read_sas('data_imejr_importacao/mtcars.sas7bdat')
+mtcars_sav <- haven::read_sav('data_imejr_importacao/mtcars.sav')
+
+```
+
+## Escrevendo binários
+
+- Para softwares proprietários, existem funções `write_dta`, `write_sas` e `write_sav`.
+- Para usuários de R
+    - `.rda`
+    - `.rds`
+    
+## Escrevendo binários
+
+- Exportam objetos do R
+- Principal diferença entre eles: um salva o nome do objeto e outro não
+
+```{r}
+save(mtcars, file = 'mtcars.RData')
+saveRDS(mtcars, 'mtcars.rds')
+
+load('mtcars.RData')
+mtcars_vindo_de_rds <- readRDS("mtcars.rds")
+
+#Coisa que pode confundir:
+mtcars_vindo_de_rda <- load('mtcars.RData')
+```
+
+## Lendo arquivos - Linguagens de marcação
+
+- Linguagens de marcação são textos estruturados por tags
+
+```{xml}
+<body> 
+  <h1> Isso é um título <\h1>
+<\body>
+```
+
+- O jeito mais recente de armazenas planilhas de excel é, na verdade, um arquivo `xml` por trás.
+    
+## Lendo arquivos - O que são os arquivos do Excel?
+
+- `xls` é software proprietário da Microsoft.
+    - Não é tão fácil assim desenvolver leitores de `xls`
+- `xlsx` é um arquivo zipado que tem vários `xml`'s dentro
+    - É fácil desenvolver leitores de `xlsx`
+    - É fácil escrever arquivos em `xlsx`
+    
+## Lendo arquivos - Excel no R
+
+- Existe um pacote que realiza as duas funções razoavelmente bem `readxl`
+
+```{r}
+library(readxl)
+
+dados_xls <- read_xls(path = "data_imejr_importacao/mtcars.xls")
+dados_xlsx <- read_xlsx(path = "data_imejr_importacao/mtcars.xlsx")
+read_excel(path = "data_imejr_importacao/mtcars.xls")
+read_excel(path = "data_imejr_importacao/mtcars.xlsx")
+```
+
+## Escrevendo arquivos Excel no R
+
+- Só é possível para `xlsx`, usando o pacote `openxlsx`
+
+```{r}
+openxlsx::write.xlsx(mtcars, "data_imejr_importacao/mtcars_from_R.xlsx")
+```
+
+## Lendo arquivos - HTML
+
+```{r, echo = F}
+url <- "http://chancedegol.uol.com.br/lib17.htm"
+
+httr::GET(url, httr::write_disk(path =
+'data_imejr_importacao/chance_de_gol.html', overwrite = T))
+```
+
+- pacotes `xml2` e `rvest`
+
+```{r}
+chance_de_gol <- xml2::read_html('data_imejr_importacao/chance_de_gol.html')
+```
+
+- Extrair tabelas:
+
+```{r}
+todas_as_tabelas <- chance_de_gol %>% 
+  rvest::html_table(fill = T, header = T) 
+```
+
+## Lendo arquivos - HTML
+
+```{r}
+todas_as_tabelas[[4]]
+```
+
+# Mexendo com datas
+
+## Roteiro
+
+- Introdução
+- A classe `date`
+- Transformar e extrair datas
+- Funções úteis para trabalhar com datas
+
+## Introdução
+
+- Trabalhar com datas no R pode ser uma chateação.
+- As funções do R base são, em geral, contraintuitivas e podem mudar de acordo com o tipo do objeto que você está usando.
+- O pacote lubridate lida com esses problemas, fazendo o trabalho com datas ser muito mais fácil.
+
+## A classe "date"
+
+Datas no R são tratadas como um tipo especial de objeto, com classe `date`.
+
+```{r, message=F, comment=F}
+library(lubridate)
+
+data_string <- "21-10-2015"
+class(data_string)
+
+data_date <- date(data_string)       # Não é o que a gente queria.
+class(data_date)
+
+data_as_date <- as_date(data_string)    # Também não!
+class(data_as_date)
+```
+
+## A classe "date"
+
+```{r, message = F, comment = F}
+data_mdy <- dmy(data_string)           # Agora sim!
+class(data_mdy)
+```
+
+- Funções equivalentes: `dmy()`, `mdy()`, `myd()`, `ymd()`, `ydm()` etc.
+
+- As funções `date()` e `as_date()` assumem que a ordem é ano-mês-dia (ymd).
+
+## A classe "date"
+
+```{r}
+date("2015-10-21")
+as_date("2015-10-21")
+```
+
+- Convertendo outros formatos:
+
+```{r, eval = F}
+dmy(21102015)
+dmy("21102015")
+dmy("21/10/2015")
+dmy("21.10.2015")
+```
+
+## A classe date
+
+- Para horários: `ymd_h()`, `ymd_hm()`, `ymd_hms()`...
+
+```{r}
+ymd_hms(20151021165411)
+```
+
+## Funções úteis
+
+- `second()` - extrai os segundos.
+- `minute()` - extrai os minutos.
+- `hour()` - extrai a hora.
+- `wday()` - extrai o dia da semana.
+- `mday()` - extrai o dia do mês.
+- `month()` - extrai o mês.
+- `year()` - extrai o ano.
+
+## Funções úteis 
+```{r, eval = F}
+bday <- ymd_hms(19890729030142)
+bday
+
+second(bday)
+day(bday)
+month(bday)
+year(bday)
+
+wday(bday)
+wday(bday, label = TRUE)
+```
+
+## Outras funcionalidades
+
+- Operações com fusos horários: `with_tz()` e `force_tz()`.
+- Intervalos: `interval()`, `int_overlaps()`.
+- Operações aritiméticas, duração de períodos, geração de datas recorrentes.
+
+## Operações aritméticas
+
+- Funções `years`, `months`, `weeks`
+- Somar dias, meses e anos
+
+```{r}
+as.Date("2017-01-01") + months(1)
+as.Date("2017-01-01") + years(1:3)
+as.Date("2017-01-01") + weeks(1)
+```
+
+## Exercício
+
+- Data a dada "2017-01-01", como obter o último dia de cada mês anterior a ela?
+
