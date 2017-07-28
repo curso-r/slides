@@ -7,12 +7,29 @@ author: "Curso R"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+## gather() e spread()
+
+```{r}
+df <- tibble(paciente = rep(1:3, 3),
+             tempos = rep(c("t1", "t2", "t3"), c(3, 3, 3)),
+             variavel_importante = rnorm(9))
+
+df
+
+df2 <- df %>% 
+  spread(key = tempos, value = variavel_importante)
+
+df2 %>% 
+  gather(key = "tempos", value = "variavel_importante", t1:t3)
+```
+
 ## Roteiro
 
 - Introdução
 - Construindo gráficos com o ggplot2
 - Labels, grids e temas.
 - Exercícios
+
 
 ## Introdução
 
@@ -27,7 +44,7 @@ knitr::include_graphics('img/ggplot2.png')
 
 - Gramática dos gráficos (Leland Wilkinson) -> o que é um gráfico estatístico?
 
-- Mapeamento dos dados a partir dos atributos estéticos (posição, cores, formas, tamanhos) de formas geométricas (pontos, linhas, barras)
+- Mapeamento dos dados a partir dos atributos estéticos (posição, cores, formas, tamanhos) de formas geométricas (pontos, linhas, barras).
 
 - Gráficos podem ser construídos em camadas.
 
@@ -95,7 +112,7 @@ Verificando valor estranho.
 ```{r}
 
 dados %>% 
-  filter(budget > 2e+09) %>% 
+  dplyr::filter(budget > 2e+09) %>% 
   select(movie_title, title_year, country)
 
 ```
@@ -107,7 +124,7 @@ Filtrando apenas para filmes norte-americanos.
 ```{r}
 
 dados %>% 
-  filter(country == "USA") %>%
+  dplyr::filter(country == "USA") %>%
   ggplot +
   geom_point(aes(x = budget, y = gross))
 
@@ -119,10 +136,10 @@ dados %>%
 
 ```{r}
 dados %>%
-  filter(country == "USA") %>%
+  dplyr::filter(country == "USA") %>%
   mutate(ano_c = ifelse(title_year < 2000, "periodo1", "periodo2")) %>% 
   ggplot +
-  geom_point(aes(x = budget, y = gross, color = ano_c))
+  geom_point(aes(x = budget, y = gross), color = "blue")
 ```
 
 
@@ -131,7 +148,7 @@ E se usarmos o ano como variável contínua?
 
 ```{r}
 dados %>%
-  filter(country == "USA") %>%
+  dplyr::filter(country == "USA") %>%
   ggplot +
   geom_point(aes(x = budget, y = gross, color = title_year))
 ```
@@ -145,7 +162,7 @@ dados %>%
 # Adicionamos outra camada: a reta y = x.
 
 dados %>%
-  filter(country == "USA") %>%
+  dplyr::filter(country == "USA") %>%
   ggplot +
   geom_point(aes(x = budget, y = gross, color = title_year)) +
   geom_abline(intercept = 0, slope = 1, color = "red")      # nova camada
@@ -157,8 +174,11 @@ A relação entre arrecadação e orçamento tem a ver com a classificação et�
 
 
 ```{r}
+
+dados$content_rating %>% as.factor %>% levels
+
 dados %>%
-  filter(country == "USA") %>%
+  dplyr::filter(country == "USA") %>%
   mutate(content_rating = content_rating %>% as.factor %>% 
            fct_collapse(Outros = c("Approved", "G", "GP", "M", "Not Rated",
                                    "Passed", "TV-14", "TV-G", "TV-MA", "TV-PG",
@@ -187,7 +207,7 @@ Reordenando os níveis da classificação
 
 ```{r}
 dados %>%
-  filter(country == "USA") %>%
+  dplyr::filter(country == "USA") %>%
   mutate(content_rating = content_rating %>% as.factor %>% 
            fct_collapse(Outros = c("Approved", "G", "GP", "M", "Not Rated",
                                    "Passed", "TV-14", "TV-G", "TV-MA", "TV-PG",
@@ -204,7 +224,7 @@ Acrescentando labels e mudando o tema.
 
 ```{r}
 dados %>%
-  filter(country == "USA") %>%
+  dplyr::filter(country == "USA") %>%
   mutate(content_rating = content_rating %>% as.factor %>% 
            fct_collapse(Outros = c("Approved", "G", "GP", "M", "Not Rated",
                                    "Passed", "TV-14", "TV-G", "TV-MA", "TV-PG",
@@ -216,7 +236,7 @@ dados %>%
   geom_abline(intercept = 0, slope = 1) +
   labs(x = "Orçamento", y = "Arrecadação", color = "Ano de\nLançamento",
        shape = "Classificação") +   # Acrescenta as labels.
-  theme_bw()                        # Tema preto e branco.
+  theme_bw()                       # Tema preto e branco.
 ```
 
 ## Exercício 1
@@ -236,15 +256,15 @@ Qual a distribuição da arrecadação dos 7 diretores com mais filmes?
 
 ```{r}
 dados %>%
-  filter(country == "USA") %>%
+  dplyr::filter(country == "USA") %>%
   count(director_name, sort = T)
 
 # Vamos construir um boxplot
 
 dados %>% 
-  filter(country == "USA", !is.na(director_name)) %>%
+  dplyr::filter(country == "USA", !is.na(director_name)) %>%
   group_by(director_name) %>% 
-  filter(n() >= 15) %>% 
+  dplyr::filter(n() >= 15) %>% 
   ggplot +
   geom_boxplot(aes(x = as.factor(director_name), y = gross))
 ```
@@ -254,9 +274,9 @@ Arrumando labels do eixo x.
 
 ```{r}
 dados %>% 
-  filter(country == "USA", !is.na(director_name)) %>%
+  dplyr::filter(country == "USA", !is.na(director_name)) %>%
   group_by(director_name) %>% 
-  filter(n() >= 15) %>% 
+  dplyr::filter(n() >= 15) %>% 
   ggplot +
   geom_boxplot(aes(x = as.factor(director_name), y = gross)) +
   theme(axis.text.x = element_text(angle=70, vjust = 0.5))
@@ -267,9 +287,9 @@ Ordenando pela mediana.
 
 ```{r}
 dados %>% 
-  filter(country == "USA", !is.na(director_name), !is.na(gross)) %>%
+  dplyr::filter(country == "USA", !is.na(director_name), !is.na(gross)) %>%
   group_by(director_name) %>% 
-  filter(n() >= 15) %>%
+  dplyr::filter(n() >= 15) %>%
   ungroup() %>% 
   mutate(director_name = director_name %>% as.factor %>%
            fct_reorder(gross, fun = median)) %>% 
@@ -295,13 +315,13 @@ Passo a passo:
 
 ## Painéis de gráficos 
 
-4. Compare as notas do IMDB do Tarantino, Scorsese e Tim Burton ao longo do tempo.
+4. Comparar as notas do IMDB do Tarantino, Scorsese e Tim Burton ao longo do tempo.
 
 ## Grid: notas do Tarantino, Scorsese e Tim Burton ao longo do tempo
 
 ```{r}
 dados %>% 
-  filter(director_name %in% c("Quentin Tarantino", "Martin Scorsese", "Tim Burton")) %>% 
+  dplyr::filter(director_name %in% c("Quentin Tarantino", "Martin Scorsese", "Tim Burton")) %>% 
   ggplot() +
   geom_point(aes(x = title_year, y = imdb_score)) +
   facet_wrap(~director_name)
@@ -311,10 +331,10 @@ dados %>%
 
 ```{r}
 dados %>% 
-  filter(director_name %in% c("Quentin Tarantino", "Martin Scorsese", "Tim Burton")) %>% 
-  ggplot() +
-  geom_point(aes(x = title_year, y = imdb_score)) +
-  geom_line(aes(x = title_year, y = imdb_score)) +
+  dplyr::filter(director_name %in% c("Quentin Tarantino", "Martin Scorsese", "Tim Burton")) %>% 
+  ggplot(aes(x = title_year, y = imdb_score)) +
+  geom_point() +
+  geom_line() +
   facet_wrap(~director_name)
 ```
 
@@ -322,11 +342,11 @@ Comparar notas acima e abaixo de 8.
 
 ```{r}
 dados %>% 
-  filter(director_name %in% c("Quentin Tarantino", "Martin Scorsese", "Tim Burton")) %>% 
+  dplyr::filter(director_name %in% c("Quentin Tarantino", "Martin Scorsese", "Tim Burton")) %>% 
   ggplot() +
   geom_point(aes(x = title_year, y = imdb_score)) +
+  geom_hline(yintercept = 8, color = "yellow") +
   geom_line(aes(x = title_year, y = imdb_score)) +
-  geom_hline(yintercept = 8, color = "dark blue") +
   facet_wrap(~director_name)
 ```
 
@@ -337,8 +357,8 @@ dados %>%
 
 ```{r}
 dados %>%
-  ggplot(aes(x = title_year)) +
-  geom_bar(color = "black", fill = "light green")
+  ggplot() +
+  geom_bar(aes(x = title_year), color = "black", fill = "light green")
 ```
 
 ```{r}
@@ -359,7 +379,7 @@ knitr::include_graphics('img/histogramas_mtcars.jpg')
 
 ## Exercício 4
 
-Quantos filmes o Nicholas Cage faz por ano?
+Quantos filmes o Nicolas Cage faz por ano?
 
 Repita o gráfico de barras do número de filmes por ano filtrando a base apenas para filmes que o Nicholas Cage aparece.
 
@@ -370,13 +390,13 @@ Faça um gráfico de barras para a arrecadação dos filmes em que o Andrew Garf
 
 Passo a passo:
 
-1. Encontre o `geom_` para fazer gráficos de barra.
+1. Encontre o `geom_bar` para fazer gráficos de barra.
 2. Utilize o argumento `stat = "identity"`. Ele deve ser usado dentro ou fora do `aes()`?
 3. Rotacione os nomes dos filmes (eixo x) para eles não ficarem sobrepostos.
 4. Faça cada barra ter uma cor diferente.
 5. Coloque a legenda na parte de baixo do gráfico. **Dica**: procurar argumentos da função `theme()`.
 6. Retire os nomes e as marcações do eixo x (sim, o passo 3 foi de sacanagem).
-4. [Opcional/bônus] Acrescente o título "Andrew Garfield, eu te odeio!". **Dica**: utilizar a função `ggtitle()`.
+7. [Opcional/bônus] Acrescente o título "Andrew Garfield, eu te odeio!". **Dica**: utilizar a função `ggtitle()`.
 
 
 ## Mais exercícios
@@ -402,11 +422,12 @@ Passo a passo:
 ### Exercício 1
 
 ```{r}
-dados %>% 
+dados %>%
   dplyr::filter(country == "USA", title_year >= 2000) %>% 
-  ggplot(aes(x = budget, y = imdb_score)) +
+  ggplot(aes(x = budget, y = imdb_score, color = title_year)) +
   geom_point() +
-  labs(x = "Orçamento", y = "Nota IMDB")
+  labs(x = "Orçamento", y = "Nota IMDB") +
+  scale_color_gradient(low = "#CC3133", high = "#F024C3")
 ```
 
 ### Exercício 2
@@ -444,10 +465,10 @@ Mudando a cor - Parte II
 
 ```{r}
 dados %>% 
-  filter(director_name == "Ridley Scott") %>%  #
+  dplyr::filter(director_name == "Ridley Scott") %>%  #
   unique() %>% 
   ggplot +
-  geom_histogram(aes(x = imdb_score), binwidth = 0.5, fill = "white", color = "black")
+  geom_histogram(aes(x = imdb_score), binwidth = 0.5, fill = "dark green", color = "pink")
 ```
 
 ## Exercíico 3
@@ -467,7 +488,7 @@ mtcars %>%
 
 ```{r}
 dados %>%
-  filter(actor_1_name == "Nicolas Cage" |
+  dplyr::filter(actor_1_name == "Nicolas Cage" |
          actor_2_name == "Nicolas Cage" |
          actor_3_name == "Nicolas Cage",
          !is.na(title_year)) %>% 
@@ -479,7 +500,7 @@ dados %>%
 
 ```{r}
 dados %>%
-  filter(actor_1_name == "Andrew Garfield" |
+  dplyr::filter(actor_1_name == "Andrew Garfield" |
          actor_2_name == "Andrew Garfield" |
          actor_3_name == "Andrew Garfield",
          !is.na(gross)) %>%
@@ -492,4 +513,6 @@ dados %>%
         legend.title = element_blank()) +
   ggtitle("Andrew Garfield, eu te odeio!")
   
+
+lm(formula = y ~ x1 + x2 + x3, data =)
 ```
