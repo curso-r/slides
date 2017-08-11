@@ -1,0 +1,237 @@
+---
+title: "Comentários sobre deep learning"
+author: "Julio Trecenti<br/>ABJ<br/>Platipus<br/>curso-r.com<br/>CONRE-3<br/>etc"
+date:
+output: 
+  revealjs::revealjs_presentation:
+    theme: night
+    transition: none
+    center: false
+    self_contained: false
+    reveal_plugins: ["chalkboard"]
+    reveal_options:
+      slideNumber: true
+      previewLinks: true
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(warning=FALSE, message=FALSE)
+```
+
+## Outline
+
+- Blablabla
+- Regressão logística
+- Aplicações
+
+## Novos tempos?
+
+- Nos últimos anos os tipos de dados mudaram.
+- Coisas muito importantes no mercado hoje em dia:
+
+```{r echo=FALSE, out.width="23%"}
+knitr::include_graphics(c("friends.jpg", "acordao.png", "wave.png"))
+```
+
+## Em paralelo (ou como consequência)...
+
+- Tivemos diversos avanços na estatística:
+    - Regularização
+    - Inferência Bayesiana
+    - Modelos não paramétricos
+    - ...
+- Tudo inserido numa caixinha chamada *statistical learning*
+    - Leiam o ESL!!!
+- Muito disso se deve aos avanços computacionais
+    - Coisas na cloud; computação barata
+    - Paralelização
+    - GPU
+- E também a uma comunidade cada vez mais ativa e colaborativa
+    - Github
+    - Popularização do R e do python
+    - Análises reprodutíveis
+
+## Deep Learning
+
+> - Popularidade recente da área de deep learning.
+> - Promete fazer muitas coisas.
+> - Tem um linguajar diferente do que estamos acostumados.
+
+```{r echo=FALSE, out.width='50%'}
+knitr::include_graphics("deepl.png")
+```
+
+## Problemas
+
+> - Muita, muita gente usando.
+> - Mercado está pedindo. Só se fala nisso.
+> - Falsa ideia de que não aprendemos nada na faculdade
+> - O que estudamos é ultrapassado?
+
+## Juntando com marketing {data-background="diff.png"}
+
+## Depressão {data-background="quit.png"}
+
+## Depressão 2 {data-background="dead.png"}
+
+## Não entre em pânico! {data-background="panic.jpg"}
+
+## Não entre em pânico!
+
+> - Existem muitos falsos cognatos.
+> - A maioria das coisas que estudamos é útil.
+> - Ainda assim, vale à pena estudar os conceitos.
+
+## Regressão logística
+
+Componente aleatório
+
+$$
+Y|x \sim \text{Bernoulli}(\mu)
+$$
+
+Componente sistemática
+
+$$
+g(\mu) = g(P(Y=1\,|\,x)) = \alpha + \beta x
+$$
+
+Função de ligação
+
+$$
+g(\mu) = \log\left(\frac{\mu}{1-\mu}\right)
+$$
+
+## Função Deviance
+
+$$
+\begin{aligned}
+D(y,\hat\mu(x)) &= \sum_{i=1}^n 2\left[y_i\log\frac{y_i}{\hat\mu_i(x_i)} + (1-y_i)\log\left(\frac{1-y_i}{1-\hat\mu_i(x_i)}\right)\right] = \\
+&= 2 D_{KL}\left(y||\hat\mu(x)\right),
+\end{aligned}
+$$
+
+onde $D_{KL}(p||q) = \sum_i p_i\log\frac{p_i}{q_i}$ é a divergência de Kullback-Leibler.
+
+## Deep learning
+
+```{r echo=FALSE, out.width='50%'}
+knitr::include_graphics("y1.png")
+```
+
+- Faz uma combinação linear inputs $x$, adiciona um viés (*bias*) e depois aplica uma função de ativação não linear.
+- No nosso caso, somente adiciona um parâmetro multiplicando $x$ e um viés fixo, fazendo
+
+$$
+f(x) = w x + \text{bias}
+$$
+
+- A função de ativação é uma sigmoide, dada por
+
+$$
+\sigma(x) = \frac{1}{1 + e^{-x}}
+$$
+
+- Coincidência?
+
+## Função de custo: categorical cross-entropy
+
+$$
+\begin{aligned}
+H(p, q) &= H(p) + D_{KL}(p||q) \\
+&= -\sum_x p(x)\log(q(x))
+\end{aligned}
+$$
+
+No nosso caso, (acho que) isso é equivalente a uma constante mais a função deviance.
+
+## Otimização
+
+- Existem diversos algoritmos de otimização.
+- Um dos mais utilizados é o de descida de gradiente estocástico.
+
+## Dados
+
+```{r warning=FALSE, message=FALSE}
+library(tidyverse)
+logistic <- function(x) 1 / (1 + exp(-x))
+
+n <- 100000
+set.seed(19910401)
+dados <- tibble(
+  x = runif(n, -2, 2),
+  y = rbinom(n, 1, prob = logistic(-1 + 2 * x))
+)
+dados
+```
+
+## Ajustando uma regressão logística no R
+
+```{r}
+modelo <- glm(y ~ x, data = dados, family = 'binomial')
+broom::tidy(modelo)
+```
+
+## Ajustando um deep learning com o keras
+
+```{r}
+library(keras)
+input_keras <- layer_input(shape = 1, name = "modelo_keras")
+
+output_keras <- input_keras %>% 
+  layer_dense(units = 1, name = "camada_unica") %>%
+  layer_activation("sigmoid", 
+                   input_shape = 1, 
+                   name = "link_logistic")
+
+# Constrói a nossa hipótese f(x) (da E[y] = f(x))
+modelo_keras <- keras_model(input_keras, output_keras)
+```
+
+## Ajustando um deep learning com o keras
+
+```{r}
+summary(modelo_keras)
+```
+
+## Ajustando um deep learning com o keras
+
+```{r}
+modelo_keras %>% 
+  compile(
+    loss = 'binary_crossentropy',
+    optimizer = "sgd"
+  )
+
+modelo_keras %>% 
+  fit(x = dados$x, y = dados$y, epochs = 3)
+```
+
+```
+Epoch 1/2
+100000/100000 [==============================] - 3s - loss: 0.3721      
+Epoch 2/2
+100000/100000 [==============================] - 3s - loss: 0.3721 
+```
+
+```{r}
+modelo_keras %>% get_layer("camada_unica") %>% get_weights()
+```
+
+## Dúvidas
+
+- Se é a mesma coisa, por que ele está ganhando tanta popularidade?
+- Devo estudar deep learning ou posso continuar fazendo regressão logística?
+
+## Aplicações
+
+## CAPTCHA
+
+```{r, fig.height=2, fig.width=7}
+library(decryptr)
+model <- decryptrModels::read_model('rfb')
+a <- download_rfb('.')
+plot(read_captcha(a))
+predict(model, newdata = prepare(read_captcha(a)))
+```
+
