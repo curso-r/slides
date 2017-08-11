@@ -1,0 +1,288 @@
+---
+title: "Machine Learning e a estatística"
+author: "VI SEAJEST - 2017"
+date: "Presidente Prudente, 31 de maio de 2017"
+output: 
+  revealjs::revealjs_presentation:
+    theme: simple
+    highlight: pygments
+    transition: slide
+    background_transition: slide
+    slide_level: 1
+    mathjax: default
+    center: false
+    css: styles.css
+---
+
+# Julio Trecenti
+
+<style type="text/css">
+td {
+  vertical-align: center;
+}
+</style>
+
+<small>
+40% estatístico, 30% programador, 20% hacker, 10% matemático
+</small>
+
+<table style="border:none;border-color:none;">
+<tr>
+<td>
+<img style="border:none;height:50px" src='img/ime.png' />
+</td>
+<td>
+Doutorando em Estatística no IME-USP  
+</td>
+</tr>
+
+<tr>
+<td>
+<img style="border:none;height:50px" src='img/abj.png' />
+</td>
+<td>
+Diretor-Técnico da Associação Brasileira de Jurimetria  
+</td>
+</tr>
+
+<tr>
+<td>
+<img style="border:none;height:50px" src='img/conre3.jpg' />
+</td>
+<td>
+Vice-presidente do CONRE-3
+</td>
+</tr>
+
+<tr>
+<td>
+<img style="border:none;height:50px" src='img/platipus.png' />
+</td>
+<td>
+Sócio da Platipus Consultoria
+</td>
+</tr>
+
+<tr>
+<td>
+<img style="border:none;height:50px" src='img/curso-r.png' />
+</td>
+<td>
+Sócio da Curso-R
+</td>
+</tr>
+<tr>
+</tr>
+
+</table>
+
+
+
+<!---------------------------------------------------------------------------->
+
+# Fazendo ciência de dados
+
+<img style="border:none;width:100%" src='img/ds.png' />
+
+# Tipos de estatística
+
+**Descritiva** -> visualização de dados  
+
+> - surpreende, mas não tem escala
+
+**Inferencial** -> modelagem / aprendizado  
+
+> - tem escala, mas não surpreende
+
+# Exemplo de visualização
+
+```{r echo=F, message=F, warning=F}
+library(tidyverse)
+d <- read_tsv('data/DatasaurusDozen.tsv') %>% 
+  filter(dataset != 'v_lines')
+```
+
+```{r echo=F, message=F, warning=F}
+stats <- d %>% 
+  group_by(dataset) %>% 
+  summarise_all(funs(mean, var))
+d %>% 
+  group_by(dataset) %>% 
+  summarise(cor = cor(x, y)) %>% 
+  inner_join(stats, 'dataset') %>% 
+  knitr::kable()
+```
+
+---
+
+```{r echo=F, message=F, warning=F, fig.width=9, fig.height=7}
+d %>% 
+  ggplot(aes(x, y)) +
+  geom_point() +
+  facet_wrap(~dataset) +
+  theme_minimal()
+```
+
+# Aprendizado estatístico
+
+- **Supervisionado**: prever ou estimar *outputs* a partir de *inputs*
+    - Interesse em **predição** (qual é o $y$ para um novo $X$?)
+    - Interesse em **inferência** (*como* $X$ afeta $y$?)
+
+$$
+y \approx f(X)
+$$
+
+ou
+
+$$
+y = f(X) + \epsilon
+$$
+
+- **Não supervisionado**: estudar *inputs*; não existe *output*
+    - dividir em grupos
+
+$$
+X
+$$
+
+<!---------------------------------------------------------------------------->
+
+# Livros
+
+- [Introduction to Statistical Learning](http://www-bcf.usc.edu/~gareth/ISL/).
+- [Elements of Statistical Learning](https://statweb.stanford.edu/~tibs/ElemStatLearn/).
+- [R for data science](http://r4ds.had.co.nz).
+
+<!---------------------------------------------------------------------------->
+
+# Overfitting
+
+Deve ser uma das principais preocupações quando ajustamos um modelo
+
+# O que é overfitting?
+
+O modelo está ajustando tendência e ruído.
+
+# Exemplo
+
+```{r echo=FALSE}
+set.seed(7)
+dados <- tibble(x = runif(10), y = 2 * x + rnorm(10, 0, 0.1))
+ggplot(dados, aes(x = x, y = y)) + 
+  geom_point() +
+  theme_minimal()
+```
+
+# Exemplo
+
+```{r}
+modelo1 <- lm(y ~ x, data = dados)
+modelo2 <- lm(y ~ poly(x, 9), data = dados)
+
+erro_modelo1 <- mean((dados$y - predict(modelo1)) ^ 2)
+erro_modelo2 <- mean((dados$y - predict(modelo2)) ^ 2)
+
+round(c(erro_modelo1 = erro_modelo1, erro_modelo2 = erro_modelo2), 3)
+```
+
+# Como fica graficamente?
+
+```{r echo=FALSE}
+ggplot(dados, aes(x = x, y = y)) + 
+  geom_point() + 
+  geom_smooth(formula = y ~ x, colour = "red", se = FALSE, method = 'lm') +
+  geom_smooth(formula = y ~ poly(x, 9), se = FALSE, method = 'lm') +
+  theme_minimal()
+```
+
+# Gerando mais dados
+
+```{r echo=FALSE}
+dados2 <- tibble(x = runif(100), y = 2 * x + rnorm(100, 0, 0.1))
+erro_modelo1 <- mean((dados2$y - predict(modelo1, newdata = dados2)) ^ 2)
+
+erro_modelo2 <- mean((dados2$y - predict(modelo2, newdata = dados2)) ^ 2)
+
+round(c(erro_modelo1 = erro_modelo1, erro_modelo2 = erro_modelo2), 3)
+```
+
+# Como fica graficamente?
+
+```{r echo=FALSE}
+dados %>% 
+  mutate(parte = 1) %>% 
+  bind_rows(dados2) %>% 
+  mutate(parte = ifelse(is.na(parte), '2', '1')) %>% 
+  ggplot(aes(x = x, y = y)) + 
+  geom_smooth(formula = y ~ x, colour = "red", se = FALSE, method = 'lm',
+              data = dados) +
+  geom_smooth(formula = y ~ poly(x, 9), se = FALSE, method = 'lm',
+              data = dados) +
+  geom_point(aes(colour = parte)) +
+  theme_minimal()
+```
+
+# Como evitar overfitting?
+
+- Separar a base em 2 partes: treino e teste,
+- Avaliar o erro na base de teste
+- Validação cruzada
+
+# CAPTCHAs
+
+```{r echo=FALSE, fig.height=4, message=FALSE, warning=FALSE}
+library(tidyverse)
+arq <- 'data/20170418114407537e79223a32.png'
+arq_aud <- 'data/20170418114407537e79223a32.wav'
+arq %>% 
+  magick::image_read() %>% 
+  plot()
+```
+
+```{r}
+captchaReceitaAudio::predizer(arq_aud)
+```
+
+<!---------------------------------------------------------------------------->
+
+# Classificador e modelagem
+
+No R
+
+<!---------------------------------------------------------------------------->
+
+# Avanços recentes
+
+- Quebrar o captcha usando sem picotar as letras.
+    - Modelos de aprendizado profundo (deep learning).
+- MaxEnt 2017
+
+<!---------------------------------------------------------------------------->
+
+# Desafios no mercado
+
+- Mercado de trabalho crescente, mas
+    - computação é necessário
+    - nosso curso está incompleto / desatualizado
+- Problemas de linguagem
+    - lidar com múltiplas definições
+- Empreendedorismo
+    - startups
+    - consultorias
+
+<!---------------------------------------------------------------------------->
+
+# Sigam-nos!
+
+- Blog Curso-R -> http://curso-r.com
+    - Sigam-nos no Facebook e Twitter!
+- Material Curso-R -> http://material.curso-r.com
+- Página com quebradores de CAPTCHAs -> https://github.com/decryptr
+- Outros links
+    - https://github.com/jtrecenti -> Pessoal
+    - https://github.com/curso-r -> Curso-R
+    - https://github.com/courtsbr -> Scrapers de tribunais
+    - https://github.com/abjur -> Jurimetria
+    - https://github.com/conre3 -> CONRE-3
+
