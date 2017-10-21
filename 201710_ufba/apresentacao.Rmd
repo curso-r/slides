@@ -16,7 +16,7 @@ output:
 ---
 
 ```{r include=FALSE}
-knitr::opts_chunk$set(warning=FALSE, echo=FALSE, message=FALSE, out.width="9 0%")
+knitr::opts_chunk$set(warning=FALSE, echo=FALSE, message=FALSE, out.width="90%")
 ```
 
 
@@ -51,11 +51,27 @@ knitr::include_graphics("inst/ws.png")
 knitr::include_graphics("inst/wc2.png")
 ```
 
+## Ciclo da ciência de dados
+
+```{r, echo=FALSE}
+knitr::include_graphics("inst/ds.png")
+```
+
+## web scraping
+
+- Forma especial de `import`
+- Propriedades:
+    - Sistemático
+    - Sem intervenção humana
+- Propósitos:
+    - Monitorar informações
+    - Montar bases de dados
+
 ## Desafios
 
 - Acessar um conjunto de páginas específicas
-    - Pode ser **complicado**: conhecimento de requisições web
-- A partir de uma página HTML, extrair os dados de interesse
+    - Pode ser **complicado**: conhecer de requisições web
+- A partir de páginas HTML, extrair dados de interesse
     - Mais **simples**: ferramentas apropriadas, e.g. `rvest`
 
 ## Material
@@ -90,28 +106,8 @@ knitr::include_graphics("inst/wc2.png")
 
 ## Desejável
 
-- Tidyverse (`dplyr`, `tidyr`, `stringr`, `purrr`, `lubridate`)
+- Tidyverse 
+    - `dplyr`, `tidyr`, `stringr`, `purrr`, `lubridate`
 - Expressões regulares (`regex`)
 - `XPath` e `CSSPath`
-
-## Conceitos básicos
-
-- Requisição GET: `httr::GET()`
-- Requisição POST: `httr::POST()`
-- Inspect element
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
