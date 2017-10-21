@@ -1,0 +1,142 @@
+---
+title: "Revisão: pipe e dplyr"
+output: html_document
+---
+
+## RMarkdown
+
+- Junta texto e código
+    - Escrever texto em `markdown` e código em `R`
+- Abrir chunk com ctrl+alt+i
+- Rodar códigos com ctrl+enter
+
+## O operador `%>%`
+
+```{r}
+knitr::include_graphics("inst/MagrittePipe.jpg")
+```
+
+```{r}
+knitr::include_graphics("inst/download.jpg")
+```
+
+Para começar a utilizar o *pipe*, instale e carregue o pacote `magrittr`.
+
+```{r eval=FALSE}
+# install.packages("magrittr")
+library(magrittr)
+```
+
+A ideia do operador `%>%` (*pipe*) é bem simples: usar o valor resultante da expressão do lado esquerdo como primeiro argumento da função do lado direito. 
+
+```{r, eval=FALSE}
+# As duas linhas abaixo são equivalentes.
+f <- function(x, y) x + y
+x <- 1
+y <- 2
+
+f(x, y)
+x %>% f(y)
+```
+
+Nos casos mais simples, o *pipe* parece não trazer grandes vantagens. Agora, veja como fica um caso mais etapas.
+
+```{r}
+# Vamos calcular a raiz quadrada da soma dos valores de 1 a 4. Primeiro, sem o pipe.
+
+x <- c(1, 2, 3, 4)
+sqrt(sum(x))
+
+# Agora com o pipe.
+
+x %>% sum %>% sqrt
+```
+
+O caminho que o código `x %>% sum %>% sqrt` seguiu foi enviar o objeto `x` como argumento da função `sum()` e, em seguida, enviar a saida da expressão `sum(x)` como argumento da função `sqrt()`. Observe que escrevemos o código na mesma ordem das operações e que não é necessário colocar os parênteses após o nome das funções.
+
+Se você ainda não está convencido com o poder do *pipe*, fica que vai ter bolo!
+
+No exemplo abaixo, vamos ilustrar um caso em que temos um grande número de funções aninhadas. Veja como a utilização do *pipe* transforma um código confuso e difícil de ser lido em algo simples e intuitivo.
+
+
+```{r, eval=FALSE}
+# Receita de bolo sem pipe. Tente entender o que é preciso fazer.
+
+esfrie(asse(coloque(bata(acrescente(recipiente(rep("farinha", 2), "água", "fermento", "leite", "óleo"), "farinha", até = "macio"), duração = "3min"), lugar = "forma", tipo = "grande", untada = TRUE), duração = "50min"), "geladeira", "20min")
+
+
+# Veja como o código acima pode ser reescrito utilizando-se o pipe. Agora realmente se parece com uma receita de bolo.
+
+recipiente(rep("farinha", 2), "água", "fermento", "leite", "óleo") %>%
+  acrescente("farinha", até = "macio") %>%
+  bata(duraço = "3min") %>%
+  coloque(lugar = "forma", tipo = "grande", untada = TRUE) %>%
+  asse(duração = "50min") %>%
+  esfrie("geladeira", "20min")
+
+```
+
+Para mais informações sobre o `pipe`, outros operadores relacionados e exemplos de utilização, visite a página [Ceci n'est pas un pipe](http://cran.r-project.org/web/packages/magrittr/vignettes/magrittr.html).
+
+--------------------------------------------------------------------------------
+
+## Os cinco verbos do `dplyr`
+
+As funções principais do `dplyr` são:
+
+- `filter` - filtra linhas
+- `select` - seleciona colunas
+- `mutate` - cria/modifica colunas
+- `arrange` - ordena a base
+- `summarise` - sumariza a base
+
+
+```{r}
+library(dplyr)
+mtcars
+```
+
+```{r}
+mtcars %>% 
+  # filtrar linhas
+  filter(mpg > 19)
+```
+
+
+```{r}
+mtcars %>% 
+  filter(mpg > 19) %>% 
+  # selecionar colunas
+  select(mpg:disp, am)
+```
+
+```{r}
+mtcars %>% 
+  filter(mpg > 19) %>% 
+  select(mpg:disp, am) %>% 
+  # mutações
+  mutate(cyl = factor(cyl), disp2 = sqrt(disp))
+```
+
+```{r}
+mtcars %>% 
+  filter(mpg > 19) %>% 
+  select(mpg:disp, am) %>% 
+  mutate(cyl = factor(cyl), disp2 = sqrt(disp)) %>% 
+  # agrupar e sumarizar
+  group_by(cyl) %>% 
+  summarise(media_mpg = mean(mpg),
+            mediana_disp = median(disp2))
+```
+
+```{r}
+mtcars %>% 
+  filter(mpg > 19) %>% 
+  select(mpg:disp, am) %>% 
+  mutate(cyl = factor(cyl), disp2 = sqrt(disp)) %>% 
+  group_by(cyl) %>% 
+  summarise(media_mpg = mean(mpg),
+            mediana_disp = median(disp2)) %>% 
+  # ordena
+  arrange(media_mpg)
+```
