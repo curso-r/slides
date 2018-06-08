@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Julio Trecenti ABJ Platipus curso-r.com CONRE-3 etc" />
+  <title>Comentários sobre deep learning</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="deep_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="deep_files/reveal.js-3.3.0.1/css/theme/night.css" id="theme">
+
+<style type="text/css">
+.reveal section img {
+  background: rgba(255, 255, 255, 0.85);
+}
+</style>
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+    <link href="deep_files/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">Comentários sobre deep learning</h1>
+    <h2 class="author">Julio Trecenti<br/>ABJ<br/>Platipus<br/>curso-r.com<br/>CONRE-3<br/>etc</h2>
+</section>
+
+<section id="outline" class="slide level2">
+<h2>Outline</h2>
+<ul>
+<li>Blablabla</li>
+<li>Regressão logística</li>
+<li>Aplicações</li>
+</ul>
+</section>
+<section id="novos-tempos" class="slide level2">
+<h2>Novos tempos?</h2>
+<ul>
+<li>Nos últimos anos os tipos de dados mudaram.</li>
+<li>Coisas muito importantes no mercado hoje em dia:</li>
+</ul>
+<p><img src="imgs/friends.jpg" width="23%" /><img src="imgs/acordao.png" width="23%" /><img src="imgs/wave.png" width="23%" /></p>
+</section>
+<section id="em-paralelo-ou-como-consequencia" class="slide level2">
+<h2>Em paralelo (ou como consequência)…</h2>
+<ul>
+<li>Tivemos diversos avanços na estatística:
+<ul>
+<li>Regularização</li>
+<li>Inferência Bayesiana</li>
+<li>Modelos não paramétricos</li>
+<li>…</li>
+</ul></li>
+</ul>
+</section>
+<section id="em-paralelo-ou-como-consequencia-1" class="slide level2">
+<h2>Em paralelo (ou como consequência)…</h2>
+<ul>
+<li>Tudo inserido numa caixinha chamada <em>statistical learning</em>
+<ul>
+<li>Leiam o ESL!!!</li>
+</ul></li>
+</ul>
+</section>
+<section id="em-paralelo-ou-como-consequencia-2" class="slide level2">
+<h2>Em paralelo (ou como consequência)…</h2>
+<ul>
+<li>Muito disso se deve aos avanços computacionais
+<ul>
+<li>Coisas na cloud; computação barata</li>
+<li>Paralelização</li>
+<li>GPU</li>
+</ul></li>
+</ul>
+</section>
+<section id="em-paralelo-ou-como-consequencia-3" class="slide level2">
+<h2>Em paralelo (ou como consequência)…</h2>
+<ul>
+<li>E também a uma comunidade cada vez mais ativa e colaborativa
+<ul>
+<li>Github (Microsoft ._.)</li>
+<li>Popularização do R e do python</li>
+<li>Análises reprodutíveis</li>
+</ul></li>
+</ul>
+</section>
+<section id="deep-learning" class="slide level2">
+<h2>Deep Learning</h2>
+<ul>
+<li class="fragment">Popularidade recente da área de deep learning.</li>
+<li class="fragment">Promete fazer muitas coisas.</li>
+<li class="fragment">Tem um linguajar diferente do que estamos acostumados.</li>
+</ul>
+<p><img src="imgs/deepl.png" width="70%" /></p>
+</section>
+<section id="problemas" class="slide level2">
+<h2>Problemas</h2>
+<ul>
+<li class="fragment">Muita, muita gente usando.</li>
+<li class="fragment">Mercado está pedindo. Só se fala nisso.</li>
+<li class="fragment">Falsa ideia de que não aprendemos nada na faculdade</li>
+<li class="fragment">O que estudamos é ultrapassado?</li>
+</ul>
+</section>
+<section id="juntando-com-marketing" class="slide level2" data-background="imgs/diff.png">
+<h2>Juntando com marketing</h2>
+</section>
+<section id="depressao" class="slide level2" data-background="imgs/quit.png">
+<h2>Depressão</h2>
+</section>
+<section id="depressao-2" class="slide level2" data-background="imgs/dead.png">
+<h2>Depressão 2</h2>
+</section>
+<section id="nao-entre-em-panico" class="slide level2" data-background="imgs/panic.jpg">
+<h2>Não entre em pânico!</h2>
+</section>
+<section id="nao-entre-em-panico-1" class="slide level2">
+<h2>Não entre em pânico!</h2>
+<ul>
+<li class="fragment">Existem muitos falsos cognatos.</li>
+<li class="fragment">A maioria das coisas que estudamos é útil.</li>
+<li class="fragment">Ainda assim, vale à pena estudar os conceitos.</li>
+</ul>
+</section>
+<section id="regressao-logistica" class="slide level2">
+<h2>Regressão logística</h2>
+<p>Componente aleatório</p>
+<p><span class="math display">\[
+Y|x \sim \text{Bernoulli}(\mu)
+\]</span></p>
+<p>Componente sistemática</p>
+<p><span class="math display">\[
+g(\mu) = g(P(Y=1\,|\,x)) = \alpha + \beta x
+\]</span></p>
+<p>Função de ligação</p>
+<p><span class="math display">\[
+g(\mu) = \log\left(\frac{\mu}{1-\mu}\right)
+\]</span></p>
+</section>
+<section id="funcao-deviance" class="slide level2">
+<h2>Função Deviance</h2>
+<p><span class="math display">\[
+\begin{aligned}
+D(y,\hat\mu(x)) &amp;= \sum_{i=1}^n 2\left[y_i\log\frac{y_i}{\hat\mu_i(x_i)} + (1-y_i)\log\left(\frac{1-y_i}{1-\hat\mu_i(x_i)}\right)\right] \\
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp;= 2 D_{KL}\left(y||\hat\mu(x)\right),
+\end{aligned}
+\]</span></p>
+<p>onde <span class="math inline">\(D_{KL}(p||q) = \sum_i p_i\log\frac{p_i}{q_i}\)</span> é a divergência de Kullback-Leibler.</p>
+</section>
+<section id="deep-learning-1" class="slide level2">
+<h2>Deep learning</h2>
+<p><img src="imgs/y1.png" width="50%" /></p>
+<ul>
+<li class="fragment">Faz uma combinação linear inputs <span class="math inline">\(x\)</span>, adiciona um viés (<em>bias</em>) e depois aplica uma função de ativação não linear.</li>
+<li class="fragment">No nosso caso, somente adiciona um parâmetro multiplicando <span class="math inline">\(x\)</span> e um viés fixo, fazendo</li>
+</ul>
+<p><span class="math display">\[
+f(x) = w x + \text{bias}
+\]</span></p>
+<ul>
+<li class="fragment">A função de ativação é uma sigmoide, dada por</li>
+</ul>
+<p><span class="math display">\[
+\sigma(x) = \frac{1}{1 + e^{-x}}
+\]</span></p>
+<ul>
+<li class="fragment">Coincidência?</li>
+</ul>
+</section>
+<section id="funcao-de-custo-categorical-cross-entropy" class="slide level2">
+<h2>Função de custo: categorical cross-entropy</h2>
+<p><span class="math display">\[
+\begin{aligned}
+H(p, q) &amp;= H(p) + D_{KL}(p||q) \\
+&amp;= -\sum_x p(x)\log(q(x))
+\end{aligned}
+\]</span></p>
+<p>No nosso caso, (acho que) isso é equivalente a uma constante mais a função deviance.</p>
+</section>
+<section id="otimizacao" class="slide level2">
+<h2>Otimização</h2>
+<ul>
+<li>Existem diversos algoritmos de otimização.</li>
+<li>Um dos mais utilizados é o de descida de gradiente estocástico.</li>
+</ul>
+</section>
+<section id="dados" class="slide level2">
+<h2>Dados</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+logistic &lt;-<span class="st"> </span><span class="cf">function</span>(x) <span class="dv">1</span> <span class="op">/</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="kw">exp</span>(<span class="op">-</span>x))
+
+n &lt;-<span class="st"> </span><span class="dv">100000</span>
+<span class="kw">set.seed</span>(<span class="dv">19910401</span>)
+dados &lt;-<span class="st"> </span><span class="kw">tibble</span>(
+  <span class="dt">x =</span> <span class="kw">runif</span>(n, <span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>),
+  <span class="dt">y =</span> <span class="kw">rbinom</span>(n, <span class="dv">1</span>, <span class="dt">prob =</span> <span class="kw">logistic</span>(<span class="op">-</span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> <span class="op">*</span><span class="st"> </span>x))
+)
+dados</code></pre></div>
+<pre><code>## # A tibble: 100,000 x 2
+##          x     y
+##      &lt;dbl&gt; &lt;int&gt;
+##  1 -1.19       0
+##  2  0.0146     0
+##  3  1.63       1
+##  4 -1.51       0
+##  5 -0.500      0
+##  6 -0.957      1
+##  7 -0.108      1
+##  8  0.0595     0
+##  9  1.86       1
+## 10 -1.69       0
+## # ... with 99,990 more rows</code></pre>
+</section>
+<section id="ajustando-uma-regressao-logistica-no-r" class="slide level2">
+<h2>Ajustando uma regressão logística no R</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">modelo &lt;-<span class="st"> </span><span class="kw">glm</span>(y <span class="op">~</span><span class="st"> </span>x, <span class="dt">data =</span> dados, <span class="dt">family =</span> <span class="st">&#39;binomial&#39;</span>)
+broom<span class="op">::</span><span class="kw">tidy</span>(modelo)</code></pre></div>
+<pre><code>##          term  estimate  std.error statistic p.value
+## 1 (Intercept) -1.014166 0.01058750 -95.78893       0
+## 2           x  2.017904 0.01216982 165.81217       0</code></pre>
+</section>
+<section id="ajustando-um-deep-learning-com-o-keras" class="slide level2">
+<h2>Ajustando um deep learning com o keras</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(keras)
+input_keras &lt;-<span class="st"> </span><span class="kw">layer_input</span>(<span class="dt">shape =</span> <span class="dv">1</span>, <span class="dt">name =</span> <span class="st">&quot;modelo_keras&quot;</span>)
+
+output_keras &lt;-<span class="st"> </span>input_keras <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">layer_dense</span>(<span class="dt">units =</span> <span class="dv">1</span>, <span class="dt">name =</span> <span class="st">&quot;camada_unica&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">layer_activation</span>(<span class="st">&quot;sigmoid&quot;</span>, 
+                   <span class="dt">input_shape =</span> <span class="dv">1</span>, 
+                   <span class="dt">name =</span> <span class="st">&quot;link_logistic&quot;</span>)
+
+<span class="co"># Constrói a nossa hipótese f(x) (da E[y] = f(x))</span>
+modelo_keras &lt;-<span class="st"> </span><span class="kw">keras_model</span>(input_keras, output_keras)</code></pre></div>
+</section>
+<section id="ajustando-um-deep-learning-com-o-keras-1" class="slide level2">
+<h2>Ajustando um deep learning com o keras</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summary</span>(modelo_keras)</code></pre></div>
+<pre><code>## ___________________________________________________________________________
+## Layer (type)                     Output Shape                  Param #     
+## ===========================================================================
+## modelo_keras (InputLayer)        (None, 1)                     0           
+## ___________________________________________________________________________
+## camada_unica (Dense)             (None, 1)                     2           
+## ___________________________________________________________________________
+## link_logistic (Activation)       (None, 1)                     0           
+## ===========================================================================
+## Total params: 2
+## Trainable params: 2
+## Non-trainable params: 0
+## ___________________________________________________________________________</code></pre>
+</section>
+<section id="ajustando-um-deep-learning-com-o-keras-2" class="slide level2">
+<h2>Ajustando um deep learning com o keras</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">modelo_keras <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">compile</span>(
+    <span class="dt">loss =</span> <span class="st">&#39;binary_crossentropy&#39;</span>,
+    <span class="dt">optimizer =</span> <span class="st">&quot;sgd&quot;</span>
+  )
+
+modelo_keras <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">fit</span>(<span class="dt">x =</span> dados<span class="op">$</span>x, <span class="dt">y =</span> dados<span class="op">$</span>y, <span class="dt">epochs =</span> <span class="dv">3</span>)</code></pre></div>
+<pre><code>Epoch 1/2
+100000/100000 [==============================] - 3s - loss: 0.3721      
+Epoch 2/2
+100000/100000 [==============================] - 3s - loss: 0.3721 </code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">modelo_keras <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">get_layer</span>(<span class="st">&quot;camada_unica&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">get_weights</span>()</code></pre></div>
+<pre><code>## [[1]]
+##          [,1]
+## [1,] 2.017766
+## 
+## [[2]]
+## [1] -1.01664</code></pre>
+</section>
+<section id="duvidas" class="slide level2">
+<h2>Dúvidas</h2>
+<ul>
+<li>Se é a mesma coisa, por que ele está ganhando tanta popularidade?</li>
+<li>Devo estudar deep learning ou posso continuar fazendo regressão logística?</li>
+</ul>
+</section>
+<section id="aplicacoes" class="slide level2">
+<h2>Aplicações</h2>
+</section>
+<section id="captcha" class="slide level2">
+<h2>CAPTCHA</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(decryptr)
+model &lt;-<span class="st"> </span>decryptrModels<span class="op">::</span><span class="kw">read_model</span>(<span class="st">&#39;rfb&#39;</span>)
+a &lt;-<span class="st"> </span>decryptr<span class="op">::</span><span class="kw">download_captcha</span>(<span class="st">&quot;rfb&quot;</span>, <span class="dt">path =</span> <span class="st">&#39;.&#39;</span>)
+<span class="kw">plot</span>(<span class="kw">read_captcha</span>(a)[[<span class="dv">1</span>]])
+<span class="kw">decryptr</span>(a, model)</code></pre></div>
+<p><img src="deep_files/figure-revealjs/unnamed-chunk-12-1.png" width="672" /></p>
+<pre><code>## [1] &quot;warabj&quot;</code></pre>
+</section>
+    </div>
+  </div>
+
+  <script src="deep_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="deep_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: false,
+        // Opens links in an iframe preview overlay
+        previewLinks: true,
+        // Transition style
+        transition: 'none', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+
+
+
+        chalkboard: {
+        },
+
+        keyboard: {
+          67: function() { RevealChalkboard.toggleNotesCanvas() },    // toggle notes canvas when 'c' is pressed
+          66: function() { RevealChalkboard.toggleChalkboard() }, // toggle chalkboard when 'b' is pressed
+          46: function() { RevealChalkboard.clear() },    // clear chalkboard when 'DEL' is pressed
+           8: function() { RevealChalkboard.reset() },    // reset chalkboard data on current slide when 'BACKSPACE' is pressed
+          68: function() { RevealChalkboard.download() }, // downlad recorded chalkboard drawing when 'd' is pressed
+        },
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'deep_files/reveal.js-3.3.0.1/plugin/chalkboard/chalkboard.js', async: true },
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>

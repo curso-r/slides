@@ -3,5 +3,4 @@
 .RData
 .Ruserdata
 rsconnect
-*.html
 .httr-oauth
