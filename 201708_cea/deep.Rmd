@@ -40,13 +40,16 @@ knitr::include_graphics(c("friends.jpg", "acordao.png", "wave.png"))
     - Inferência Bayesiana
     - Modelos não paramétricos
     - ...
-- Tudo inserido numa caixinha chamada *statistical learning*
+
+> - Tudo inserido numa caixinha chamada *statistical learning*
     - Leiam o ESL!!!
-- Muito disso se deve aos avanços computacionais
+
+> - Muito disso se deve aos avanços computacionais
     - Coisas na cloud; computação barata
     - Paralelização
     - GPU
-- E também a uma comunidade cada vez mais ativa e colaborativa
+
+> - E também a uma comunidade cada vez mais ativa e colaborativa
     - Github
     - Popularização do R e do python
     - Análises reprodutíveis
@@ -57,7 +60,7 @@ knitr::include_graphics(c("friends.jpg", "acordao.png", "wave.png"))
 > - Promete fazer muitas coisas.
 > - Tem um linguajar diferente do que estamos acostumados.
 
-```{r echo=FALSE, out.width='50%'}
+```{r echo=FALSE, out.width='70%'}
 knitr::include_graphics("deepl.png")
 ```
 
@@ -106,7 +109,12 @@ $$
 
 $$
 \begin{aligned}
-D(y,\hat\mu(x)) &= \sum_{i=1}^n 2\left[y_i\log\frac{y_i}{\hat\mu_i(x_i)} + (1-y_i)\log\left(\frac{1-y_i}{1-\hat\mu_i(x_i)}\right)\right] = \\
+D(y,\hat\mu(x)) &= \sum_{i=1}^n 2\left[y_i\log\frac{y_i}{\hat\mu_i(x_i)} + (1-y_i)\log\left(\frac{1-y_i}{1-\hat\mu_i(x_i)}\right)\right] \\
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
 &= 2 D_{KL}\left(y||\hat\mu(x)\right),
 \end{aligned}
 $$
@@ -227,11 +235,18 @@ modelo_keras %>% get_layer("camada_unica") %>% get_weights()
 
 ## CAPTCHA
 
-```{r, fig.height=2, fig.width=7}
+```{r, fig.height=2, fig.width=7, eval=FALSE}
 library(decryptr)
 model <- decryptrModels::read_model('rfb')
-a <- download_rfb('.')
-plot(read_captcha(a))
-predict(model, newdata = prepare(read_captcha(a)))
+a <- decryptr::download_captcha("rfb", path = '.')
+plot(read_captcha(a)[[1]])
+decryptr(a, model)
+```
+
+```{r, fig.height=2, fig.width=7, echo=FALSE}
+a <- "captcha41367a06c5a.png"
+model <- decryptrModels::read_model('rfb')
+plot(decryptr::read_captcha(a)[[1]])
+decryptr::decrypt(a, model)
 ```
 
